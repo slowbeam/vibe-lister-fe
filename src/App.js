@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from './Components/Login'
-import GenreSelector from './Components/GenreSelector'
+import Login from './components/Login'
+import GenreSelector from './components/GenreSelector'
+import { addSongs } from './actions/songs.js'
 
 class App extends Component {
 
-  loadGenres = () => {
-    window.location='http://localhost:3000/api/v1/load-genres';
+  loadAllData = () => {
+    
   }
 
   componentDidMount(){

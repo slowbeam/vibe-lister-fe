@@ -1,6 +1,11 @@
 import React from 'react';
+import uuid from 'uuid'
 
 class GenreSelector extends React.Component {
+
+  state = {
+    selectedGenre: ''
+  }
 
   genres = [
     "acoustic",
@@ -132,17 +137,28 @@ class GenreSelector extends React.Component {
   ]
 
   renderGenreOptions = () => {
-    return this.genres.map(genre => <option key={null}>{genre}</option>)
+    return this.genres.map(genre => <option key={uuid()}>{genre}</option>)
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      selectedGenre: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    window.location='http://localhost:3000/api/v1/recommend/?genre=' + this.state.selectedGenre;
   }
 
   render(){
     return (
       <div className="genre-selector-container">
         Choose a Genre:
-        <form>
-        <select>
+        <form className="genre-form" onSubmit={this.handleSubmit}>
+        <select onChange={this.handleChange} value={this.state.selectedGenre}>
         {this.renderGenreOptions()}
         </select>
+        <input type="submit" value="submit" />
         </form>
       </div>
     )
