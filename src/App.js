@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Login from './Components/Login'
 import GenreSelector from './Components/GenreSelector'
 
 class App extends Component {
+
+  loadGenres = () => {
+    window.location='http://localhost:3000/api/v1/load-genres';
+  }
+
   render() {
+
     return (
       <div className="App">
         <header className="App-header">
@@ -14,6 +19,7 @@ class App extends Component {
         </header>
       <Login />
       <GenreSelector />
+      <button onClick={this.loadGenres}>load genres</button>
       </div>
     );
   }
