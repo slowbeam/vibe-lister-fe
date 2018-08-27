@@ -4,7 +4,7 @@ import uuid from 'uuid'
 class GenreSelector extends React.Component {
 
   state = {
-    selectedGenre: ''
+    selectedGenre: 'acoustic'
   }
 
   genres = [
@@ -147,7 +147,8 @@ class GenreSelector extends React.Component {
   }
 
   handleSubmit = (event) => {
-    window.location='http://localhost:3000/api/v1/recommend/?genre=' + this.state.selectedGenre;
+    event.preventDefault()
+    window.location='http://localhost:3000/api/v1/search/?genre=' + this.state.selectedGenre
   }
 
   render(){
