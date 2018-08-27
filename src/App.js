@@ -9,6 +9,10 @@ class App extends Component {
     window.location='http://localhost:3000/api/v1/load-genres';
   }
 
+  componentDidMount(){
+
+  }
+
   render() {
 
     return (
@@ -18,8 +22,8 @@ class App extends Component {
           <h1 className="App-title">VibeList</h1>
         </header>
       <Login />
+      <br />
       <GenreSelector />
-      <button onClick={this.loadGenres}>load genres</button>
       </div>
     );
   }
