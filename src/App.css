@@ -64,3 +64,40 @@ h1 {
   justify-content: space-between;
 
 }
+
+.song-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.song-card-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darkGrey;
+  height: 170px;
+  width: 620px;
+  margin: 10px;
+}
+
+.song-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: lightGrey;
+  height: 100px;
+  width: 600px;
+  margin: 10px;
+}
+
+.album-cover-image {
+  height: 120px;
+  width: 120px;
+}

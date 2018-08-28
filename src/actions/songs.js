@@ -1,6 +1,6 @@
-export const addSongs = (songs) => {
+export const addSong = (song) => {
   return {
-    type: 'ADD_SONGS',
-    payload: songs
+    type: 'ADD_SONG',
+    payload: song
   };
 };
