@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Login from './components/Login'
-import GenreSelector from './components/GenreSelector'
+import MoodSelector from './components/MoodSelector'
 import PlaylistContainer from './containers/PlaylistContainer'
 import { connect } from 'react-redux'
 import { addSong } from './actions/songs.js'
@@ -14,8 +14,20 @@ class App extends Component {
     }
   }
 
+  findLoggedInUser = (userArray) => {
+    return userArray.filter(user => user.logged_in === true)
+  }
+
+  setLoggedInUser = () => {
+    fetch('http://localhost:3000/api/v1/users')
+    .then(resp => resp.json())
+    .then(resp => { this.findLoggedInUser(resp) })
+  }
+
   loadAllData = () => {
-    fetch('http://localhost:3000/api/v1/songs').then(resp => resp.json()).then(resp => {this.addAllSongs(resp)})
+    fetch('http://localhost:3000/api/v1/songs')
+    .then(resp => resp.json())
+    .then(resp => {this.addAllSongs(resp)})
   }
 
   componentDidMount(){
@@ -32,7 +44,7 @@ class App extends Component {
         </header>
       <Login />
       <br />
-      <GenreSelector />
+      <MoodSelector />
       <PlaylistContainer />
       </div>
     );

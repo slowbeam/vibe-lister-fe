@@ -2,7 +2,7 @@ import React from 'react';
 import uuid from 'uuid'
 import genres from '../Genres'
 
-class GenreSelector extends React.Component {
+class MoodSelector extends React.Component {
 
   state = {
     selectedMood: 'sad'
@@ -49,4 +49,4 @@ class GenreSelector extends React.Component {
 };
 
 
-export default GenreSelector;
+export default MoodSelector;
