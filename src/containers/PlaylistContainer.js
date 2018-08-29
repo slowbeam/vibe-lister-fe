@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import SongCard from '../components/SongCard'
+import CreatePlaylist from '../components/CreatePlaylist'
 
 
 class PlaylistContainer extends Component {
@@ -13,6 +14,7 @@ class PlaylistContainer extends Component {
     return (
       <div className="playlist-container">
         <div className="song-card-container">
+        <CreatePlaylist />
         <img alt="" src="/images/emojis/sad.png"/>
         <br />
         {this.renderAllSongs(this.props.sadSongs)}
