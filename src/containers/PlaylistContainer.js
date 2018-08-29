@@ -11,8 +11,22 @@ class PlaylistContainer extends Component {
 
   render() {
     return (
-      <div className="song-card-container">
-      {this.renderAllSongs(this.props.songs)}
+      <div className="playlist-container">
+        <div className="song-card-container">
+        <img alt="" src="/images/emojis/sad.png"/>
+        <br />
+        {this.renderAllSongs(this.props.sadSongs)}
+        </div>
+        <div className="song-card-container">
+        <img alt="" src="/images/emojis/content.png"/>
+        <br />
+        {this.renderAllSongs(this.props.contentSongs)}
+        </div>
+        <div className="song-card-container">
+        <img alt="" src="/images/emojis/ecstatic.png"/>
+        <br />
+        {this.renderAllSongs(this.props.ecstaticSongs)}
+        </div>
       </div>
     )
   }
@@ -20,7 +34,9 @@ class PlaylistContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    songs: state.songs
+    sadSongs: state.sadSongs,
+    contentSongs: state.contentSongs,
+    ecstaticSongs: state.ecstaticSongs
   }
 }
 
