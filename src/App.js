@@ -1,58 +1,43 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from './components/Login'
-import MoodSelector from './components/MoodSelector'
-import PlaylistContainer from './containers/PlaylistContainer'
-import { connect } from 'react-redux'
-import { addSong } from './actions/songs'
-import { setUsers } from './actions/users'
-import { setLoggedInUser } from './actions/loggedInUser'
-import { setMoods } from './actions/moods'
+import Login from './components/Login';
+import MoodSelector from './components/MoodSelector';
+import PlaylistContainer from './containers/PlaylistContainer';
+import { connect } from 'react-redux';
+import { setLoggedInUser } from './actions/loggedInUser';
+import { setEcstaticSongs } from './actions/ecstaticSongs';
+import { fetchUsers } from './actions/fetchUsers';
+import { fetchSongs } from './actions/fetchSongs';
+import { fetchMoods } from './actions/fetchMoods'
 
 
 class App extends Component {
 
-  fetchAllSongs = (songArray) => {
-    for (let song of songArray) {
-      this.props.addSong(song)
-    }
-  }
 
-  fetchAllUsers = () => {
-    fetch('http://localhost:3000/api/v1/users')
-    .then(resp => resp.json())
-    .then(resp => this.props.setUsers(resp))
-  }
 
-  fetchAllMoods = () => {
-    fetch('http://localhost:3000/api/v1/moods')
-    .then(resp => resp.json())
-    .then(resp => this.props.setMoods(resp))
-  }
-
-  findAndSetLoggedInUser = (userArray) => {
-    const foundUser =  userArray.filter(user => user.logged_in === true)
+  findAndSetLoggedInUser = () => {
+    const foundUser =  this.props.users.filter(user => user.logged_in === true)
     this.props.setLoggedInUser(foundUser)
   }
 
-  fetchLoggedInUser = () => {
-    fetch('http://localhost:3000/api/v1/users')
-    .then(resp => resp.json())
-    .then(resp => {this.findAndSetLoggedInUser(resp)})
+  storeEcstaticSongs = () => {
+    const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser.id);
+    const userEcstaticMoods = userMoods.filter(mood => mood.name.includes("ecstatic"))
+    const userEcstaticSongIds = userEcstaticMoods.map(mood => mood.song_id)
+    const userEcstaticSongs = this.props.songs.filter(song => userEcstaticSongIds.includes(song.id))
+    this.props.setEcstaticSongs(userEcstaticSongs)
   }
 
-  loadAllData = () => {
-    fetch('http://localhost:3000/api/v1/songs')
-    .then(resp => resp.json())
-    .then(resp => {this.fetchAllSongs(resp)})
-    .then(() => {return this.fetchAllUsers()})
-    .then(() => {return this.fetchLoggedInUser()})
-    .then(() => {return this.fetchAllMoods()})
+  storeAllData = () => {
+    this.props.fetchSongs()
+    .then(() => {return this.props.fetchUsers()})
+    .then(() => {return this.findAndSetLoggedInUser()})
+    .then(() => {return this.props.fetchMoods()})
 
   }
 
   componentDidMount(){
-    this.loadAllData()
+    this.storeAllData()
   }
 
   render() {
@@ -67,7 +52,7 @@ class App extends Component {
       <br />
       <MoodSelector />
       <PlaylistContainer />
-      {console.log(this.props.moods)}
+      {console.log(this.props.loggedInUser)}
       </div>
     );
   }
@@ -75,10 +60,11 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addSong: (song) => dispatch(addSong(song)),
-    setUsers: (users) => dispatch(setUsers(users)),
     setLoggedInUser: (user) => dispatch(setLoggedInUser(user)),
-    setMoods: (moods) => dispatch(setMoods(moods))
+    setEcstaticSongs: (songs) => dispatch(setEcstaticSongs(songs)),
+    fetchUsers: () => dispatch(fetchUsers()),
+    fetchSongs: () => dispatch(fetchSongs()),
+    fetchMoods: () => dispatch(fetchMoods())
   }
 }
 
@@ -87,7 +73,8 @@ const mapStateToProps = state => {
     songs: state.songs,
     users: state.users,
     loggedInUser: state.loggedInUser,
-    moods: state.moods
+    moods: state.moods,
+    ecstaticSongs: state.ecstaticSongs
   }
 }
 
