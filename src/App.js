@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import Login from './components/Login';
-import MoodSelector from './components/MoodSelector';
+import MoodEmojiSelector from './components/MoodEmojiSelector';
 import PlaylistContainer from './containers/PlaylistContainer';
+import CreatePlaylist from './components/CreatePlaylist'
 import { connect } from 'react-redux';
 import { setLoggedInUser } from './actions/loggedInUser';
 import { fetchUsers } from './actions/fetchUsers';
@@ -23,11 +25,14 @@ class App extends Component {
   }
 
   storeEcstaticSongs = () => {
-    const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
-    const userEcstaticMoods = userMoods.filter(mood => mood.name.includes("ecstatic"));
-    const userEcstaticSongIds = userEcstaticMoods.map(mood => mood.song_id)
-    const userEcstaticSongs = this.props.songs.filter(song => userEcstaticSongIds.includes(song.id))
-    this.props.setEcstaticSongs(userEcstaticSongs)
+    if (this.props.loggedInUser){
+      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
+      const userEcstaticMoods = userMoods.filter(mood => mood.name.includes("ecstatic"));
+      const userEcstaticSongIds = userEcstaticMoods.map(mood => mood.song_id)
+      const userEcstaticSongs = this.props.songs.filter(song => userEcstaticSongIds.includes(song.id))
+      this.props.setEcstaticSongs(userEcstaticSongs)
+  }
+
   }
 
   storeContentSongs = () => {
@@ -63,6 +68,45 @@ class App extends Component {
     this.storeAllData()
   }
 
+  Login = () => {
+    return (
+      <Login />
+    )
+  }
+
+  Welcome = () => {
+    return (
+      <div>
+        <CreatePlaylist />
+        <h4>Welcome to Vibelist, an app for creating Spotify playlists based on the mood of your choice</h4>
+      </div>
+    )
+  }
+
+  CreateNewVibeList = () => {
+    return (
+      <MoodEmojiSelector />
+    )
+  }
+
+  CurrentPlaylistSad = () => {
+    return (
+      <PlaylistContainer currentMood={'sad'} />
+    )
+  }
+
+  CurrentPlaylistContent = () => {
+    return (
+      <PlaylistContainer currentMood={'content'} />
+    )
+  }
+
+  CurrentPlaylistEcstatic = () => {
+    return (
+      <PlaylistContainer currentMood={'ecstatic'} />
+    )
+  }
+
   render() {
 
     return (
@@ -71,11 +115,18 @@ class App extends Component {
           <img src='v-sample-logo.png' className="App-logo" alt="logo" />
           <h1 className="App-title">VibeList</h1>
         </header>
-      <Login />
-      <br />
-      <MoodSelector />
-      <PlaylistContainer />
-      {console.log(this.props.sadSongs)}
+
+      <Router>
+        <React.Fragment>
+          <Route exact path="/" render={this.Login} />
+          <Route exact path="/welcome" render={this.Welcome} />
+          <Route exact path="/create" render={this.CreateNewVibeList} />
+          <Route exact path="/create-sad-vibelist" render={this.CurrentPlaylistSad} />
+          <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
+          <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistContent} />
+          <Route exact path="/my-vibelists" render={this.MyVibeLists} />
+        </React.Fragment>
+      </Router>
       </div>
     );
   }

@@ -108,3 +108,7 @@ h1 {
   flex-direction: row;
   margin: 10px;
 }
+
+.mood-selector-container {
+  margin: 15px;
+}

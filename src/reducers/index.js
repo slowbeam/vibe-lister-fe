@@ -6,6 +6,7 @@ import moods from './moods'
 import ecstaticSongs from './ecstaticSongs'
 import contentSongs from './contentSongs'
 import sadSongs from './sadSongs'
+import currentList from './currentList'
 
 export default combineReducers({
   songs,
@@ -14,5 +15,6 @@ export default combineReducers({
   moods,
   ecstaticSongs,
   contentSongs,
-  sadSongs
+  sadSongs,
+  currentList
 });
