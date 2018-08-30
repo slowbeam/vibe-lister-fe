@@ -15,7 +15,7 @@ class PlaylistContainer extends Component {
       case 'ecstatic':
         return <img alt="" src="/images/emojis/ecstatic.png"/>
       default:
-        return 
+        return
     }
   }
 
@@ -40,7 +40,6 @@ class PlaylistContainer extends Component {
           {this.renderEmoji()}
           <SavePlaylistButton />
           <div className="song-card-container">
-
           {this.renderAllSongs()}
           </div>
         </div>

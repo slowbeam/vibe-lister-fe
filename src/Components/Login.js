@@ -7,7 +7,7 @@ const Login = (props) => {
   }
 
   return (
-    <div className="login-container">
+    <div className="section">
       <div onClick={visitSpotifyLogin} className="spotify-login-button" >
       </div>
     </div>

@@ -13,8 +13,9 @@ class MoodEmojiSelector extends React.Component {
 
   render(){
     return (
-      <div className="mood-selector-container">
-        Choose a Mood:
+      <div className="section mood-selector-container">
+        <h4>Choose a Mood:</h4>
+        <br />
         <div className="mood-emoji-container">
         <img onClick={() => this.handleSubmit('sad')} alt="" src="/images/emojis/sad.png"/>
         <img onClick={() => this.handleSubmit('content')} alt="" src="/images/emojis/content.png"/>

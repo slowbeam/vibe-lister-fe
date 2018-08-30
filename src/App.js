@@ -76,7 +76,7 @@ class App extends Component {
 
   Welcome = () => {
     return (
-      <div>
+      <div className="section">
         <CreatePlaylist />
         <h4>Welcome to Vibelist, an app for creating Spotify playlists based on the mood of your choice</h4>
       </div>
@@ -111,8 +111,9 @@ class App extends Component {
 
     return (
       <div className="page">
-        <div className="section menu"></div>
-        <div className="section header"></div>
+        <div className="section menu">
+          <img className="app-logo" src="images/vibelist-logo-2.png" alt="" />
+        </div>
       <Router>
         <React.Fragment>
           <Route exact path="/" render={this.Login} />
