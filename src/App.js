@@ -110,12 +110,9 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src='v-sample-logo.png' className="App-logo" alt="logo" />
-          <h1 className="App-title">VibeList</h1>
-        </header>
-
+      <div className="page">
+        <div className="section menu"></div>
+        <div className="section header"></div>
       <Router>
         <React.Fragment>
           <Route exact path="/" render={this.Login} />

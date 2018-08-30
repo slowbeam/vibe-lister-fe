@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import SongCard from '../components/SongCard'
+import SavePlaylistButton from '../components/SavePlaylistButton'
 
 
 class PlaylistContainer extends Component {
@@ -13,6 +14,8 @@ class PlaylistContainer extends Component {
         return <img alt="" src="/images/emojis/content.png"/>
       case 'ecstatic':
         return <img alt="" src="/images/emojis/ecstatic.png"/>
+      default:
+        return 
     }
   }
 
@@ -32,12 +35,15 @@ class PlaylistContainer extends Component {
 
   render() {
     return (
-      <div className="playlist-container">
-        <div className="song-card-container">
-        {this.renderEmoji()}
-        {this.renderAllSongs()}
+
+        <div className="section playlist-container">
+          {this.renderEmoji()}
+          <SavePlaylistButton />
+          <div className="song-card-container">
+
+          {this.renderAllSongs()}
+          </div>
         </div>
-      </div>
     )
   }
 }
