@@ -6,10 +6,28 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
+  color: #fff;
 }
 
 h1 {
   font-family: 'Quicksand', sans-serif;
+}
+
+h4 {
+  text-align: center;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+button {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  background-image: linear-gradient(-120deg, #b91876, #cfbddf);
+  border-radius: 30px;
+  height: 40px;
+  width: 200px;
+  color: #fff;
+  border-style: none;
 }
 
 .app-logo {
@@ -20,6 +38,9 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
+  background-image: linear-gradient(-40deg, #290066, #7c1d58);
+  height: 100vh;
+  flex-direction: column;
 }
 
 .section {
@@ -30,34 +51,15 @@ h1 {
   align-items: center;
 }
 
-.menu {
-  background-color: #50c3d6;
-  height: 150px;
-}
-
-.header {
-  background-color: #B2D6FF;
-}
-
 .content {
-  background-color: #EAEDF0;
-  height: 600px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.sign-up {
-  background-color: #D6E9FE;
-}
-
-.feature-1 {
-  background-color: #F5CF8E;
-}
-
-.feature-2 {
-  background-color: #F09A9D;
-}
-
-.feature-3 {
-  background-color: #C8C6FA;
+.menu {
+  background-color: #fff;
+  height: 150px;
 }
 
 .spotify-login-button {
@@ -124,6 +126,15 @@ h1 {
   flex-direction: column;
 }
 
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 250px;
+  margin-top: 60px;
+}
+
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
@@ -181,8 +192,8 @@ h1 {
 
   .song-card-container {
     height: 500px;
+    }
   }
-}
 
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {

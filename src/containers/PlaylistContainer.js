@@ -30,7 +30,6 @@ class PlaylistContainer extends Component {
       default:
         return <div></div>
     }
-
   }
 
   render() {
@@ -42,6 +41,7 @@ class PlaylistContainer extends Component {
           <div className="song-card-container">
           {this.renderAllSongs()}
           </div>
+          {console.log(this.props.currentMood)}
         </div>
     )
   }
