@@ -25,14 +25,11 @@ class App extends Component {
   }
 
   storeEcstaticSongs = () => {
-    if (this.props.loggedInUser){
       const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
       const userEcstaticMoods = userMoods.filter(mood => mood.name.includes("ecstatic"));
       const userEcstaticSongIds = userEcstaticMoods.map(mood => mood.song_id)
       const userEcstaticSongs = this.props.songs.filter(song => userEcstaticSongIds.includes(song.id))
       this.props.setEcstaticSongs(userEcstaticSongs)
-  }
-
   }
 
   storeContentSongs = () => {
@@ -76,7 +73,7 @@ class App extends Component {
 
   Welcome = () => {
     return (
-      <div className="welcome">
+      <div className="section welcome">
         <h4>Welcome to Vibelist, an app for creating Spotify playlists based on the mood of your choice</h4>
         <CreatePlaylist />
       </div>
@@ -112,7 +109,7 @@ class App extends Component {
     return (
       <div className="page">
         <div className="section menu">
-          <img className="app-logo" src="images/vibelist-logo-4.png" alt="" />
+          <img className="app-logo" src="images/vibelist-logo-5.png" alt="" />
         </div>
       <Router>
         <div className="content">
@@ -123,6 +120,7 @@ class App extends Component {
           <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
           <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
           <Route exact path="/my-vibelists" render={this.MyVibeLists} />
+          <div className="section"></div>
         </div>
       </Router>
       </div>

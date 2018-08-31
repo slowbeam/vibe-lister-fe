@@ -22,7 +22,7 @@ h4 {
 button {
   font-family: 'Quicksand', sans-serif;
   font-size: 14px;
-  background-image: linear-gradient(-120deg, #b91876, #cfbddf);
+  background-image: linear-gradient(-120deg, #002633, #0099cc);
   border-radius: 30px;
   height: 40px;
   width: 200px;
@@ -37,10 +37,8 @@ button {
 .page {
   display: flex;
   flex-wrap: wrap;
-  overflow: hidden;
-  background-image: linear-gradient(-40deg, #290066, #7c1d58);
-  height: 100vh;
   flex-direction: column;
+  background-image: linear-gradient(-40deg, #202060, #a0f8f8);
 }
 
 .section {
@@ -54,6 +52,7 @@ button {
 .content {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -63,7 +62,7 @@ button {
 }
 
 .spotify-login-button {
-  background-image: url('/images/connectwithspotify.png');
+  background-image: url('/images/spotify_connect_button.png');
   background-size: cover;
   height: 52.5px;
   width: 300px;
@@ -116,14 +115,18 @@ button {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin: 10px;
-  overflow: hidden;
+  margin-top: 60px;
 }
 
 .mood-selector-container {
   margin: 15px;
   display: flex;
   flex-direction: column;
+}
+
+.mood-emoji-container {
+  display: flex;
+  flex-direction: row;
 }
 
 .welcome {
@@ -161,6 +164,11 @@ button {
 
   .song-card-container {
     height: 300px;
+  }
+
+  .mood-emoji-container {
+    display: flex;
+    flex-direction: column;
   }
 
 

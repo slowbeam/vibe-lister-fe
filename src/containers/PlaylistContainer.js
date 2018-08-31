@@ -34,14 +34,12 @@ class PlaylistContainer extends Component {
 
   render() {
     return (
-
         <div className="section playlist-container">
           {this.renderEmoji()}
           <SavePlaylistButton />
           <div className="song-card-container">
           {this.renderAllSongs()}
           </div>
-          {console.log(this.props.currentMood)}
         </div>
     )
   }
