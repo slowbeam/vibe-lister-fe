@@ -30,7 +30,7 @@ const MusicPlayer = (props) => {
             :
             <div className="music-player">
               <p>
-                Click Add Playlist to Spotify to listen to your Birthify Playlist
+                Click Add Vibelist to Spotify to listen to your Vibelist
               </p>
               <p>
                 Note: Audio player is only supported for Spotify Premium members.

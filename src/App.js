@@ -78,7 +78,7 @@ class App extends Component {
   }
 
   checkForPlayer(){
-    if (this.props.loggedInUser !== null){
+    if (this.props.loggedInUser[0] !== undefined){
       const token = this.props.loggedInUser[0]["access_token"];
 
       if (window.Spotify !== undefined){
@@ -226,17 +226,46 @@ onNextClick = () => {
 
   CurrentPlaylistEcstatic = () => {
     return (
-      <PlaylistContainer currentMood={'ecstatic'} />
+      <div>
+        <MusicPlayer playlistLoaded={this.state.playlistLoaded} artistName={this.state.artistName} trackName={this.state.trackName} albumName={this.state.albumName} albumArt={this.state.albumArt} playing={this.state.playing} onPrevClick={this.onPrevClick} onPlayClick={this.onPlayClick} onNextClick={this.onNextClick} />
+        <PlaylistContainer currentMood={'ecstatic'} />
+      </div>
+
     )
+  }
+
+  handleIconClick = (event) => {
+    event.preventDefault()
+    let x = document.getElementById("top-nav-bar");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
   }
 
   render() {
 
     return (
       <div className="page">
-        <div className="section menu">
-          <img className="app-logo" src="images/vibelist-logo-9.png" alt="" />
+        <div className="topnav" id="top-nav-bar">
+          <div className="box-1">
+            <a href="#home" className=" active" >Home</a>
+            <a href="#my-vibelists" >My VibeLists</a>
+            <a href="#create-new-vibelist" >New VibeList</a>
+          </div>
+
+          <div className="box-2" >
+            <img src="./images/vibelist-logo-9.png" alt="" className="app-logo"/>
+          </div>
+          <div className="box-3" >
+            <a href="" className="icon" onClick={this.handleIconClick}>
+              <i className="fa fa-bars"></i>
+            </a>
+          </div>
         </div>
+
+
 
       <Router>
         <div className="content">
