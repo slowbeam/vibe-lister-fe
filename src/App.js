@@ -43,27 +43,34 @@ class App extends Component {
   }
 
   storeEcstaticSongs = () => {
-      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
-      const userEcstaticMoods = userMoods.filter(mood => mood.name.includes("ecstatic"));
-      const userEcstaticSongIds = userEcstaticMoods.map(mood => mood.song_id)
-      const userEcstaticSongs = this.props.songs.filter(song => userEcstaticSongIds.includes(song.id))
-      this.props.setEcstaticSongs(userEcstaticSongs)
+      if (this.props.loggedInUser !== null && this.props.loggedInUser[0] !== undefined){
+        const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
+        const userEcstaticMoods = userMoods.filter(mood => mood.name.includes("ecstatic"));
+        const userEcstaticSongIds = userEcstaticMoods.map(mood => mood.song_id)
+        const userEcstaticSongs = this.props.songs.filter(song => userEcstaticSongIds.includes(song.id))
+        this.props.setEcstaticSongs(userEcstaticSongs)
+      }
+
   }
 
   storeContentSongs = () => {
-    const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
-    const userContentMoods = userMoods.filter(mood => mood.name.includes("content"));
-    const userContentSongIds = userContentMoods.map(mood => mood.song_id)
-    const userContentSongs = this.props.songs.filter(song => userContentSongIds.includes(song.id))
-    this.props.setContentSongs(userContentSongs)
+    if (this.props.loggedInUser !== null && this.props.loggedInUser[0] !== undefined){
+      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
+      const userContentMoods = userMoods.filter(mood => mood.name.includes("content"));
+      const userContentSongIds = userContentMoods.map(mood => mood.song_id)
+      const userContentSongs = this.props.songs.filter(song => userContentSongIds.includes(song.id))
+      this.props.setContentSongs(userContentSongs)
+    }
   }
 
   storeSadSongs = () => {
-    const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
-    const userSadMoods = userMoods.filter(mood => mood.name.includes("sad"));
-    const userSadSongIds = userSadMoods.map(mood => mood.song_id)
-    const userSadSongs = this.props.songs.filter(song => userSadSongIds.includes(song.id))
-    this.props.setSadSongs(userSadSongs)
+    if (this.props.loggedInUser !== null && this.props.loggedInUser[0] !== undefined){
+      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
+      const userSadMoods = userMoods.filter(mood => mood.name.includes("sad"));
+      const userSadSongIds = userSadMoods.map(mood => mood.song_id)
+      const userSadSongs = this.props.songs.filter(song => userSadSongIds.includes(song.id))
+      this.props.setSadSongs(userSadSongs)
+    }
   }
 
 
@@ -78,7 +85,7 @@ class App extends Component {
   }
 
   checkForPlayer(){
-    if (this.props.loggedInUser[0] !== undefined){
+    if (this.props.loggedInUser !== null && this.props.loggedInUser[0] !== undefined){
       const token = this.props.loggedInUser[0]["access_token"];
 
       if (window.Spotify !== undefined){
@@ -244,21 +251,25 @@ onNextClick = () => {
     }
   }
 
+  handleMenuClick = (event) => {
+    event.target.className="active"
+  }
+
   render() {
 
     return (
       <div className="page">
         <div className="topnav" id="top-nav-bar">
           <div className="box-1">
-            <a href="#home" className=" active" >Home</a>
+            <a href="http://localhost:3001/" onClick={this.handleMenuClick} className="active" >Home</a>
             <a href="#my-vibelists" >My VibeLists</a>
-            <a href="#create-new-vibelist" >New VibeList</a>
+            <a href="http://localhost:3001/create" >New VibeList</a>
           </div>
 
           <div className="box-2" >
-            <img src="./images/vibelist-logo-9.png" alt="" className="app-logo"/>
           </div>
           <div className="box-3" >
+            <a href="">Logout</a>
             <a href="" className="icon" onClick={this.handleIconClick}>
               <i className="fa fa-bars"></i>
             </a>
