@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
-  color: #fff;
+  color: #000;
 }
 
 h1 {
@@ -24,6 +24,7 @@ h4 {
   margin-right: 20px;
   margin-left: 20px;
 }
+
 
 button {
   font-family: 'Quicksand', sans-serif;
@@ -56,11 +57,14 @@ button {
 }
 
 .content {
+  flex: 1;
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  overflow: auto;
 }
+
 
 .menu {
   background-color: #fff;
@@ -68,12 +72,16 @@ button {
   overflow: hidden;
 }
 
+.bumper {
+  height: 200px;
+}
+
 .topnav {
   display: flex;
   align-items: center;
   background-color: #fff;
   overflow: hidden;
-  height: 60px
+  height: 70px
 }
 
 .box-1 {
@@ -99,18 +107,33 @@ button {
   align-items: center;
 }
 
+.topnav p {
+    float: left;
+    display: block;
+    color: #000;
+    text-align: center;
+    padding: 25px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav p:hover {
+  background-color: #262a67;
+    color: white;
+}
+
 .topnav a {
   float: left;
   display: block;
   color: #000;
   text-align: center;
-  padding: 14px 16px;
+  padding: 25px 16px;
   text-decoration: none;
   font-size: 17px;
 }
 
 .topnav a:hover {
-  background-color: #000;
+  background-color: #262a67;
     color: white;
 }
 
@@ -239,6 +262,8 @@ button {
 
   .topnav a {display: none;}
 
+  .topnav p {display: none;}
+
   .topnav a.icon {
     float: right;
     display: block;
@@ -296,6 +321,8 @@ button {
 @media only screen and (min-width: 401px) and (max-width: 960px) {
 
   .topnav a {display: none;}
+
+    .topnav p {display: none;}
 
   .topnav a.icon {
     float: right;

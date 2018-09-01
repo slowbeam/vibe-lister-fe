@@ -195,8 +195,7 @@ onNextClick = () => {
   }
 
   Login = () => {
-    return (
-      <Login />
+    return (<div></div>
     )
   }
 
@@ -255,6 +254,20 @@ onNextClick = () => {
     event.target.className="active"
   }
 
+  handleLogOut = () => {
+    this.props.setLoggedInUser(null);
+    window.location = 'https://www.spotify.com/logout/';
+    window.location = "http://localhost:3000/api/v1/logout";
+  }
+
+  renderLogInLogOut = () => {
+    if (this.props.loggedInUser !== null && this.props.loggedInUser[0] !== undefined) {
+      return <p onClick={this.handleLogOut}>Logout</p>
+    } else {
+      return <Login />
+    }
+  }
+
   render() {
 
     return (
@@ -269,7 +282,7 @@ onNextClick = () => {
           <div className="box-2" >
           </div>
           <div className="box-3" >
-            <a href="">Logout</a>
+            {this.renderLogInLogOut()}
             <a href="" className="icon" onClick={this.handleIconClick}>
               <i className="fa fa-bars"></i>
             </a>
@@ -287,7 +300,7 @@ onNextClick = () => {
           <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
           <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
           <Route exact path="/my-vibelists" render={this.MyVibeLists} />
-          <div className="section bumper"></div>
+          <div className="bumper"> </div>
         </div>
       </Router>
       </div>
