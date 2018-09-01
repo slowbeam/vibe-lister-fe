@@ -7,6 +7,7 @@ import ecstaticSongs from './ecstaticSongs'
 import contentSongs from './contentSongs'
 import sadSongs from './sadSongs'
 import currentList from './currentList'
+import deviceId from './deviceId'
 
 export default combineReducers({
   songs,
@@ -16,5 +17,6 @@ export default combineReducers({
   ecstaticSongs,
   contentSongs,
   sadSongs,
-  currentList
+  currentList,
+  deviceId
 });

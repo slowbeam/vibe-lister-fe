@@ -110,6 +110,41 @@ button {
 .album-cover-image {
 }
 
+.player-art {
+  height: 150px;
+}
+
+.player-button-image {
+  height: 20px;
+}
+
+.player-button {
+  background-color: #8fdce4;
+  background-image: none;
+  width: 70px;
+  margin: 2px;
+  padding-top: 4px;
+}
+
+.player-button-container {
+  display: flex;
+}
+
+.music-player {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: #181818;
+  background-color: #fff;
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  padding: 20px;
+  margin: 44px 10px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
+}
+
 .playlist-container {
   display: flex;
   flex-direction: column;
