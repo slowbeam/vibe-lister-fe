@@ -242,6 +242,12 @@ onNextClick = () => {
 
   handleIconClick = (event) => {
     event.preventDefault()
+    let hamburger = document.getElementById('hamburger');
+    if (hamburger.className === "fa fa-bars"){
+      hamburger.className = "fa fa-close"
+    } else {
+      hamburger.className = "fa fa-bars"
+    }
     let x = document.getElementById("mobile-nav-bar");
     if (x.className === "mobile-nav-menu") {
       x.className += " show tablet";
@@ -284,7 +290,7 @@ onNextClick = () => {
           <div className="box-3" >
             {this.renderLogInLogOut()}
             <a href="" className="icon" onClick={this.handleIconClick}>
-              <i className="fa fa-bars"></i>
+              <i id="hamburger" className="fa fa-bars"></i>
             </a>
           </div>
         </div>
