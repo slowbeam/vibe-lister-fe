@@ -242,11 +242,11 @@ onNextClick = () => {
 
   handleIconClick = (event) => {
     event.preventDefault()
-    let x = document.getElementById("top-nav-bar");
-    if (x.className === "topnav") {
-      x.className += " responsive";
+    let x = document.getElementById("mobile-nav-bar");
+    if (x.className === "mobile-nav-menu") {
+      x.className += " show tablet";
     } else {
-      x.className = "topnav";
+      x.className = "mobile-nav-menu";
     }
   }
 
@@ -274,7 +274,7 @@ onNextClick = () => {
       <div className="page">
         <div className="topnav" id="top-nav-bar">
           <div className="box-1">
-            <a href="http://localhost:3001/" onClick={this.handleMenuClick} className="active" >Home</a>
+            <a href="http://localhost:3001/" onClick={this.handleMenuClick} >Home</a>
             <a href="#my-vibelists" >My VibeLists</a>
             <a href="http://localhost:3001/create" >New VibeList</a>
           </div>
@@ -288,21 +288,29 @@ onNextClick = () => {
             </a>
           </div>
         </div>
-
-
-
-      <Router>
-        <div className="content">
-          <Route exact path="/" render={this.Login} />
-          <Route exact path="/welcome" render={this.Welcome} />
-          <Route exact path="/create" render={this.CreateNewVibeList} />
-          <Route exact path="/create-sad-vibelist" render={this.CurrentPlaylistSad} />
-          <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
-          <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
-          <Route exact path="/my-vibelists" render={this.MyVibeLists} />
-          <div className="bumper"> </div>
+        <div  id="mobile-nav-bar" className="mobile-nav-menu">
+          <a href="http://localhost:3001/" onClick={this.handleMenuClick} className="mobile-home-button">Home</a>
+          <a href="#my-vibelists" >My VibeLists</a>
+          <a href="http://localhost:3001/create" >New VibeList</a>
+          {this.renderLogInLogOut()}
         </div>
-      </Router>
+
+
+        <Router>
+          <div className="content">
+            <Route exact path="/" render={this.Login} />
+            <Route exact path="/welcome" render={this.Welcome} />
+            <Route exact path="/create" render={this.CreateNewVibeList} />
+            <Route exact path="/create-sad-vibelist" render={this.CurrentPlaylistSad} />
+            <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
+            <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
+            <Route exact path="/my-vibelists" render={this.MyVibeLists} />
+            <div className="bumper"> </div>
+          </div>
+        </Router>
+        <div className="footer">
+          <p className="footer-text">created by Sandy Edwards</p>
+        </div>
       </div>
     );
   }
