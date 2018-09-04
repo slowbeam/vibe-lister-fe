@@ -6,8 +6,9 @@ class MoodEmojiSelector extends React.Component {
 
 
   handleSubmit = (mood) => {
-    this.props.setCurrentList(mood)
-    window.location='http://localhost:3000/api/v1/search/?mood=' + mood
+    const token = localStorage.getItem('jwt');
+
+    window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token
 
   }
 

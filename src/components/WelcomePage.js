@@ -19,14 +19,17 @@ class WelcomePage extends Component {
     this.props.setLoggedInUser({
       username: queryObj.username,
       display_name: queryObj.display_name.split("+").join(" "),
-      profile_image: queryObj.profile_image
+      profile_image: queryObj.profile_image,
+      access_token: queryObj.access_token
     })
 
-    
+    const jwt = queryObj.jwt
+
+    localStorage.setItem('jwt', jwt)
   }
 
   renderDisplayName = () => {
-    if (this.props.loggedInUser) {
+    if (this.props.loggedInUser && this.props.loggedInUser.display_name) {
       return this.props.loggedInUser.display_name.split(' ')[0]
     } else {
       return ""

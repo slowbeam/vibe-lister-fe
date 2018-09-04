@@ -71,7 +71,6 @@ class App extends Component {
 
   storeAllData = () => {
     this.props.fetchSongs()
-    .then(() => {return this.props.fetchLoggedInUser()})
     .then(() => {return this.props.fetchMoods()})
     .then(() => {return this.props.fetchUsers()})
     .then(() => {return this.storeEcstaticSongs()})
@@ -185,7 +184,7 @@ onNextClick = () => {
 
 
   componentDidMount(){
-    // this.storeAllData()
+    this.storeAllData()
     this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
   }
 
