@@ -55,6 +55,7 @@ button {
   justify-content: center;
   align-items: center;
   height: 70px;
+  width: 100%;
   background-color: #fff;
 }
 
@@ -272,7 +273,7 @@ button {
   align-items: center;
   color: #181818;
   background-color: #fff;
-  width: 300px;
+
   position: fixed;
   padding: 20px;
   margin: 200px 10px;
@@ -286,6 +287,10 @@ button {
   align-items: center;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+.create-page-container {
+  display: flex;
 }
 
 .mood-selector-container {
@@ -438,7 +443,6 @@ button {
     padding-bottom: 25px;
     background-color: lightGrey;
     height: 110px;
-    width: 700px;
     margin: 4px;
     flex-shrink: 0;
   }

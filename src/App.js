@@ -7,35 +7,23 @@ import PlaylistContainer from './containers/PlaylistContainer';
 import MusicPlayer from './components/MusicPlayer';
 import WelcomePage from './components/WelcomePage';
 import { connect } from 'react-redux';
-import { setCurrentUser } from './actions/currentUser';
-import { fetchCurrentUser } from './actions/fetchCurrentUser';
-import { fetchUsers } from './actions/fetchUsers';
-import { fetchSongs } from './actions/fetchSongs';
-import { fetchMoods } from './actions/fetchMoods';
-import { setEcstaticSongs } from './actions/ecstaticSongs';
-import { setContentSongs } from './actions/contentSongs';
-import { setSadSongs } from './actions/sadSongs';
-import { setDeviceId } from './actions/deviceId';
+import * as actions from './actions'
 
 
 class App extends Component {
 
-  constructor(props){
-  super(props);
-  this.state = {
-    trackName: "Track Name",
-    artistName: "Artist Name",
-    albumName: "Album Name",
-    albumArt: "",
-    playing: false,
-    position: 0,
-    duration: 0,
-    playlistLoaded: false
-  };
+  componentDidMount(){
+    this.storeAllData()
+  }
 
-  this.playerCheckInterval = null;
-}
-
+  storeAllData = () => {
+    this.props.fetchSongs()
+    .then(() => {return this.props.fetchMoods()})
+    .then(() => {return this.props.fetchUsers()})
+    .then(() => {return this.storeEcstaticSongs()})
+    .then(() => {return this.storeContentSongs()})
+    .then(() => {return this.storeSadSongs()})
+  }
 
   storeEcstaticSongs = () => {
       if (this.props.currentUser !== null){
@@ -66,171 +54,6 @@ class App extends Component {
       const userSadSongs = this.props.songs.filter(song => userSadSongIds.includes(song.id))
       this.props.setSadSongs(userSadSongs)
     }
-  }
-
-
-  storeAllData = () => {
-    this.props.fetchSongs()
-    .then(() => {return this.props.fetchMoods()})
-    .then(() => {return this.props.fetchUsers()})
-    .then(() => {return this.storeEcstaticSongs()})
-    .then(() => {return this.storeContentSongs()})
-    .then(() => {return this.storeSadSongs()})
-  }
-
-  checkForPlayer(){
-    if (this.props.currentUser !== null){
-      const token = this.props.currentUser["access_token"];
-
-      if (window.Spotify !== undefined){
-        clearInterval(this.playerCheckInterval);
-        this.player = new window.Spotify.Player({
-          name: "VibeList Spotify Player",
-          getOAuthToken: cb => { cb(token); }
-        })
-        this.createEventHandlers()
-        this.player.connect();
-      }
-    }
-  }
-
-  createEventHandlers(){
-    this.player.on('initialization_error', e => { console.error(e); });
-    this.player.on('authentication_error', e => {
-      console.error(e)
-    });
-    this.player.on('account_error', e => {console.error(e); });
-    this.player.on('playback_error', e => {console.error(e); });
-    this.player.on('player_state_changed', state => this.onStateChanged(state));
-    this.player.on('ready', async data => {
-      let { device_id } = data;
-      await this.props.setDeviceId(device_id)
-      this.transferPlaybackHere();
-
-    });
-  }
-
-  onStateChanged(state) {
-    if (state !== null) {
-      const {
-        current_track: currentTrack,
-        position,
-        duration,
-      } = state.track_window;
-      const trackName = currentTrack.name;
-      const albumName = currentTrack.album.name;
-      const albumArt = currentTrack.album.images[0].url
-      const playlistLoaded = true
-      const artistName = currentTrack.artists
-        .map(artist => artist.name)
-        .join(", ");
-      const playing = !state.paused;
-      this.setState({
-        position,
-        duration,
-        trackName,
-        albumName,
-        artistName,
-        playing,
-        albumArt,
-        playlistLoaded
-      });
-    }
-  }
-
-  transferPlaybackHere = () => {
-    const currentUser = this.props.currentUser
-    fetch("https://api.spotify.com/v1/me/player", {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${currentUser.access_token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "device_ids": [ this.props.deviceId ],
-        "play": false
-      }),
-    })
-  }
-
-  loadCurrentPlaylist = (playlistUri) => {
-
-    const currentUser = this.props.currentUser
-
-    const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + this.props.deviceId
-    fetch( playUrl, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${currentUser.access_token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "context_uri": playlistUri
-      })
-    })
-}
-
-onPrevClick = () => {
-  this.player.previousTrack();
-}
-
-onPlayClick = () => {
-  this.player.togglePlay();
-}
-
-onNextClick = () => {
-  this.player.nextTrack();
-}
-
-
-  componentDidMount(){
-    this.storeAllData()
-    this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
-  }
-
-
-
-  Login = () => {
-    return (<div></div>
-    )
-  }
-
-  Welcome = () => {
-    return (
-      <WelcomePage />
-    )
-  }
-
-  CreateNewVibeList = () => {
-    return (
-
-      <MoodEmojiSelector />
-    )
-  }
-
-  CurrentPlaylistSad = () => {
-    return (
-      <div>
-        <MusicPlayer playlistLoaded={this.state.playlistLoaded} artistName={this.state.artistName} trackName={this.state.trackName} albumName={this.state.albumName} albumArt={this.state.albumArt} playing={this.state.playing} onPrevClick={this.onPrevClick} onPlayClick={this.onPlayClick} onNextClick={this.onNextClick} />
-        <PlaylistContainer currentMood={'sad'} />
-      </div>
-    )
-  }
-
-  CurrentPlaylistContent = () => {
-    return (
-      <PlaylistContainer currentMood={'content'} />
-    )
-  }
-
-  CurrentPlaylistEcstatic = () => {
-    return (
-      <div>
-        <MusicPlayer playlistLoaded={this.state.playlistLoaded} artistName={this.state.artistName} trackName={this.state.trackName} albumName={this.state.albumName} albumArt={this.state.albumArt} playing={this.state.playing} onPrevClick={this.onPrevClick} onPlayClick={this.onPlayClick} onNextClick={this.onNextClick} />
-        <PlaylistContainer currentMood={'ecstatic'} />
-      </div>
-
-    )
   }
 
   handleIconClick = (event) => {
@@ -267,6 +90,54 @@ onNextClick = () => {
     }
   }
 
+  Login = () => {
+    return (<div></div>
+    )
+  }
+
+  Welcome = () => {
+    return (
+      <WelcomePage />
+    )
+  }
+
+  CreateNewVibeList = () => {
+    return (
+
+      <MoodEmojiSelector />
+    )
+  }
+
+  CurrentPlaylistSad = () => {
+    return (
+      <div className="create-page-container">
+        <MusicPlayer />
+        <PlaylistContainer />
+      </div>
+    )
+  }
+
+  CurrentPlaylistContent = () => {
+    return (
+      <div className="create-page-container">
+      <MusicPlayer />
+      <PlaylistContainer currentMood={'content'} />
+      </div>
+    )
+  }
+
+  CurrentPlaylistEcstatic = () => {
+    return (
+      <div className="create-page-container">
+        <MusicPlayer />
+        <PlaylistContainer />
+      </div>
+
+    )
+  }
+
+
+
   render() {
 
     return (
@@ -281,7 +152,7 @@ onNextClick = () => {
           <div className="box-2" >
           </div>
           <div className="box-3" >
-            <Login />
+            {this.renderLogInLogOut()}
             <a href="" className="icon" onClick={this.handleIconClick}>
               <i id="hamburger" className="fa fa-bars"></i>
             </a>
@@ -314,20 +185,6 @@ onNextClick = () => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-    fetchCurrentUser: () => dispatch(fetchCurrentUser()),
-    fetchUsers: () => dispatch(fetchUsers()),
-    fetchSongs: () => dispatch(fetchSongs()),
-    fetchMoods: () => dispatch(fetchMoods()),
-    setEcstaticSongs: (songs) => dispatch(setEcstaticSongs(songs)),
-    setContentSongs: (songs) => dispatch(setContentSongs(songs)),
-    setSadSongs: (songs) => dispatch(setSadSongs(songs)),
-    setDeviceId: (id) => dispatch(setDeviceId(id))
-  }
-}
-
 const mapStateToProps = state => {
   return {
     songs: state.songs,
@@ -336,9 +193,8 @@ const mapStateToProps = state => {
     moods: state.moods,
     ecstaticSongs: state.ecstaticSongs,
     contentSongs: state.contentSongs,
-    sadSongs: state.sadSongs,
-    deviceId: state.deviceId
+    sadSongs: state.sadSongs
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, actions)(App);
