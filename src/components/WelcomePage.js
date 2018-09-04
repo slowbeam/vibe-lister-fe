@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CreatePlaylist from './CreatePlaylist';
 import { connect } from 'react-redux';
-import { LogInUser } from '../actions/logInUser';
+import * as actions from '../actions';
 import withAuth from '../hocs/withAuth';
 
 class WelcomePage extends Component {
@@ -16,7 +16,7 @@ class WelcomePage extends Component {
   }
 
   componentDidMount(){
-    this.props.logInUser(window.location)
+    this.props.LogInUser(window.location)
   }
 
   render(){
@@ -30,11 +30,6 @@ class WelcomePage extends Component {
   }
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    logInUser: (windowLocation) => dispatch(LogInUser(windowLocation))
-  }
-}
 
 const mapStateToProps = state => {
   return {
@@ -42,4 +37,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withAuth(connect(mapStateToProps, mapDispatchToProps)(WelcomePage));
+export default withAuth(connect(mapStateToProps, actions)(WelcomePage));

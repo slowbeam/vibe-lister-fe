@@ -119,7 +119,7 @@ class App extends Component {
 
   CurrentPlaylistContent = () => {
     return (
-      <div className="create-page-container">
+      <div>
       <MusicPlayer />
       <PlaylistContainer currentMood={'content'} />
       </div>
@@ -128,7 +128,7 @@ class App extends Component {
 
   CurrentPlaylistEcstatic = () => {
     return (
-      <div className="create-page-container">
+      <div>
         <MusicPlayer />
         <PlaylistContainer />
       </div>
