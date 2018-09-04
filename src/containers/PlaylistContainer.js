@@ -2,9 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import SongCard from '../components/SongCard'
 import SavePlaylistButton from '../components/SavePlaylistButton'
+import withAuth from '../hocs/withAuth';
+import { setCurrentMood } from '../actions/currentMood'
 
 
 class PlaylistContainer extends Component {
+
+  pullMoodFromUrl = (url) => {
+    const moodWords = url.split("/")[3].split("-")
+    const mood = moodWords[1]
+    this.props.setCurrentMood(mood)
+  }
+
+  componentDidMount(){
+    this.pullMoodFromUrl(window.location.href)
+  }
 
   renderEmoji = () => {
     switch(this.props.currentMood) {
@@ -40,6 +52,7 @@ class PlaylistContainer extends Component {
           <div className="song-card-container">
           {this.renderAllSongs()}
           </div>
+          {console.log(this.props.currentMood)}
         </div>
     )
   }
@@ -49,8 +62,15 @@ const mapStateToProps = state => {
   return {
     sadSongs: state.sadSongs,
     contentSongs: state.contentSongs,
-    ecstaticSongs: state.ecstaticSongs
+    ecstaticSongs: state.ecstaticSongs,
+    currentMood: state.currentMood
   }
 }
 
-export default connect(mapStateToProps)(PlaylistContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentMood: (mood) => dispatch(setCurrentMood(mood))
+  }
+}
+
+export default withAuth(connect(mapStateToProps, mapDispatchToProps)(PlaylistContainer))

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import CreatePlaylist from './CreatePlaylist';
 import { connect } from 'react-redux';
-import { LogInUser } from '../actions/logInUser'
+import { LogInUser } from '../actions/logInUser';
+import withAuth from '../hocs/withAuth';
 
 class WelcomePage extends Component {
 
@@ -41,4 +42,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);
+export default withAuth(connect(mapStateToProps, mapDispatchToProps)(WelcomePage));

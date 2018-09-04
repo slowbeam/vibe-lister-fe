@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { setCurrentList } from '../actions/currentList'
+import { connect } from 'react-redux';
+import withAuth from '../hocs/withAuth';
 
 class MoodEmojiSelector extends React.Component {
 
@@ -27,10 +27,4 @@ class MoodEmojiSelector extends React.Component {
   }
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCurrentList: (mood) => dispatch(setCurrentList(mood))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(MoodEmojiSelector);
+export default withAuth(connect()(MoodEmojiSelector));

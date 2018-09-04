@@ -13,7 +13,7 @@ const withAuth = WrappedComponent => {
       if (localStorage.getItem('jwt') && this.props.loggedIn) {
         return <WrappedComponent />
       } else {
-        //return <Redirect to="/login" />
+        return <React.Fragment></React.Fragment>
       }
     }
   }
@@ -29,5 +29,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  fetchCurrentUser: () => dispatch(fetchCurrentUser())
+  return {
+    fetchCurrentUser: () => dispatch(fetchCurrentUser())
+  }
 }
+
+export default withAuth

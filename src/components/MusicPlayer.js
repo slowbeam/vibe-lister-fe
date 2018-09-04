@@ -1,4 +1,5 @@
 import React from 'react';
+import withAuth from '../hocs/withAuth';
 
 const MusicPlayer = (props) => {
 
@@ -18,7 +19,6 @@ const MusicPlayer = (props) => {
                 <img className="player-art" src={props.albumArt} alt=""></img>
               </div>
 
-
               <div className="player-button-container">
                 <button className="player-button" onClick={() => props.onPrevClick()}><img alt="" className="player-button-image" src="./Skip-previous.svg"></img></button>
                 <button className="player-button" onClick={() => props.onPlayClick()}>{props.playing ? <img className="player-button-image" alt="" src="./Pause.svg"></img> : <img className="player-button-image" alt="" src="./Play.svg"></img>}</button>
@@ -30,7 +30,7 @@ const MusicPlayer = (props) => {
             :
             <div className="music-player">
               <p>
-                Click Add Vibelist to Spotify to listen to your Vibelist
+                Click Add Playlist to Spotify to listen to your Vibelist Playlist
               </p>
               <p>
                 Note: Audio player is only supported for Spotify Premium members.
@@ -44,4 +44,4 @@ const MusicPlayer = (props) => {
     )
 }
 
-export default MusicPlayer;
+export default withAuth(MusicPlayer);

@@ -3,7 +3,10 @@ import React from 'react';
 const SavePlaylistButton = (props) => {
 
   const visitCreatePlaylist = () => {
-    window.location='http://localhost:3000/api/v1/create-playlist';
+
+    const token = localStorage.getItem('jwt');
+
+    window.location='http://localhost:3000/api/v1/create-playlist?jwt=' + token;
   }
 
     return(
