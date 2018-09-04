@@ -4,17 +4,18 @@ import './App.css';
 import Login from './components/Login';
 import MoodEmojiSelector from './components/MoodEmojiSelector';
 import PlaylistContainer from './containers/PlaylistContainer';
-import MusicPlayer from './components/MusicPlayer'
-import CreatePlaylist from './components/CreatePlaylist'
+import MusicPlayer from './components/MusicPlayer';
+import WelcomePage from './components/WelcomePage';
 import { connect } from 'react-redux';
 import { setLoggedInUser } from './actions/loggedInUser';
+import { fetchLoggedInUser } from './actions/fetchLoggedInUser';
 import { fetchUsers } from './actions/fetchUsers';
 import { fetchSongs } from './actions/fetchSongs';
 import { fetchMoods } from './actions/fetchMoods';
 import { setEcstaticSongs } from './actions/ecstaticSongs';
 import { setContentSongs } from './actions/contentSongs';
 import { setSadSongs } from './actions/sadSongs';
-import { setDeviceId } from './actions/deviceId'
+import { setDeviceId } from './actions/deviceId';
 
 
 class App extends Component {
@@ -36,15 +37,9 @@ class App extends Component {
 }
 
 
-
-  findAndSetLoggedInUser = () => {
-    const foundUser =  this.props.users.filter(user => user.logged_in === true)
-    this.props.setLoggedInUser(foundUser)
-  }
-
   storeEcstaticSongs = () => {
-      if (this.props.loggedInUser !== null && this.props.loggedInUser[0] !== undefined){
-        const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
+      if (this.props.loggedInUser !== null){
+        const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser.id);
         const userEcstaticMoods = userMoods.filter(mood => mood.name.includes("ecstatic"));
         const userEcstaticSongIds = userEcstaticMoods.map(mood => mood.song_id)
         const userEcstaticSongs = this.props.songs.filter(song => userEcstaticSongIds.includes(song.id))
@@ -54,8 +49,8 @@ class App extends Component {
   }
 
   storeContentSongs = () => {
-    if (this.props.loggedInUser !== null && this.props.loggedInUser[0] !== undefined){
-      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
+    if (this.props.loggedInUser !== null){
+      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser.id);
       const userContentMoods = userMoods.filter(mood => mood.name.includes("content"));
       const userContentSongIds = userContentMoods.map(mood => mood.song_id)
       const userContentSongs = this.props.songs.filter(song => userContentSongIds.includes(song.id))
@@ -64,8 +59,8 @@ class App extends Component {
   }
 
   storeSadSongs = () => {
-    if (this.props.loggedInUser !== null && this.props.loggedInUser[0] !== undefined){
-      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser[0].id);
+    if (this.props.loggedInUser !== null){
+      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser.id);
       const userSadMoods = userMoods.filter(mood => mood.name.includes("sad"));
       const userSadSongIds = userSadMoods.map(mood => mood.song_id)
       const userSadSongs = this.props.songs.filter(song => userSadSongIds.includes(song.id))
@@ -76,17 +71,17 @@ class App extends Component {
 
   storeAllData = () => {
     this.props.fetchSongs()
+    .then(() => {return this.props.fetchLoggedInUser()})
     .then(() => {return this.props.fetchMoods()})
     .then(() => {return this.props.fetchUsers()})
-    .then(() => {return this.findAndSetLoggedInUser()})
     .then(() => {return this.storeEcstaticSongs()})
     .then(() => {return this.storeContentSongs()})
     .then(() => {return this.storeSadSongs()})
   }
 
   checkForPlayer(){
-    if (this.props.loggedInUser !== null && this.props.loggedInUser[0] !== undefined){
-      const token = this.props.loggedInUser[0]["access_token"];
+    if (this.props.loggedInUser !== null){
+      const token = this.props.loggedInUser["access_token"];
 
       if (window.Spotify !== undefined){
         clearInterval(this.playerCheckInterval);
@@ -145,7 +140,7 @@ class App extends Component {
   }
 
   transferPlaybackHere = () => {
-    const loggedInUser = this.props.loggedInUser[0]
+    const loggedInUser = this.props.loggedInUser
     fetch("https://api.spotify.com/v1/me/player", {
       method: "PUT",
       headers: {
@@ -161,7 +156,7 @@ class App extends Component {
 
   loadCurrentPlaylist = (playlistUri) => {
 
-    const loggedInUser = this.props.loggedInUser[0]
+    const loggedInUser = this.props.loggedInUser
 
     const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + this.props.deviceId
     fetch( playUrl, {
@@ -190,9 +185,11 @@ onNextClick = () => {
 
 
   componentDidMount(){
-    this.storeAllData()
+    // this.storeAllData()
     this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
   }
+
+
 
   Login = () => {
     return (<div></div>
@@ -201,10 +198,7 @@ onNextClick = () => {
 
   Welcome = () => {
     return (
-      <div className="section welcome">
-        <h4>Welcome to Vibelist, an app for creating Spotify playlists based on the mood of your choice</h4>
-        <CreatePlaylist />
-      </div>
+      <WelcomePage />
     )
   }
 
@@ -267,7 +261,7 @@ onNextClick = () => {
   }
 
   renderLogInLogOut = () => {
-    if (this.props.loggedInUser !== null && this.props.loggedInUser[0] !== undefined) {
+    if (this.props.loggedInUser !== null) {
       return <p onClick={this.handleLogOut}>Logout</p>
     } else {
       return <Login />
@@ -288,7 +282,7 @@ onNextClick = () => {
           <div className="box-2" >
           </div>
           <div className="box-3" >
-            {this.renderLogInLogOut()}
+            <Login />
             <a href="" className="icon" onClick={this.handleIconClick}>
               <i id="hamburger" className="fa fa-bars"></i>
             </a>
@@ -311,7 +305,6 @@ onNextClick = () => {
             <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
             <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
             <Route exact path="/my-vibelists" render={this.MyVibeLists} />
-            <div className="bumper"> </div>
           </div>
         </Router>
         <div className="footer">
@@ -325,6 +318,7 @@ onNextClick = () => {
 const mapDispatchToProps = dispatch => {
   return {
     setLoggedInUser: (user) => dispatch(setLoggedInUser(user)),
+    fetchLoggedInUser: () => dispatch(fetchLoggedInUser()),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchSongs: () => dispatch(fetchSongs()),
     fetchMoods: () => dispatch(fetchMoods()),

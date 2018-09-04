@@ -78,7 +78,6 @@ button {
   width: 100%;
   overflow: auto;
   height: 100vh;
-
 }
 
 
@@ -285,7 +284,8 @@ button {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .mood-selector-container {

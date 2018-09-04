@@ -1,12 +1,12 @@
 import APIAdapter from '../apis/adapter'
-import { setUsers } from './users'
+import { setLoggedInUser } from './loggedInUser'
 
-export const fetchUsers = () => {
+export const fetchLoggedInUser = () => {
 
   return (dispatch) => {
-    APIAdapter.getUsers()
-      .then(users => {
-        dispatch(setUsers(users))
+    APIAdapter.getLoggedInUser()
+      .then(user => {
+        dispatch(setLoggedInUser(user))
       })
   }
 }
