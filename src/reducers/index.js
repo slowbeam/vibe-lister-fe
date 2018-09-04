@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import songs from './songs';
-import loggedInUser from './loggedInUser'
+import currentUser from './currentUser'
 import users from './users'
 import moods from './moods'
 import ecstaticSongs from './ecstaticSongs'
@@ -12,7 +12,7 @@ import deviceId from './deviceId'
 export default combineReducers({
   songs,
   users,
-  loggedInUser,
+  currentUser,
   moods,
   ecstaticSongs,
   contentSongs,

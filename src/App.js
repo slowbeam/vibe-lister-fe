@@ -7,8 +7,8 @@ import PlaylistContainer from './containers/PlaylistContainer';
 import MusicPlayer from './components/MusicPlayer';
 import WelcomePage from './components/WelcomePage';
 import { connect } from 'react-redux';
-import { setLoggedInUser } from './actions/loggedInUser';
-import { fetchLoggedInUser } from './actions/fetchLoggedInUser';
+import { setCurrentUser } from './actions/currentUser';
+import { fetchCurrentUser } from './actions/fetchCurrentUser';
 import { fetchUsers } from './actions/fetchUsers';
 import { fetchSongs } from './actions/fetchSongs';
 import { fetchMoods } from './actions/fetchMoods';
@@ -38,8 +38,8 @@ class App extends Component {
 
 
   storeEcstaticSongs = () => {
-      if (this.props.loggedInUser !== null){
-        const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser.id);
+      if (this.props.currentUser !== null){
+        const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.currentUser.id);
         const userEcstaticMoods = userMoods.filter(mood => mood.name.includes("ecstatic"));
         const userEcstaticSongIds = userEcstaticMoods.map(mood => mood.song_id)
         const userEcstaticSongs = this.props.songs.filter(song => userEcstaticSongIds.includes(song.id))
@@ -49,8 +49,8 @@ class App extends Component {
   }
 
   storeContentSongs = () => {
-    if (this.props.loggedInUser !== null){
-      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser.id);
+    if (this.props.currentUser !== null){
+      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.currentUser.id);
       const userContentMoods = userMoods.filter(mood => mood.name.includes("content"));
       const userContentSongIds = userContentMoods.map(mood => mood.song_id)
       const userContentSongs = this.props.songs.filter(song => userContentSongIds.includes(song.id))
@@ -59,8 +59,8 @@ class App extends Component {
   }
 
   storeSadSongs = () => {
-    if (this.props.loggedInUser !== null){
-      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.loggedInUser.id);
+    if (this.props.currentUser !== null){
+      const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.currentUser.id);
       const userSadMoods = userMoods.filter(mood => mood.name.includes("sad"));
       const userSadSongIds = userSadMoods.map(mood => mood.song_id)
       const userSadSongs = this.props.songs.filter(song => userSadSongIds.includes(song.id))
@@ -79,8 +79,8 @@ class App extends Component {
   }
 
   checkForPlayer(){
-    if (this.props.loggedInUser !== null){
-      const token = this.props.loggedInUser["access_token"];
+    if (this.props.currentUser !== null){
+      const token = this.props.currentUser["access_token"];
 
       if (window.Spotify !== undefined){
         clearInterval(this.playerCheckInterval);
@@ -139,11 +139,11 @@ class App extends Component {
   }
 
   transferPlaybackHere = () => {
-    const loggedInUser = this.props.loggedInUser
+    const currentUser = this.props.currentUser
     fetch("https://api.spotify.com/v1/me/player", {
       method: "PUT",
       headers: {
-        authorization: `Bearer ${loggedInUser.access_token}`,
+        authorization: `Bearer ${currentUser.access_token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -155,13 +155,13 @@ class App extends Component {
 
   loadCurrentPlaylist = (playlistUri) => {
 
-    const loggedInUser = this.props.loggedInUser
+    const currentUser = this.props.currentUser
 
     const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + this.props.deviceId
     fetch( playUrl, {
       method: "PUT",
       headers: {
-        authorization: `Bearer ${loggedInUser.access_token}`,
+        authorization: `Bearer ${currentUser.access_token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -254,13 +254,13 @@ onNextClick = () => {
   }
 
   handleLogOut = () => {
-    this.props.setLoggedInUser(null);
+    this.props.setCurrentUser(null);
     window.location = 'https://www.spotify.com/logout/';
     window.location = "http://localhost:3000/api/v1/logout";
   }
 
   renderLogInLogOut = () => {
-    if (this.props.loggedInUser !== null) {
+    if (this.props.currentUser !== null) {
       return <p onClick={this.handleLogOut}>Logout</p>
     } else {
       return <Login />
@@ -316,8 +316,8 @@ onNextClick = () => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setLoggedInUser: (user) => dispatch(setLoggedInUser(user)),
-    fetchLoggedInUser: () => dispatch(fetchLoggedInUser()),
+    setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+    fetchCurrentUser: () => dispatch(fetchCurrentUser()),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchSongs: () => dispatch(fetchSongs()),
     fetchMoods: () => dispatch(fetchMoods()),
@@ -332,7 +332,7 @@ const mapStateToProps = state => {
   return {
     songs: state.songs,
     users: state.users,
-    loggedInUser: state.loggedInUser,
+    currentUser: state.currentUser.user,
     moods: state.moods,
     ecstaticSongs: state.ecstaticSongs,
     contentSongs: state.contentSongs,

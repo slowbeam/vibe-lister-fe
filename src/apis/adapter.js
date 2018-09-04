@@ -6,8 +6,16 @@ const LOGGED_IN_USER_URL = 'http://localhost:3000/api/v1/logged-in-user'
 
 const token = localStorage.getItem('jwt')
 
-const fetchObj = { headers:
-  {"Authorization": `Bearer ${token}`}
+const fetchObj = {
+  headers: {'Authorization': `Bearer ${token}`}
+}
+
+const currentUserFetchObj = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'Application/json',
+    'Authorization': `Bearer ${token}`
+  }
 }
 
 export default class APIAdapter {
@@ -32,8 +40,8 @@ export default class APIAdapter {
       .then(resp => resp.json())
   }
 
-  static getLoggedInUser() {
-    return fetch(LOGGED_IN_USER_URL, fetchObj)
+  static getCurrentUser() {
+    return fetch(LOGGED_IN_USER_URL, currentUserFetchObj)
       .then(resp => resp.json())
   }
 }

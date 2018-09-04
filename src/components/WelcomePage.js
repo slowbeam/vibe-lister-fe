@@ -1,43 +1,21 @@
 import React, { Component } from 'react';
 import CreatePlaylist from './CreatePlaylist';
 import { connect } from 'react-redux';
-import { setLoggedInUser } from '../actions/loggedInUser'
+import { LogInUser } from '../actions/logInUser'
 
 class WelcomePage extends Component {
 
-  setUserAndTokenFromQuery = (windowLocation) => {
-    const query = windowLocation.search.substring(1);
-
-    const queryPairs = query.split('&');
-
-    let queryObj ={};
-    for (var i = 0; i < queryPairs.length; i++) {
-        var pair = queryPairs[i].split('=');
-        queryObj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
-    }
-
-    this.props.setLoggedInUser({
-      username: queryObj.username,
-      display_name: queryObj.display_name.split("+").join(" "),
-      profile_image: queryObj.profile_image,
-      access_token: queryObj.access_token
-    })
-
-    const jwt = queryObj.jwt
-
-    localStorage.setItem('jwt', jwt)
-  }
 
   renderDisplayName = () => {
-    if (this.props.loggedInUser && this.props.loggedInUser.display_name) {
-      return this.props.loggedInUser.display_name.split(' ')[0]
+    if (this.props.currentUser && this.props.currentUser.display_name) {
+      return this.props.currentUser.display_name.split(' ')[0]
     } else {
       return ""
     }
   }
 
   componentDidMount(){
-    this.setUserAndTokenFromQuery(window.location)
+    this.props.logInUser(window.location)
   }
 
   render(){
@@ -53,13 +31,13 @@ class WelcomePage extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setLoggedInUser: (user) =>  dispatch(setLoggedInUser(user))
+    logInUser: (windowLocation) => dispatch(LogInUser(windowLocation))
   }
 }
 
 const mapStateToProps = state => {
   return {
-    loggedInUser: state.loggedInUser
+    currentUser: state.currentUser.user
   }
 }
 
