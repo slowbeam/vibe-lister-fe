@@ -6,6 +6,7 @@ import MoodEmojiSelector from './components/MoodEmojiSelector';
 import PlaylistContainer from './containers/PlaylistContainer';
 import MusicPlayer from './components/MusicPlayer';
 import WelcomePage from './components/WelcomePage';
+import MyVibeListsContainer from './containers/MyVibeListsContainer'
 import { connect } from 'react-redux';
 import * as actions from './actions'
 
@@ -78,8 +79,9 @@ class App extends Component {
 
   handleLogOut = () => {
     this.props.setCurrentUser(null);
+    localStorage.removeItem('jwt');
     window.location = 'https://www.spotify.com/logout/';
-    window.location = "http://localhost:3000/api/v1/logout";
+    window.location = "http://localhost:3001/";
   }
 
   renderLogInLogOut = () => {
@@ -119,7 +121,7 @@ class App extends Component {
 
   CurrentPlaylistContent = () => {
     return (
-      <div>
+      <div className="create-page-container">
       <MusicPlayer />
       <PlaylistContainer currentMood={'content'} />
       </div>
@@ -128,9 +130,19 @@ class App extends Component {
 
   CurrentPlaylistEcstatic = () => {
     return (
-      <div>
+      <div className="create-page-container">
         <MusicPlayer />
         <PlaylistContainer />
+      </div>
+
+    )
+  }
+
+  MyVibeLists = () => {
+    return (
+      <div className="create-page-container">
+        <MusicPlayer />
+        <MyVibeListsContainer />
       </div>
 
     )
@@ -145,7 +157,7 @@ class App extends Component {
         <div className="topnav" id="top-nav-bar">
           <div className="box-1">
             <a href="http://localhost:3001/" onClick={this.handleMenuClick} >Home</a>
-            <a href="#my-vibelists" >My VibeLists</a>
+            <a href="http://localhost:3001/my-vibelists" >My VibeLists</a>
             <a href="http://localhost:3001/create" >New VibeList</a>
           </div>
 

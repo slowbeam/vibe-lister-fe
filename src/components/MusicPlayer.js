@@ -94,12 +94,12 @@ class MusicPlayer extends React.Component {
         "play": false
       }),
     })
+    .then(this.loadPlaylistFromUrl)
   }
 
   loadCurrentPlaylist = (playlistUri) => {
 
     const currentUser = this.props.currentUser
-
     const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + this.props.deviceId
     fetch( playUrl, {
       method: "PUT",
@@ -112,6 +112,16 @@ class MusicPlayer extends React.Component {
       })
     })
   }
+
+  loadPlaylistFromUrl = () => {
+    if (window.location.search && this.props.deviceId !== null) {
+      const query = window.location.search.substring(1);
+      const pair = query.split('=');
+      const playlistUri = pair[1];
+      this.loadCurrentPlaylist(playlistUri)
+    }
+  }
+
 
   componentDidMount() {
     this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
@@ -126,21 +136,20 @@ class MusicPlayer extends React.Component {
           {this.props.playlistLoaded
             ?
             <div className="music-player">
-              <div>
-                <h3>Now Playing: {this.props.trackName}</h3>
-                <h4> by {this.props.artistName} </h4>
-              </div>
 
-              <div>
-                <img className="player-art" src={this.props.albumArt} alt=""></img>
-              </div>
+                <div>
+                  <img className="player-art" src={this.props.albumArt} alt=""></img>
+                </div>
 
-              <div className="player-button-container">
-                <button className="player-button" onClick={() => this.onPrevClick()}><img alt="" className="player-button-image" src="./Skip-previous.svg"></img></button>
-                <button className="player-button" onClick={() => this.onPlayClick()}>{this.props.playing ? <img className="player-button-image" alt="" src="./Pause.svg"></img> : <img className="player-button-image" alt="" src="./Play.svg"></img>}</button>
-                <button className="player-button" onClick={() => this.onNextClick()}><img className="player-button-image" alt="" src="./Skip-next.svg"></img></button>
-                {console.log(this.props.currentUser)}
-              </div>
+                <div className="player-text-buttons">
+                  <h3>Now Playing: {this.props.trackName}</h3>
+                  <h4> by {this.props.artistName} </h4>
+                    <div className="player-button-container">
+                      <button className="player-button" onClick={() => this.onPrevClick()}><img alt="" className="player-button-image" src="./Skip-previous.svg"></img></button>
+                      <button className="player-button" onClick={() => this.onPlayClick()}>{this.props.playing ? <img className="player-button-image" alt="" src="./Pause.svg"></img> : <img className="player-button-image" alt="" src="./Play.svg"></img>}</button>
+                      <button className="player-button" onClick={() => this.onNextClick()}><img className="player-button-image" alt="" src="./Skip-next.svg"></img></button>
+                    </div>
+                </div>
 
 
             </div>

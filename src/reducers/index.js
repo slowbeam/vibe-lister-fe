@@ -9,6 +9,7 @@ import sadSongs from './sadSongs';
 import currentMood from './currentMood';
 import deviceId from './deviceId';
 import audioPlayer from './audioPlayer';
+import currentPlaylist from './currentPlaylist'
 
 
 export default combineReducers({
@@ -21,5 +22,6 @@ export default combineReducers({
   sadSongs,
   currentMood,
   deviceId,
-  audioPlayer
+  audioPlayer,
+  currentPlaylist
 });

@@ -1,20 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions'
 
-const SavePlaylistButton = (props) => {
+class SavePlaylistButton extends React.Component {
 
-  const visitCreatePlaylist = () => {
+  componentDidMount(){
+
+  }
+
+
+    visitCreatePlaylist = () => {
 
     const token = localStorage.getItem('jwt');
 
     window.location='http://localhost:3000/api/v1/create-playlist?jwt=' + token;
   }
+    render() {
+      return(
+      <div>
+          <button className="create-new-playlist-button" onClick={this.visitCreatePlaylist}>Add Vibelist To Spotify</button>
+      </div>
+      )
+    }
 
-    return(
-    <div>
-        <button className="create-new-playlist-button" onClick={visitCreatePlaylist}>Add Vibelist To Spotify</button>
-    </div>
-
-    )
 }
 
-export default SavePlaylistButton;
+const mapStateToProps = state => {
+  return {
+    deviceId: state.deviceId,
+    currentUser: state.currentUser.user
+  }
+}
+
+export default connect(mapStateToProps, actions)(SavePlaylistButton);

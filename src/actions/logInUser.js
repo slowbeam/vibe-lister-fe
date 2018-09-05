@@ -16,7 +16,7 @@ export const LogInUser = (windowLocation) => {
         username: queryObj.username,
         display_name: queryObj.display_name.split("+").join(" "),
         profile_image: queryObj.profile_image,
-        access_token: queryObj.access_token
+        access_token: queryObj.t
       }))
 
       const jwt = queryObj.jwt
