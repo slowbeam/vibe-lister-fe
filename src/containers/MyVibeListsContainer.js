@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import SongCard from '../components/SongCard'
-import CreatePlaylist from '../components/CreatePlaylist'
 import withAuth from '../hocs/withAuth';
 
 
@@ -28,6 +27,9 @@ class PlaylistContainer extends Component {
       case 'ecstatic':
         const ecstaticUri = this.props.currentUser.ecstaticlist_uri
         window.location='http://localhost:3001/my-vibelists?uri=' + ecstaticUri
+        break;
+      default:
+        return ""
         }
 
   }
@@ -48,7 +50,7 @@ class PlaylistContainer extends Component {
         </div>
 
         <div className="vibelist-multi">
-          <img className="emoji-image" src="/images/emojis/content.png"/>
+          <img className="emoji-image" alt="" src="/images/emojis/content.png"/>
           <button onClick={() => this.loadPlaylist('content')}>play</button>
           <div className="song-card-container">
           <br />
@@ -65,7 +67,6 @@ class PlaylistContainer extends Component {
           <br />
           {this.renderAllSongs(this.props.ecstaticSongs)}
           </div>
-          {console.log(this.props.currentUser.contentlist_uri)}
         </div>
 
       </div>

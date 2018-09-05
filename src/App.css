@@ -322,6 +322,15 @@ button {
   align-items: center;
 }
 
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 150px;
+  margin-top: 30px;
+}
+
 .mood-selector-container {
   margin: 15px;
   display: flex;

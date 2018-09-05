@@ -19,6 +19,7 @@ class App extends Component {
 
   storeAllData = () => {
     this.props.fetchSongs()
+    .then(() => {return this.props.fetchCurrentUser()})
     .then(() => {return this.props.fetchMoods()})
     .then(() => {return this.props.fetchUsers()})
     .then(() => {return this.storeEcstaticSongs()})
@@ -85,15 +86,24 @@ class App extends Component {
   }
 
   renderLogInLogOut = () => {
-    if (this.props.currentUser !== null) {
+    const jwt = localStorage.getItem('jwt')
+    if (this.props.currentUser !== null & jwt !== null) {
       return <p onClick={this.handleLogOut}>Logout</p>
     } else {
       return <Login />
     }
   }
 
+  visitSpotifyLogin = () => {
+    window.location='http://localhost:3000/api/v1/login';
+  }
+
   Login = () => {
-    return (<div></div>
+    return (
+      <div className="login-page-container">
+        <h3>Please Login to use vibelist</h3>
+        <button onClick={this.visitSpotifyLogin} >Login</button>
+      </div>
     )
   }
 

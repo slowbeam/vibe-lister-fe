@@ -24,6 +24,7 @@ class WelcomePage extends Component {
         <h3>Welcome to Vibelist, {this.renderDisplayName()}!</h3>
         <h4> VibeList is an app for creating Spotify playlists based on the mood of your choice</h4>
         <CreatePlaylist />
+
       </div>
     )
   }
