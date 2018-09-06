@@ -97,10 +97,6 @@ class App extends Component {
     }
   }
 
-  visitSpotifyLogin = () => {
-    window.location='http://localhost:3000/api/v1/login';
-  }
-
   Login = () => {
     return <LoginPage />
   }

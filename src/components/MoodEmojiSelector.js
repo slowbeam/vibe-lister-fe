@@ -7,10 +7,22 @@ import SelectedGenresList from './SelectedGenresList'
 class MoodEmojiSelector extends React.Component {
 
 
+
+
   handleSubmit = (mood) => {
     const token = localStorage.getItem('jwt');
 
-    window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token
+    if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined ){
+      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
+    }
+    else if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined) {
+      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo
+    }
+    else if (this.props.genreOne !== undefined) {
+      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne
+    }
+
+
 
   }
 
@@ -32,4 +44,12 @@ class MoodEmojiSelector extends React.Component {
   }
 };
 
-export default withAuth(connect()(MoodEmojiSelector));
+const mapStateToProps = state => {
+  return {
+    genreOne: state.currentGenres.genreOne,
+    genreTwo: state.currentGenres.genreTwo,
+    genreThree: state.currentGenres.genreThree
+  }
+}
+
+export default withAuth(connect(mapStateToProps)(MoodEmojiSelector));
