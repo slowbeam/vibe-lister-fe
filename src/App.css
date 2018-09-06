@@ -32,10 +32,13 @@ button {
   font-family: 'Quicksand', sans-serif;
   font-size: 14px;
   background-image: linear-gradient(-120deg, #0099cc, #fff);
-  border-radius: 30px;
-  height: 40px;
   color: #fff;
   border-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
 }
 
 .app-logo {
@@ -330,7 +333,7 @@ button {
   margin-top: 30px;
 }
 
-.mood-selector-container {
+.-container {
   margin: 15px;
   display: flex;
   flex-direction: column;
@@ -340,6 +343,15 @@ button {
 .mood-emoji-container {
   display: flex;
   flex-direction: row;
+}
+
+.mood-selector-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  height: 450px;
 }
 
 .welcome {
@@ -407,6 +419,14 @@ button {
     flex-direction: column;
   }
 
+  .mood-selector-container {
+    height: 500px;
+  }
+
+  .m-ui-list {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
 
 }

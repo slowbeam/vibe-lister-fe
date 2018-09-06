@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 const CreatePlaylist = (props) => {
 
@@ -8,7 +9,7 @@ const CreatePlaylist = (props) => {
 
     return(
     <div>
-        <button className="create-new-playlist-button" onClick={visitCreatePlaylist}>Create a New VibeList</button>
+        <Button className="create-new-playlist-button" onClick={visitCreatePlaylist}>Create a New VibeList</Button>
     </div>
 
     )

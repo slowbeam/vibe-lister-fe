@@ -5,6 +5,7 @@ import Login from './components/Login';
 import MoodEmojiSelector from './components/MoodEmojiSelector';
 import PlaylistContainer from './containers/PlaylistContainer';
 import MusicPlayer from './components/MusicPlayer';
+import LoginPage from './components/LoginPage';
 import WelcomePage from './components/WelcomePage';
 import MyVibeListsContainer from './containers/MyVibeListsContainer';
 import { connect } from 'react-redux';
@@ -101,12 +102,7 @@ class App extends Component {
   }
 
   Login = () => {
-    return (
-      <div className="login-page-container">
-        <h3>please login to use vibelist</h3>
-        <button onClick={this.visitSpotifyLogin} >Login</button>
-      </div>
-    )
+    return <LoginPage />
   }
 
   Welcome = () => {

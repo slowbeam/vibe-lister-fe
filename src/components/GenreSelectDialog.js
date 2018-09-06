@@ -66,8 +66,6 @@ class DialogSelect extends React.Component {
     return Genres.map(genre => <option key={uuid()} value={genre}>{genre}</option>)
   }
 
-
-
   render() {
     const { classes } = this.props;
 
