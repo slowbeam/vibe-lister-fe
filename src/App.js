@@ -182,7 +182,7 @@ class App extends Component {
         </div>
         <div  id="mobile-nav-bar" className="mobile-nav-menu">
           <a href="http://localhost:3001/" onClick={this.handleMenuClick} className="mobile-home-button">Home</a>
-          <a href="#my-vibelists" >My VibeLists</a>
+          <a href="http://localhost:3001/my-vibelists" >My VibeLists</a>
           <a href="http://localhost:3001/create" >New VibeList</a>
           {this.renderLogInLogOut()}
         </div>
