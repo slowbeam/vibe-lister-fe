@@ -31,10 +31,9 @@ h4 {
 button {
   font-family: 'Quicksand', sans-serif;
   font-size: 14px;
-  background-image: linear-gradient(-120deg, #002633, #0099cc);
+  background-image: linear-gradient(-120deg, #0099cc, #fff);
   border-radius: 30px;
   height: 40px;
-  width: 200px;
   color: #fff;
   border-style: none;
 }
@@ -335,6 +334,7 @@ button {
   margin: 15px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .mood-emoji-container {
