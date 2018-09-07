@@ -6,7 +6,7 @@ export const fetchCurrentUser = () => {
   return (dispatch) => {
     APIAdapter.getCurrentUser()
       .then(user => {
-        dispatch(setCurrentUser(user))
+        dispatch(setCurrentUser(user));
       })
   }
 }

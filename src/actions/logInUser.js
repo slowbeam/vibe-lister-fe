@@ -1,4 +1,5 @@
 import { setCurrentUser } from './currentUser';
+import { setDisplayName } from './displayName';
 
 export const LogInUser = (windowLocation) => {
   return (dispatch) => {
@@ -12,12 +13,16 @@ export const LogInUser = (windowLocation) => {
           queryObj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
       }
 
-      dispatch(setCurrentUser({
-        username: queryObj.username,
-        display_name: queryObj.display_name.split("+").join(" "),
-        profile_image: queryObj.profile_image,
-        access_token: queryObj.t
-      }))
+      const userObj = {
+          username: queryObj.username,
+          display_name: queryObj.display_name.split("+").join(" "),
+          profile_image: queryObj.profile_image,
+          access_token: queryObj.t
+        }
+
+
+      dispatch(setCurrentUser(userObj));
+      dispatch(setDisplayName(userObj))
 
       const jwt = queryObj.jwt
 

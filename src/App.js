@@ -5,6 +5,7 @@ import Login from './components/Login';
 import MoodEmojiSelector from './components/MoodEmojiSelector';
 import PlaylistContainer from './containers/PlaylistContainer';
 import MusicPlayer from './components/MusicPlayer';
+import MusicPlayerTwo from './components/MusicPlayerTwo';
 import LoginPage from './components/LoginPage';
 import WelcomePage from './components/WelcomePage';
 import MyVibeListsContainer from './containers/MyVibeListsContainer';
@@ -28,6 +29,12 @@ class App extends Component {
     .then(() => {return this.storeEcstaticSongs()})
     .then(() => {return this.storeContentSongs()})
     .then(() => {return this.storeSadSongs()})
+  }
+
+  setDisplayName = (user) => {
+    if (localStorage.getItem('jwt') && this.props.currentUser) {
+      this.props.setDisplayName(user)
+    }
   }
 
   storeEcstaticSongs = () => {
@@ -126,7 +133,7 @@ class App extends Component {
   CurrentPlaylistContent = () => {
     return (
       <div className="create-page-container">
-      <MusicPlayer />
+      <MusicPlayerTwo />
       <PlaylistContainer currentMood={'content'} />
       </div>
     )

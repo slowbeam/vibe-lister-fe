@@ -21,11 +21,11 @@ class PlaylistContainer extends Component {
   renderEmoji = () => {
     switch(this.props.currentMood) {
       case 'sad':
-        return <img alt="" src="/images/emojis/sad.png"/>
+        return <img alt="" src="/images/emojis/sad-2.png"/>
       case 'content':
-        return <img alt="" src="/images/emojis/content.png"/>
+        return <img alt="" src="/images/emojis/content-2.png"/>
       case 'ecstatic':
-        return <img alt="" src="/images/emojis/ecstatic.png"/>
+        return <img alt="" src="/images/emojis/ecstatic-2.png"/>
       default:
         return
     }

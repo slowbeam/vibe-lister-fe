@@ -3,7 +3,7 @@ import withAuth from '../hocs/withAuth';
 import { connect } from 'react-redux';
 import * as actions from '../actions'
 
-class MusicPlayer extends React.Component {
+class MusicPlayerTwo extends React.Component {
 
   constructor(props){
     super(props);
@@ -135,24 +135,52 @@ class MusicPlayer extends React.Component {
         <React.Fragment>
           {this.props.playlistLoaded
             ?
-            <div className="music-player">
 
-                <div>
-                  <img className="player-art" src={this.props.albumArt} alt=""></img>
+            <div id="player">
+              <div class="album">
+                <div class="heart"><i class="fas fa-heart"></i></div>
+              </div>
+              <div class="info">
+                <div class="progress-bar">
+                  <div class="time--current">{this.props.position}</div>
+                  <div class="time--total">{this.props.duration}</div>
+                  <div class="fill"></div>
                 </div>
-
-                <div className="player-text-buttons">
-                  <h3>Now Playing: {this.props.trackName}</h3>
-                  <h4> by {this.props.artistName} </h4>
-                    <div className="player-button-container">
-                      <button className="player-button" onClick={() => this.onPrevClick()}><img alt="" className="player-button-image" src="./Skip-previous.svg"></img></button>
-                      <button className="player-button" onClick={() => this.onPlayClick()}>{this.props.playing ? <img className="player-button-image" alt="" src="./Pause.svg"></img> : <img className="player-button-image" alt="" src="./Play.svg"></img>}</button>
-                      <button className="player-button" onClick={() => this.onNextClick()}><img className="player-button-image" alt="" src="./Skip-next.svg"></img></button>
-                    </div>
+                <div class="currently-playing">
+                  <h2 class="song-name">{this.props.trackName}</h2>
+                  <h3 class="artist-name">{this.props.artistName}</h3>
                 </div>
-
-
+                <div class="controls">
+                  <div class="option"><i class="fas fa-bars"></i></div>
+                  <div class="volume"><i class="fas fa-volume-up"></i></div>
+                  <div class="previous"><i class="fas fa-backward"></i></div>
+                  <div class="play"><i class="fas fa-play"></i></div>
+                  <div class="pause"><i class="fas fa-pause"></i></div>
+                  <div class="next"><i class="fas fa-forward"></i></div>
+                  <div class="shuffle"><i class="fas fa-random"></i></div>
+                  <div class="add"><i class="fas fa-plus"></i></div>
+                </div>
+              </div>
             </div>
+
+            // <div className="music-player">
+            //
+            //     <div>
+            //       <img className="player-art" src={this.props.albumArt} alt=""></img>
+            //     </div>
+            //
+            //     <div className="player-text-buttons">
+            //       <h3>Now Playing: {this.props.trackName}</h3>
+            //       <h4> by {this.props.artistName} </h4>
+            //         <div className="player-button-container">
+            //           <button className="player-button" onClick={() => this.onPrevClick()}><img alt="" className="player-button-image" src="./Skip-previous.svg"></img></button>
+            //           <button className="player-button" onClick={() => this.onPlayClick()}>{this.props.playing ? <img className="player-button-image" alt="" src="./Pause.svg"></img> : <img className="player-button-image" alt="" src="./Play.svg"></img>}</button>
+            //           <button className="player-button" onClick={() => this.onNextClick()}><img className="player-button-image" alt="" src="./Skip-next.svg"></img></button>
+            //         </div>
+            //     </div>
+            //
+            //
+            // </div>
             :
             <div className="music-player">
               <p>
@@ -188,4 +216,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withAuth(connect(mapStateToProps, actions)(MusicPlayer));
+export default withAuth(connect(mapStateToProps, actions)(MusicPlayerTwo));
