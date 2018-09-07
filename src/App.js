@@ -45,7 +45,6 @@ class App extends Component {
         const userEcstaticSongs = this.props.songs.filter(song => userEcstaticSongIds.includes(song.id))
         this.props.setEcstaticSongs(userEcstaticSongs)
       }
-
   }
 
   storeContentSongs = () => {
@@ -124,8 +123,10 @@ class App extends Component {
   CurrentPlaylistSad = () => {
     return (
       <div className="create-page-container">
-        <MusicPlayer />
-        <PlaylistContainer />
+        <div className="create-page-content">
+          <PlaylistContainer />
+          <MusicPlayerTwo />
+        </div>
       </div>
     )
   }
@@ -133,8 +134,10 @@ class App extends Component {
   CurrentPlaylistContent = () => {
     return (
       <div className="create-page-container">
-      <MusicPlayerTwo />
-      <PlaylistContainer currentMood={'content'} />
+        <div className="create-page-content">
+          <PlaylistContainer />
+          <MusicPlayerTwo />
+        </div>
       </div>
     )
   }
@@ -142,9 +145,12 @@ class App extends Component {
   CurrentPlaylistEcstatic = () => {
     return (
       <div className="create-page-container">
-        <MusicPlayer />
-        <PlaylistContainer />
+        <div className="create-page-content">
+          <PlaylistContainer />
+          <MusicPlayerTwo />
+        </div>
       </div>
+
 
     )
   }
@@ -152,7 +158,7 @@ class App extends Component {
   MyVibeLists = () => {
     return (
       <div className="create-page-container">
-        <MusicPlayer />
+        <MusicPlayerTwo />
         <MyVibeListsContainer />
       </div>
 

@@ -122,6 +122,32 @@ class MusicPlayerTwo extends React.Component {
     }
   }
 
+  //like & shuffle button
+// $('.heart').click(function(){
+//   $(this).toggleClass('clicked');
+// });
+//
+// $('.shuffle').click(function(){
+//   $(this).toggleClass('clicked');
+// });
+//
+// //show info box on hover
+// $('#player').hover(function(){
+//   $('.info').toggleClass('up');
+// });
+
+handleShuffle
+
+handlePlayerHover = () => {
+  const info = document.getElementById("info");
+  info.className='info up'
+}
+
+handlePlayerLeave = () => {
+  const info = document.getElementById("info");
+  info.className='info'
+}
+
 
   componentDidMount() {
     this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
@@ -135,33 +161,35 @@ class MusicPlayerTwo extends React.Component {
         <React.Fragment>
           {this.props.playlistLoaded
             ?
+            <div className="section music-player-container">
+              <div onMouseEnter={this.handlePlayerHover} onMouseLeave={this.handlePlayerLeave} id="player">
+                <div style={ {backgroundImage: `url(${this.props.albumArt})`}} className="album">
 
-            <div id="player">
-              <div class="album">
-                <div class="heart"><i class="fas fa-heart"></i></div>
-              </div>
-              <div class="info">
-                <div class="progress-bar">
-                  <div class="time--current">{this.props.position}</div>
-                  <div class="time--total">{this.props.duration}</div>
-                  <div class="fill"></div>
                 </div>
-                <div class="currently-playing">
-                  <h2 class="song-name">{this.props.trackName}</h2>
-                  <h3 class="artist-name">{this.props.artistName}</h3>
-                </div>
-                <div class="controls">
-                  <div class="option"><i class="fas fa-bars"></i></div>
-                  <div class="volume"><i class="fas fa-volume-up"></i></div>
-                  <div class="previous"><i class="fas fa-backward"></i></div>
-                  <div class="play"><i class="fas fa-play"></i></div>
-                  <div class="pause"><i class="fas fa-pause"></i></div>
-                  <div class="next"><i class="fas fa-forward"></i></div>
-                  <div class="shuffle"><i class="fas fa-random"></i></div>
-                  <div class="add"><i class="fas fa-plus"></i></div>
+                <div id="info" className="info">
+                  <div className="progress-bar">
+                    <div className="time--current">{this.props.position}</div>
+                    <div className="time--total">{this.props.duration}</div>
+                    <div className="fill"></div>
+                  </div>
+                  <div className="currently-playing">
+                    <h2 className="song-name">{this.props.trackName}</h2>
+                    <h3 className="artist-name">{this.props.artistName}</h3>
+                  </div>
+                  <div className="controls">
+                    <div className="option"><i className="fas fa-bars"></i></div>
+                    <div className="volume"><i className="fas fa-volume-up"></i></div>
+                    <div onClick={() => this.onPrevClick()} className="previous"><i className="fas fa-backward"></i></div>
+                    <div onClick={() => this.onPlayClick()} className="play">
+                      {this.props.playing ? <i className="fas fa-pause"></i> : <i className="fas fa-play"></i>}</div>
+                    <div onClick={() => this.onNextClick()} className="next"><i className="fas fa-forward"></i></div>
+                    <div className="shuffle"><i className="fas fa-random"></i></div>
+                    <div className="add"><i className="fas fa-plus"></i></div>
+                  </div>
                 </div>
               </div>
             </div>
+
 
             // <div className="music-player">
             //
