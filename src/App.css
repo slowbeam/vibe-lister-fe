@@ -4,6 +4,39 @@
   padding: 0px;
   box-sizing: border-box; }
 
+body {
+  font-family: 'Quicksand', sans-serif;
+  color: #000;
+  background-image: url("./images/bkg-gradient-record-3.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+h1 {
+  font-family: 'Quicksand', sans-serif; }
+
+h3 {
+  text-align: center;
+  margin-right: 20px;
+  margin-left: 20px; }
+
+h4 {
+  text-align: center;
+  margin-right: 20px;
+  margin-left: 20px; }
+
+button {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  background-image: linear-gradient(-120deg, #fff, #fff);
+  color: #fff;
+  border-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px; }
+
 #player {
   flex-shrink: 0;
   background: #FFFFFF;
@@ -126,36 +159,6 @@
   .play:hover, .pause:hover, .next:hover, .previous:hover, .option:hover, .add:hover, .volume:hover, .shuffle:hover {
     color: #3d5f75; }
 
-body {
-  font-family: 'Quicksand', sans-serif;
-  color: #000;
-  background: linear-gradient(-40deg, #202060, #a0f8f8) fixed; }
-
-h1 {
-  font-family: 'Quicksand', sans-serif; }
-
-h3 {
-  text-align: center;
-  margin-right: 20px;
-  margin-left: 20px; }
-
-h4 {
-  text-align: center;
-  margin-right: 20px;
-  margin-left: 20px; }
-
-button {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 14px;
-  background-image: linear-gradient(-120deg, #0099cc, #fff);
-  color: #fff;
-  border-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 15px; }
-
 .app-logo {
   width: 150px; }
 
@@ -203,7 +206,7 @@ button {
 .topnav {
   display: flex;
   align-items: center;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.4);
   overflow: hidden;
   height: 70px; }
 
@@ -216,7 +219,7 @@ button {
 .box-2 {
   width: 190px;
   height: 50px;
-  background-image: url("./images/vibelist-logo-9-mobile.png");
+  background-image: url("./images/vibelist-logo-black.png");
   background-size: cover;
   flex-shrink: 0; }
 
@@ -413,7 +416,9 @@ button {
 
 .mood-emoji-container {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  justify-content: space-around;
+  width: 450px; }
 
 .mood-selector-container {
   display: flex;
@@ -421,7 +426,7 @@ button {
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
-  height: 450px; }
+  height: 300px; }
 
 .welcome {
   display: flex;

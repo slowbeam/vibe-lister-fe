@@ -4,7 +4,6 @@ import './App.css';
 import Login from './components/Login';
 import MoodEmojiSelector from './components/MoodEmojiSelector';
 import PlaylistContainer from './containers/PlaylistContainer';
-import MusicPlayer from './components/MusicPlayer';
 import MusicPlayerTwo from './components/MusicPlayerTwo';
 import LoginPage from './components/LoginPage';
 import WelcomePage from './components/WelcomePage';

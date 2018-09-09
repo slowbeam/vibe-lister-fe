@@ -6,6 +6,7 @@ const defaultState = {
   playing: false,
   position: 0,
   duration: 0,
+  currentDuration: 0,
   playlistLoaded: false
 }
 
@@ -26,8 +27,10 @@ export default (state = defaultState, action) => {
       return {...state, position: action.payload}
     case 'SET_DURATION':
       return {...state, duration: action.payload}
+    case 'SET_CURRENT_DURATION':
+      return {...state, currentDuration: action.payload}
     case 'SET_PLAYLIST_LOADED':
-    return {...state, playlistLoaded: action.payload}
+      return {...state, playlistLoaded: action.payload}
     default:
       return state;
   }

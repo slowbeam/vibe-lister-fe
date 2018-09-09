@@ -31,6 +31,7 @@ class MusicPlayerTwo extends React.Component {
         clearInterval(this.playerCheckInterval);
         this.player = new window.Spotify.Player({
           name: "VibeList Spotify Player",
+          volume: 0.8,
           getOAuthToken: cb => { cb(token); }
         })
         this.createEventHandlers()
@@ -57,11 +58,10 @@ class MusicPlayerTwo extends React.Component {
 
   onStateChanged(state) {
     if (state !== null) {
-      const {
-        current_track: currentTrack,
-        position,
-        duration,
-      } = state.track_window;
+      const currentTrack
+       = state.track_window.current_track;
+      const position = state.position;
+      const duration = currentTrack.duration_ms;
       const trackName = currentTrack.name;
       const albumName = currentTrack.album.name;
       const albumArt = currentTrack.album.images[0].url
@@ -122,21 +122,7 @@ class MusicPlayerTwo extends React.Component {
     }
   }
 
-  //like & shuffle button
-// $('.heart').click(function(){
-//   $(this).toggleClass('clicked');
-// });
-//
-// $('.shuffle').click(function(){
-//   $(this).toggleClass('clicked');
-// });
-//
-// //show info box on hover
-// $('#player').hover(function(){
-//   $('.info').toggleClass('up');
-// });
 
-handleShuffle
 
 handlePlayerHover = () => {
   const info = document.getElementById("info");
@@ -148,9 +134,37 @@ handlePlayerLeave = () => {
   info.className='info'
 }
 
+getAndSaveTrackPosition = () => {
+  if(this.player && this.props.playing) {
+    this.player.getCurrentState()
+    .then(resp => {
+      this.props.setPosition(resp.position)
+      this.props.setCurrentDuration(resp.duration - resp.position)
+      this.renderProgressBar()
+    })
+  }
+}
+
+renderProgressBar = () => {
+  if(this.player && document.getElementById("progress-bar")) {
+    const progressBar = document.getElementById("progress-bar");
+    const width = (this.props.position / this.props.duration) * 100;
+    progressBar.style.width = width + "%";
+   }
+}
+
+convertMsToHMS = (ms) => {
+    var seconds = Math.floor(ms / 1000);
+    seconds = seconds % 3600;
+    var minutes = parseInt( seconds / 60, 10);
+    seconds = seconds % 60;
+    if(seconds < 10 ) {seconds = "0" + seconds}
+    return minutes + ":" + seconds;
+}
 
   componentDidMount() {
     this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
+    this.setTrackPosition = setInterval(() => this.getAndSaveTrackPosition(), 1000)
   }
 
 
@@ -168,9 +182,10 @@ handlePlayerLeave = () => {
                 </div>
                 <div id="info" className="info">
                   <div className="progress-bar">
-                    <div className="time--current">{this.props.position}</div>
-                    <div className="time--total">{this.props.duration}</div>
-                    <div className="fill"></div>
+                    <div className="time--current">{this.convertMsToHMS(this.props.position)}</div>
+                    <div className="time--total">{"-" + this.convertMsToHMS(this.props.currentDuration)}</div>
+                    {this.renderProgressBar()}
+                    <div id="progress-bar" className="fill"></div>
                   </div>
                   <div className="currently-playing">
                     <h2 className="song-name">{this.props.trackName}</h2>
@@ -189,26 +204,6 @@ handlePlayerLeave = () => {
                 </div>
               </div>
             </div>
-
-
-            // <div className="music-player">
-            //
-            //     <div>
-            //       <img className="player-art" src={this.props.albumArt} alt=""></img>
-            //     </div>
-            //
-            //     <div className="player-text-buttons">
-            //       <h3>Now Playing: {this.props.trackName}</h3>
-            //       <h4> by {this.props.artistName} </h4>
-            //         <div className="player-button-container">
-            //           <button className="player-button" onClick={() => this.onPrevClick()}><img alt="" className="player-button-image" src="./Skip-previous.svg"></img></button>
-            //           <button className="player-button" onClick={() => this.onPlayClick()}>{this.props.playing ? <img className="player-button-image" alt="" src="./Pause.svg"></img> : <img className="player-button-image" alt="" src="./Play.svg"></img>}</button>
-            //           <button className="player-button" onClick={() => this.onNextClick()}><img className="player-button-image" alt="" src="./Skip-next.svg"></img></button>
-            //         </div>
-            //     </div>
-            //
-            //
-            // </div>
             :
             <div className="music-player">
               <p>
@@ -239,6 +234,7 @@ const mapStateToProps = state => {
     playing: state.audioPlayer.playing,
     position: state.audioPlayer.position,
     duration: state.audioPlayer.duration,
+    currentDuration: state.audioPlayer.currentDuration,
     playlistLoaded: state.audioPlayer.playlistLoaded
 
   }

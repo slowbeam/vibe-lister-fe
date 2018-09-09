@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import StyledButton from './StyledButton'
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -71,7 +72,7 @@ class DialogSelect extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>Choose Genres (optional)</Button>
+        <StyledButton onClick={this.handleClickOpen}>Choose Genres (optional)</StyledButton>
         <Dialog
           disableBackdropClick
           disableEscapeKeyDown
