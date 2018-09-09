@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import StyledButton from './StyledButton';
 
 const LoginPage = (props) => {
 
@@ -10,7 +10,7 @@ const LoginPage = (props) => {
   return (
     <div className="login-page-container">
       <p>please login to use vibelist</p>
-      <Button onClick={visitSpotifyLogin} >Login</Button>
+      <StyledButton onClick={visitSpotifyLogin} >Login</StyledButton>
     </div>
   )
 };
