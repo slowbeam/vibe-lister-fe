@@ -268,28 +268,28 @@ button {
   float: left;
   display: block;
   color: #000;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.4);
   text-align: center;
   padding: 25px 16px;
   text-decoration: none;
   font-size: 17px; }
 
 .mobile-nav-menu a:hover {
-  background-color: #78a1b9;
+  background-color: #c799cc;
   color: #fff; }
 
 .mobile-nav-menu p {
   float: left;
   display: block;
   color: #000;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.4);
   text-align: center;
   padding: 25px 16px;
   text-decoration: none;
   font-size: 17px; }
 
 .mobile-nav-menu p:hover {
-  background-color: #78a1b9;
+  background-color: #c799cc;
   color: #fff; }
 
 .spotify-login-button {

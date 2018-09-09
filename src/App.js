@@ -114,7 +114,6 @@ class App extends Component {
 
   CreateNewVibeList = () => {
     return (
-
       <MoodEmojiSelector />
     )
   }
