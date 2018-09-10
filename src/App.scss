@@ -40,20 +40,6 @@ h4 {
 }
 
 
-// button {
-//   font-family: 'Quicksand', sans-serif;
-//   font-size: 14px;
-//   background-image: linear-gradient(-120deg, #fff, #fff);
-//   color: #fff;
-//   border-style: none;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   text-align: center;
-//   padding: 15px;
-// }
-
-
 #player {
   flex-shrink: 0;
   background: $white;
@@ -604,6 +590,22 @@ h4 {
   .m-ui-list {
     margin-top: 20px;
     margin-bottom: 20px;
+  }
+
+  .create-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .create-page-content {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -200px;
+    margin-bottom: 25px;
   }
 
 

@@ -469,7 +469,19 @@ h4 {
     height: 500px; }
   .m-ui-list {
     margin-top: 20px;
-    margin-bottom: 20px; } }
+    margin-bottom: 20px; }
+  .create-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+  .create-page-content {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -200px;
+    margin-bottom: 25px; } }
 
 /*Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
