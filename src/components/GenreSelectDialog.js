@@ -21,10 +21,12 @@ const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    backgroundColor: '#FFFFFF99'
   },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120,
+    backgroundColor: '#FFFFFF99'
   },
 });
 

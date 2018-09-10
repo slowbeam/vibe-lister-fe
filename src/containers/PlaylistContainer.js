@@ -4,6 +4,7 @@ import SongCard from '../components/SongCard'
 import SavePlaylistButton from '../components/SavePlaylistButton'
 import withAuth from '../hocs/withAuth';
 import { setCurrentMood } from '../actions/currentMood'
+import uuid from 'uuid';
 
 
 class PlaylistContainer extends Component {
@@ -34,11 +35,23 @@ class PlaylistContainer extends Component {
   renderAllSongs = () => {
     switch(this.props.currentMood) {
       case 'sad':
-        return this.props.sadSongs.map(song => <SongCard key={song.spotify_id} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
+        const lastSadList = this.props.sadLists[this.props.sadLists.length - 1]
+        if (lastSadList) {
+          return lastSadList.map(song =>  <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
+        }
+      break;
       case 'content':
-        return this.props.contentSongs.map(song => <SongCard key={song.spotify_id} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
+          const lastContentList = this.props.contentLists[this.props.contentLists.length - 1]
+          if (lastContentList) {
+            return lastContentList.map(song => <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
+          }
+        break;
       case 'ecstatic':
-        return this.props.ecstaticSongs.map(song => <SongCard key={song.spotify_id} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
+        const lastEcstaticList = this.props.ecstaticLists[this.props.ecstaticLists.length - 1]
+        if (lastEcstaticList){
+          return lastEcstaticList.map(song => <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
+        }
+        break;
       default:
         return <div></div>
     }
@@ -52,6 +65,7 @@ class PlaylistContainer extends Component {
           <div className="song-card-container">
           {this.renderAllSongs()}
           </div>
+          {console.log("CONTENT LISTS", this.props.contentLists)}
         </div>
     )
   }
@@ -59,9 +73,9 @@ class PlaylistContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    sadSongs: state.sadSongs,
-    contentSongs: state.contentSongs,
-    ecstaticSongs: state.ecstaticSongs,
+    sadLists: state.moodLists.sadLists,
+    contentLists: state.moodLists.contentLists,
+    ecstaticLists: state.moodLists.ecstaticLists,
     currentMood: state.currentMood
   }
 }

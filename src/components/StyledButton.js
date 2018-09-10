@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 // We can inject some CSS into the DOM.
 const styles = {
   root: {
-    background: 'linear-gradient(45deg, #ffffff 30%, #eaf9fb 90%)',
+    backgroundColor: '#FFFFFF99',
     borderRadius: '6px',
     border: 0,
     color: '#273845',

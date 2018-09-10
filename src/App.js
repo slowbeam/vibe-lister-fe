@@ -25,9 +25,9 @@ class App extends Component {
     .then(() => {return this.props.fetchCurrentUser()})
     .then(() => {return this.props.fetchMoods()})
     .then(() => {return this.props.fetchUsers()})
-    .then(() => {return this.storeEcstaticSongs()})
-    .then(() => {return this.storeContentSongs()})
-    .then(() => {return this.storeSadSongs()})
+    .then(() => {return this.storeEcstaticMoodLists()})
+    .then(() => {return this.storeContentMoodLists()})
+    .then(() => {return this.storeSadMoodLists()})
   }
 
   setDisplayName = (user) => {
@@ -36,33 +36,93 @@ class App extends Component {
     }
   }
 
-  storeEcstaticSongs = () => {
+  storeEcstaticMoodLists = () => {
       if (this.props.currentUser !== null){
         const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.currentUser.id);
+
         const userEcstaticMoods = userMoods.filter(mood => mood.name.includes("ecstatic"));
-        const userEcstaticSongIds = userEcstaticMoods.map(mood => mood.song_id)
-        const userEcstaticSongs = this.props.songs.filter(song => userEcstaticSongIds.includes(song.id))
-        this.props.setEcstaticSongs(userEcstaticSongs)
+
+        const ecstaticMoodsArray = [];
+        userEcstaticMoods.forEach((e,i) => (i = e.mood_list_id, ecstaticMoodsArray[i] ? ecstaticMoodsArray[i].push(e) : (ecstaticMoodsArray[i] = [e])));
+
+        const ecstaticMoodsNoEmpties = []
+        for (let el of ecstaticMoodsArray){
+          if (el) {
+            ecstaticMoodsNoEmpties.push(el)
+          }
+        }
+
+        const ecstaticMoodLists = [...ecstaticMoodsNoEmpties];
+
+        for (var i = 0; i < ecstaticMoodLists.length; i++) {
+          const newArray = []
+          for (let el of ecstaticMoodLists[i]){
+            let song = this.props.songs.find(song => song.id === el.song_id)
+            newArray.push(song)
+          }
+           ecstaticMoodLists[i] = newArray
+        }
+          this.props.setEcstaticLists(ecstaticMoodLists)
       }
   }
 
-  storeContentSongs = () => {
+  storeContentMoodLists = () => {
     if (this.props.currentUser !== null){
       const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.currentUser.id);
       const userContentMoods = userMoods.filter(mood => mood.name.includes("content"));
-      const userContentSongIds = userContentMoods.map(mood => mood.song_id)
-      const userContentSongs = this.props.songs.filter(song => userContentSongIds.includes(song.id))
-      this.props.setContentSongs(userContentSongs)
+
+      const contentMoodsArray = [];
+
+      userContentMoods.forEach((e,i) => (i = e.mood_list_id, contentMoodsArray[i] ? contentMoodsArray[i].push(e) : (contentMoodsArray[i] = [e])));
+
+      const contentMoodsNoEmpties = []
+      for (let el of contentMoodsArray){
+        if (el) {
+          contentMoodsNoEmpties.push(el)
+        }
+      }
+
+      const contentMoodLists = [...contentMoodsNoEmpties];
+
+      for (var i = 0; i < contentMoodLists.length; i++) {
+        const newArray = []
+        for (let el of contentMoodLists[i]){
+          let song = this.props.songs.find(song => song.id === el.song_id)
+          newArray.push(song)
+        }
+         contentMoodLists[i] = newArray
+      }
+        this.props.setContentLists(contentMoodLists)
     }
   }
 
-  storeSadSongs = () => {
+  storeSadMoodLists = () => {
     if (this.props.currentUser !== null){
       const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.currentUser.id);
       const userSadMoods = userMoods.filter(mood => mood.name.includes("sad"));
-      const userSadSongIds = userSadMoods.map(mood => mood.song_id)
-      const userSadSongs = this.props.songs.filter(song => userSadSongIds.includes(song.id))
-      this.props.setSadSongs(userSadSongs)
+
+      const sadMoodsArray = [];
+
+      userSadMoods.forEach((e,i) => (i = e.mood_list_id, sadMoodsArray[i] ? sadMoodsArray[i].push(e) : (sadMoodsArray[i] = [e])));
+
+      const sadMoodsNoEmpties = []
+      for (let el of sadMoodsArray){
+        if (el) {
+          sadMoodsNoEmpties.push(el)
+        }
+      }
+
+      const sadMoodLists = [...sadMoodsNoEmpties];
+
+      for (var i = 0; i < sadMoodLists.length; i++) {
+        const newArray = []
+        for (let el of sadMoodLists[i]){
+          let song = this.props.songs.find(song => song.id === el.song_id)
+          newArray.push(song)
+        }
+         sadMoodLists[i] = newArray
+      }
+        this.props.setSadLists(sadMoodLists)
     }
   }
 
@@ -205,6 +265,7 @@ class App extends Component {
           </div>
         </Router>
         <div className="footer">
+          {console.log(this.props.contentLists)}
           <p className="footer-text">created by Sandy Edwards</p>
         </div>
       </div>
@@ -218,9 +279,9 @@ const mapStateToProps = state => {
     users: state.users,
     currentUser: state.currentUser.user,
     moods: state.moods,
-    ecstaticSongs: state.ecstaticSongs,
-    contentSongs: state.contentSongs,
-    sadSongs: state.sadSongs
+    sadLists: state.moodLists.sadLists,
+    contentLists: state.moodLists.happyLists,
+    ecstaticLists: state.moodLists.ecstaticLists,
   }
 }
 

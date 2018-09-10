@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 
+
 class WelcomePage extends Component {
 
 
@@ -14,8 +15,8 @@ class WelcomePage extends Component {
   render(){
     return (
       <div className="section welcome">
-        <h3>Welcome to Vibelist, {this.props.displayName}!</h3>
-        <h4> VibeList is an app for creating Spotify playlists based on the mood of your choice</h4>
+        <h3>Welcome to VibeList, {this.props.displayName}!</h3>
+        <h4> VibeList is an app for creating Spotify playlists based on the mood of your choice.</h4>
         <CreatePlaylist />
       </div>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import StyledButton from './StyledButton';
 
 const CreatePlaylist = (props) => {
 
@@ -9,7 +9,7 @@ const CreatePlaylist = (props) => {
 
     return(
     <div>
-        <Button className="create-new-playlist-button" onClick={visitCreatePlaylist}>Create a New VibeList</Button>
+        <StyledButton className="create-new-playlist-button" onClick={visitCreatePlaylist}>Create a New VibeList</StyledButton>
     </div>
 
     )
