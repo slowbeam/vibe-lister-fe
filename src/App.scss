@@ -4,11 +4,11 @@
   box-sizing: border-box;
 }
 
-$primary: #2b4454;
-$secondary: #6492b0;
+$primary: #b397cc;
+$secondary: #9284bf;
 $white: #FFFFFF;
-$light: #9ab7cb;
-$dark: #233643;
+$light: #b4abd4;
+$dark: #2b2e55;
 
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 $font: 'Questrial', sans-serif;
@@ -482,7 +482,7 @@ h4 {
   flex-direction: row;
   justify-content: space-around;
   align-items: top;
-  margin-top: -200px;
+  margin-top: 0px;
 }
 
 .login-page-container {
@@ -597,15 +597,24 @@ h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 900px;
   }
 
   .create-page-content {
     display: flex;
     flex-direction: column-reverse;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin-top: -200px;
+    margin-top: -150px;
     margin-bottom: 25px;
+  }
+
+  .playlist-container {
+    margin-top: 20px;
+  }
+
+  .song-card-container {
+    margin-top: 10px;
   }
 
 
