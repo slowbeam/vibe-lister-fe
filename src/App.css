@@ -311,8 +311,7 @@ h4 {
   justify-content: right;
   border-radius: 6px;
   margin: 10px;
-  overflow: auto;
-  box-shadow: 5px 5px 15px rgba(43, 46, 85, 0.4); }
+  overflow: auto; }
 
 .song-card {
   display: flex;

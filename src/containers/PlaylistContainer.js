@@ -65,7 +65,7 @@ class PlaylistContainer extends Component {
           <div className="song-card-container">
           {this.renderAllSongs()}
           </div>
-          {console.log("CONTENT LISTS", this.props.contentLists)}
+          {console.log("PLAYLIST CONTAINER", this.props.contentLists)}
         </div>
     )
   }

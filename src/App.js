@@ -43,6 +43,7 @@ class App extends Component {
         const userEcstaticMoods = userMoods.filter(mood => mood.name.includes("ecstatic"));
 
         const ecstaticMoodsArray = [];
+
         userEcstaticMoods.forEach((e,i) => (i = e.mood_list_id, ecstaticMoodsArray[i] ? ecstaticMoodsArray[i].push(e) : (ecstaticMoodsArray[i] = [e])));
 
         const ecstaticMoodsNoEmpties = []
@@ -69,6 +70,7 @@ class App extends Component {
   storeContentMoodLists = () => {
     if (this.props.currentUser !== null){
       const userMoods = this.props.moods.filter(mood => mood.user_id === this.props.currentUser.id);
+
       const userContentMoods = userMoods.filter(mood => mood.name.includes("content"));
 
       const contentMoodsArray = [];
@@ -92,6 +94,7 @@ class App extends Component {
         }
          contentMoodLists[i] = newArray
       }
+        
         this.props.setContentLists(contentMoodLists)
     }
   }
@@ -274,6 +277,7 @@ class App extends Component {
           </div>
         </Router>
         <div className="footer">
+          {console.log("APP FILE", this.props.contentLists)}
           <p className="footer-text">created by Sandy Edwards</p>
         </div>
       </div>
@@ -288,7 +292,7 @@ const mapStateToProps = state => {
     currentUser: state.currentUser.user,
     moods: state.moods,
     sadLists: state.moodLists.sadLists,
-    contentLists: state.moodLists.happyLists,
+    contentLists: state.moodLists.contentLists,
     ecstaticLists: state.moodLists.ecstaticLists,
   }
 }
