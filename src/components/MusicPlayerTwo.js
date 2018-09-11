@@ -205,15 +205,51 @@ convertMsToHMS = (ms) => {
               </div>
             </div>
             :
-            <div className="music-player">
-              <p>
-                Click Add Playlist to Spotify to listen to your Vibelist Playlist
-              </p>
-              <p>
-                Note: Audio player is only supported for Spotify Premium members.
-              </p>
+            <div className="section music-player-container">
+              <div className="spinner">
+                <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle
+                    className="length"
+                    fill="none"
+                    strokeWidth={8}
+                    strokeLinecap="round"
+                    cx={33}
+                    cy={33}
+                    r={28}
+                  />
+                </svg>
+                <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle
+                    fill="none"
+                    strokeWidth={8}
+                    strokeLinecap="round"
+                    cx={33}
+                    cy={33}
+                    r={28}
+                  />
+                </svg>
+                <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle
+                    fill="none"
+                    strokeWidth={8}
+                    strokeLinecap="round"
+                    cx={33}
+                    cy={33}
+                    r={28}
+                  />
+                </svg>
+                <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle
+                    fill="none"
+                    strokeWidth={8}
+                    strokeLinecap="round"
+                    cx={33}
+                    cy={33}
+                    r={28}
+                  />
+                </svg>
+              </div>
             </div>
-
         }
 
       </React.Fragment>
