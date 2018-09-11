@@ -163,7 +163,15 @@ class App extends Component {
   }
 
   Login = () => {
-    return <LoginPage />
+    const token = localStorage.getItem('jwt');
+
+    if (this.props.currentUser && token ){
+      return <WelcomePage />
+    }
+    else {
+      return <LoginPage />
+    }
+
   }
 
   Welcome = () => {
@@ -215,9 +223,10 @@ class App extends Component {
 
   MyVibeLists = () => {
     return (
-      <div className="create-page-container">
-        <MusicPlayerTwo />
+      <div className="my-vibelists-wrapper">
+
         <MyVibeListsContainer />
+        <MusicPlayerTwo />
       </div>
 
     )
@@ -265,7 +274,6 @@ class App extends Component {
           </div>
         </Router>
         <div className="footer">
-          {console.log(this.props.contentLists)}
           <p className="footer-text">created by Sandy Edwards</p>
         </div>
       </div>
