@@ -37,19 +37,19 @@ class PlaylistContainer extends Component {
       case 'sad':
         const lastSadList = this.props.sadLists[this.props.sadLists.length - 1]
         if (lastSadList) {
-          return lastSadList.map(song =>  <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
+          return lastSadList.songs.map(song =>  <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
         }
       break;
       case 'content':
           const lastContentList = this.props.contentLists[this.props.contentLists.length - 1]
           if (lastContentList) {
-            return lastContentList.map(song => <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
+            return lastContentList.songs.map(song => <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
           }
         break;
       case 'ecstatic':
         const lastEcstaticList = this.props.ecstaticLists[this.props.ecstaticLists.length - 1]
         if (lastEcstaticList){
-          return lastEcstaticList.map(song => <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
+          return lastEcstaticList.songs.map(song => <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
         }
         break;
       default:

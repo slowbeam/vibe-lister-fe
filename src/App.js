@@ -57,10 +57,14 @@ class App extends Component {
         const ecstaticMoodLists = [...ecstaticMoodsNoEmpties];
 
         for (var i = 0; i < ecstaticMoodLists.length; i++) {
-          const newArray = []
+
+          const newArray = {playlist_uri: "", saved: false, songs: []}
+
           for (let el of ecstaticMoodLists[i]){
+            newArray.playlist_uri = ecstaticMoodLists[i][0].playlist_uri;
+            newArray.saved = el.saved;
             let song = this.props.songs.find(song => song.id === el.song_id)
-            newArray.push(song)
+            newArray.songs.push(song)
           }
            ecstaticMoodLists[i] = newArray
         }
@@ -88,14 +92,17 @@ class App extends Component {
       const contentMoodLists = [...contentMoodsNoEmpties];
 
       for (var i = 0; i < contentMoodLists.length; i++) {
-        const newArray = []
+
+        const newArray = {playlist_uri: "", saved: false, songs: []};
+
         for (let el of contentMoodLists[i]){
+          newArray.playlist_uri = contentMoodLists[i][0].playlist_uri;
+          newArray.saved = el.saved;
           let song = this.props.songs.find(song => song.id === el.song_id)
-          newArray.push(song)
+          newArray.songs.push(song)
         }
          contentMoodLists[i] = newArray
       }
-
         this.props.setContentLists(contentMoodLists)
     }
   }
@@ -119,10 +126,12 @@ class App extends Component {
       const sadMoodLists = [...sadMoodsNoEmpties];
 
       for (var i = 0; i < sadMoodLists.length; i++) {
-        const newArray = []
+        const newArray = {playlist_uri: "", saved: false, songs: []};
         for (let el of sadMoodLists[i]){
+          newArray.playlist_uri = sadMoodLists[i][0].playlist_uri;
+          newArray.saved = el.saved;
           let song = this.props.songs.find(song => song.id === el.song_id)
-          newArray.push(song)
+          newArray.songs.push(song)
         }
          sadMoodLists[i] = newArray
       }
@@ -175,7 +184,7 @@ class App extends Component {
     if (this.props.currentUser !== null & jwt !== null) {
       return (
         <div className="avatar-logout">
-          <div
+          <div className="avatar"
             style={{
               backgroundImage: `url(${this.renderProfileImage()})`,
               backgroundSize: "cover",
@@ -187,6 +196,18 @@ class App extends Component {
           />
           <p onClick={this.handleLogOut}>Logout</p>
         </div>
+    )
+
+    } else {
+      return <Login />
+    }
+  }
+
+  renderLogInLogOutMobile = () => {
+    const jwt = localStorage.getItem('jwt')
+    if (this.props.currentUser !== null & jwt !== null) {
+      return (
+          <p onClick={this.handleLogOut}>Logout</p>
     )
 
     } else {
@@ -291,7 +312,7 @@ class App extends Component {
           <a href="http://localhost:3001/" onClick={this.handleMenuClick} className="mobile-home-button">Home</a>
           <a href="http://localhost:3001/my-vibelists" >My VibeLists</a>
           <a href="http://localhost:3001/create" >New VibeList</a>
-          {this.renderLogInLogOut()}
+          {this.renderLogInLogOutMobile()}
         </div>
 
 
@@ -307,9 +328,9 @@ class App extends Component {
           </div>
         </Router>
         <div className="footer">
+          { console.log("content lists", this.props.contentLists)}
           <p className="footer-text">created by Sandy Edwards</p>
         </div>
-        {console.log(this.props.currentUser)}
       </div>
     );
   }

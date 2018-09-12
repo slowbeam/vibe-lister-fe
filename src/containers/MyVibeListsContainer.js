@@ -16,72 +16,109 @@ class PlaylistContainer extends Component {
     }
   }
 
-  loadPlaylist = (mood) => {
-    switch (mood) {
-      case 'sad':
-        const sadUri = this.props.currentUser.sadlist_uri
-        window.location='http://localhost:3001/my-vibelists?sadUri=' + sadUri
-        break;
-      case 'content':
-        const contentUri = this.props.currentUser.contentlist_uri
-        window.location=`http://localhost:3001/my-vibelists?contentUri=${contentUri}`
-        break;
-      case 'ecstatic':
-        const ecstaticUri = this.props.currentUser.ecstaticlist_uri
-        window.location='http://localhost:3001/my-vibelists?uri=' + ecstaticUri
-        break;
-      default:
-        return ""
-        }
+  loadCurrentPlaylist = (playlistUri) => {
+
+    const currentUser = this.props.currentUser
+    const pauseUrl = "https://api.spotify.com/v1/me/player/pause?device_id=" + this.props.deviceId
+    const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + this.props.deviceId
+
+    const pauseFetchObj = {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${currentUser.access_token}`,
+        "Content-Type": "application/json",
+      }
+    }
+
+
+    fetch( playUrl, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${currentUser.access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "context_uri": playlistUri
+      })
+    })
+
   }
+
+loadPlaylistAfterPause = (statusCode, playlistUri) => {
+
+  const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + this.props.deviceId;
+  const currentUser = this.props.currentUser;
+
+  if (statusCode === 204)
+  fetch( playUrl, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${currentUser.access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "context_uri": playlistUri
+      })
+    })
+}
+
+
 
 renderAllSadLists = (listArray) => {
   if(listArray) {
     return listArray.map(list => {
-      return (
-        <div key={uuid()} className="vibelist-multi">
-          <img className="emoji-image" alt="" src="/images/emojis/sad-2.png"/>
-          <StyledButton onClick={() => this.loadPlaylist('sad')}>play</StyledButton>
-          <div className="song-card-container">
-          <br />
-          {this.renderAllSongs(list)}
+        if(list.saved === true){
+        return (
+          <div key={uuid()} className="vibelist-multi">
+            <img className="emoji-image" alt="" src="/images/emojis/sad-2.png"/>
+            <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>play</StyledButton>
+            <div className="song-card-container">
+            <br />
+            {this.renderAllSongs(list.songs)}
+            </div>
           </div>
-        </div>
-      )
+        )
+      }
     })
   }
 }
 
 renderAllContentLists = (listArray) => {
-  if(listArray) {
+
+  if (listArray) {
     return listArray.map(list => {
-      return (
-        <div key={uuid()} className="vibelist-multi">
-          <img className="emoji-image" alt="" src="/images/emojis/content-2.png"/>
-          <StyledButton onClick={() => this.loadPlaylist('sad')}>play</StyledButton>
-          <div className="song-card-container">
-          <br />
-          {this.renderAllSongs(list)}
+      if(list.saved === true){
+        return (
+          <div key={uuid()} className="vibelist-multi">
+            <img className="emoji-image" alt="" src="/images/emojis/content-2.png"/>
+            <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>play</StyledButton>
+            <div className="song-card-container">
+            <br />
+            {this.renderAllSongs(list.songs)}
+            </div>
           </div>
-        </div>
-      )
+        )
+      }
+
     })
   }
 }
 
 renderAllEcstaticLists = (listArray) => {
   if(listArray) {
-    return listArray.map(list => {
-      return (
-        <div key={uuid()} className="vibelist-multi">
-          <img className="emoji-image" alt="" src="/images/emojis/ecstatic-2.png"/>
-          <StyledButton onClick={() => this.loadPlaylist('sad')}>play</StyledButton>
-          <div className="song-card-container">
-          <br />
-          {this.renderAllSongs(list)}
+      return listArray.map(list => {
+        if(list.saved === true){
+        return (
+          <div key={uuid()} className="vibelist-multi">
+            <img className="emoji-image" alt="" src="/images/emojis/ecstatic-2.png"/>
+            <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>play</StyledButton>
+            <div className="song-card-container">
+            <br />
+            {this.renderAllSongs(list.songs)}
+            </div>
           </div>
-        </div>
-      )
+        )
+      }
     })
   }
 }
@@ -113,8 +150,11 @@ const mapStateToProps = state => {
   return {
     currentUser: state.currentUser.user,
     sadLists: state.moodLists.sadLists,
-    contentLists: state.moodLists.happyLists,
-    ecstaticLists: state.moodLists.ecstaticLists
+    contentLists: state.moodLists.contentLists,
+    ecstaticLists: state.moodLists.ecstaticLists,
+    deviceId: state.deviceId,
+    playing: state.audioPlayer.playing
+
   }
 }
 
