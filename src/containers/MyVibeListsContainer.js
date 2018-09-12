@@ -8,11 +8,28 @@ import uuid from 'uuid';
 
 class PlaylistContainer extends Component {
 
+
+  playSong = (uri) => {
+    const deviceId = this.props.deviceId;
+    const token = this.props.currentUser.access_token
+    // console.log(uri)
+
+    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+      method: 'PUT',
+      body: JSON.stringify({ uris: [uri] }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+
+  }
+
   renderAllSongs = (songArray) => {
     if (songArray.length === 0){
       return <SongCard albumCover="images/vibelist-logo-9.png" title="No Vibelist Created Yet" artist="none" />
     } else {
-      return songArray.map(song => <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} />)
+      return songArray.map(song => <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} onClick={this.playSong} />)
     }
   }
 
@@ -43,7 +60,7 @@ renderAllSadLists = (listArray) => {
         return (
           <div key={uuid()} className="vibelist-multi">
             <img className="emoji-image" alt="" src="/images/emojis/sad-2.png"/>
-            <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>play</StyledButton>
+            <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>load playlist</StyledButton>
             <div className="song-card-container">
             <br />
             {this.renderAllSongs(list.songs)}
@@ -63,7 +80,7 @@ renderAllContentLists = (listArray) => {
         return (
           <div key={uuid()} className="vibelist-multi">
             <img className="emoji-image" alt="" src="/images/emojis/content-2.png"/>
-            <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>play</StyledButton>
+            <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>load playlist</StyledButton>
             <div className="song-card-container">
             <br />
             {this.renderAllSongs(list.songs)}
@@ -83,7 +100,7 @@ renderAllEcstaticLists = (listArray) => {
         return (
           <div key={uuid()} className="vibelist-multi">
             <img className="emoji-image" alt="" src="/images/emojis/ecstatic-2.png"/>
-            <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>play</StyledButton>
+            <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>load playlist</StyledButton>
             <div className="song-card-container">
             <br />
             {this.renderAllSongs(list.songs)}
