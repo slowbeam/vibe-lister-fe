@@ -52,7 +52,6 @@ class MusicPlayerTwo extends React.Component {
       let { device_id } = data;
       await this.props.setDeviceId(device_id)
       this.transferPlaybackHere();
-
     });
   }
 

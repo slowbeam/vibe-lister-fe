@@ -1,5 +1,6 @@
 import { setCurrentUser } from './currentUser';
 import { setDisplayName } from './displayName';
+import { setProfileImage } from './profileImage'
 
 export const LogInUser = (windowLocation) => {
   return (dispatch) => {
@@ -22,7 +23,8 @@ export const LogInUser = (windowLocation) => {
 
 
       dispatch(setCurrentUser(userObj));
-      dispatch(setDisplayName(userObj))
+      dispatch(setDisplayName(userObj));
+      dispatch(setProfileImage(userObj));
 
       const jwt = queryObj.jwt
 

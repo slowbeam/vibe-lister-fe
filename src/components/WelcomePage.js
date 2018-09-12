@@ -12,10 +12,18 @@ class WelcomePage extends Component {
     this.props.LogInUser(window.location)
   }
 
+  renderWelcomeMessage = () => {
+    if (this.props.displayName) {
+      return <h3>Welcome to VibeList, {this.props.displayName}!</h3>
+    } else {
+      return <h3>Welcome to VibeList!</h3>
+    }
+  }
+
   render(){
     return (
       <div className="section welcome">
-        <h3>Welcome to VibeList, {this.props.displayName}!</h3>
+        {this.renderWelcomeMessage()}
         <h4> VibeList is an app for creating Spotify playlists based on the mood of your choice.</h4>
         <CreatePlaylist />
       </div>

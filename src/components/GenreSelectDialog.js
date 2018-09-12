@@ -131,7 +131,6 @@ class DialogSelect extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-        {console.log(this.props.genreOne, this.props.genreTwo, this.props.genreThree)}
       </div>
     );
   }

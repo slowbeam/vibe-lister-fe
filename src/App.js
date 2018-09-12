@@ -16,6 +16,7 @@ import * as actions from './actions';
 
 class App extends Component {
 
+
   componentDidMount(){
     this.storeAllData()
   }
@@ -94,7 +95,7 @@ class App extends Component {
         }
          contentMoodLists[i] = newArray
       }
-        
+
         this.props.setContentLists(contentMoodLists)
     }
   }
@@ -156,10 +157,34 @@ class App extends Component {
     window.location = "http://localhost:3001/";
   }
 
+  renderProfileImage = () => {
+
+    if (this.props.profileImage){
+      return this.props.profileImage
+    } else {
+      return "./images/avatar-icon.png"
+    }
+  }
+
   renderLogInLogOut = () => {
     const jwt = localStorage.getItem('jwt')
     if (this.props.currentUser !== null & jwt !== null) {
-      return <p onClick={this.handleLogOut}>Logout</p>
+      return (
+        <div className="avatar-logout">
+          <div
+            style={{
+              backgroundImage: `url(${this.renderProfileImage()})`,
+              backgroundSize: "cover",
+              height: 60,
+              width: 60,
+              border: "3px solid #d09ed4",
+              borderRadius: "50%"
+            }}
+          />
+          <p onClick={this.handleLogOut}>Logout</p>
+        </div>
+    )
+
     } else {
       return <Login />
     }
@@ -224,10 +249,11 @@ class App extends Component {
     )
   }
 
+
+
   MyVibeLists = () => {
     return (
       <div className="my-vibelists-wrapper">
-
         <MyVibeListsContainer />
         <MusicPlayerTwo />
       </div>
@@ -277,9 +303,9 @@ class App extends Component {
           </div>
         </Router>
         <div className="footer">
-          {console.log("APP FILE", this.props.contentLists)}
           <p className="footer-text">created by Sandy Edwards</p>
         </div>
+        {console.log(this.props.currentUser)}
       </div>
     );
   }
@@ -290,6 +316,7 @@ const mapStateToProps = state => {
     songs: state.songs,
     users: state.users,
     currentUser: state.currentUser.user,
+    profileImage: state.currentUser.profileImage,
     moods: state.moods,
     sadLists: state.moodLists.sadLists,
     contentLists: state.moodLists.contentLists,
