@@ -328,7 +328,6 @@ class App extends Component {
           </div>
         </Router>
         <div className="footer">
-          { console.log("content lists", this.props.contentLists)}
           <p className="footer-text">created by Sandy Edwards</p>
         </div>
       </div>

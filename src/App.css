@@ -319,7 +319,7 @@ h4 {
   float: left;
   display: block;
   color: #000;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.95);
   text-align: center;
   padding: 25px 16px;
   text-decoration: none;
@@ -333,7 +333,7 @@ h4 {
   float: left;
   display: block;
   color: #000;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.95);
   text-align: center;
   padding: 25px 16px;
   text-decoration: none;
@@ -565,7 +565,15 @@ h4 {
   .playlist-container {
     margin-top: 20px; }
   .song-card-container {
-    margin-top: 10px; } }
+    margin-top: 10px; }
+  .my-vibelists-wrapper {
+    display: flex;
+    flex-direction: column-reverse; }
+  .my-vibelist-container {
+    margin-top: 100px; }
+  #player {
+    position: fixed;
+    margin-top: -20px; } }
 
 /*Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {

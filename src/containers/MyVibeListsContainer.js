@@ -19,16 +19,7 @@ class PlaylistContainer extends Component {
   loadCurrentPlaylist = (playlistUri) => {
 
     const currentUser = this.props.currentUser
-    const pauseUrl = "https://api.spotify.com/v1/me/player/pause?device_id=" + this.props.deviceId
     const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + this.props.deviceId
-
-    const pauseFetchObj = {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${currentUser.access_token}`,
-        "Content-Type": "application/json",
-      }
-    }
 
 
     fetch( playUrl, {
@@ -43,25 +34,6 @@ class PlaylistContainer extends Component {
     })
 
   }
-
-loadPlaylistAfterPause = (statusCode, playlistUri) => {
-
-  const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + this.props.deviceId;
-  const currentUser = this.props.currentUser;
-
-  if (statusCode === 204)
-  fetch( playUrl, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${currentUser.access_token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "context_uri": playlistUri
-      })
-    })
-}
-
 
 
 renderAllSadLists = (listArray) => {
