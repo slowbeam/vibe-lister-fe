@@ -32,6 +32,7 @@ class MoodEmojiSelector extends React.Component {
         window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo
     }
     else if (this.props.genreOne === undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
+
         window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genrethree=" + this.props.genreThree
     }
     else {

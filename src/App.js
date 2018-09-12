@@ -161,7 +161,11 @@ class App extends Component {
 
     if (this.props.profileImage){
       return this.props.profileImage
-    } else {
+    }
+    else if (this.props.currentUser.profile_image){
+      return this.props.currentUser.profile_image
+    }
+    else {
       return "./images/avatar-icon.png"
     }
   }

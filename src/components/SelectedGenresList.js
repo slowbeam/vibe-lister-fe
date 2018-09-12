@@ -15,7 +15,8 @@ const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#FFFFFF99',
+    borderRadius: '6px'
   },
 });
 
@@ -63,7 +64,7 @@ function SelectedGenresList(props) {
           </List>
       );
     }
-    else if (props.genreOne !== undefined &&  props.genreTwo !== undefined) {
+    else if (props.genreOne !== undefined &&  props.genreTwo !== undefined && props.genreThree === undefined) {
       return (
           <List component="nav">
             <ListItem button>
@@ -84,7 +85,7 @@ function SelectedGenresList(props) {
           </List>
       )
     }
-    else if (props.genreOne !== undefined) {
+    else if (props.genreOne !== undefined & props.genreTwo === undefined && props.genreThree === undefined) {
       return (
           <List component="nav">
             <ListItem  button>
@@ -95,6 +96,69 @@ function SelectedGenresList(props) {
             </ListItem>
           </List>
       )}
+    else if (props.genreOne === undefined && props.genreTwo !== undefined && props.genreThree === undefined) {
+      return (
+          <List component="nav">
+            <ListItem  button>
+              <ListItemText primary={props.genreTwo} />
+              <ListItemIcon   >
+                <DeleteOutlinedIcon onClick={handleClickDelete} className={classes.icon + " genre-two"} />
+              </ListItemIcon>
+            </ListItem>
+          </List>
+    )}
+
+    else if (props.genreOne === undefined && props.genreTwo !== undefined && props.genreThree !== undefined) {
+      return (
+          <List component="nav">
+            <ListItem  button>
+              <ListItemText primary={props.genreTwo} />
+              <ListItemIcon   >
+                <DeleteOutlinedIcon onClick={handleClickDelete} className={classes.icon + " genre-two"} />
+              </ListItemIcon>
+            </ListItem>
+          <Divider/>
+          <ListItem button>
+            <ListItemText primary={props.genreThree}/>
+            <ListItemIcon>
+              <DeleteOutlinedIcon onClick={handleClickDelete} className={classes.icon + " genre-three"}
+              />
+            </ListItemIcon>
+          </ListItem>
+        </List>
+    )}
+
+    else if (props.genreOne === undefined && props.genreTwo === undefined && props.genreThree !== undefined) {
+      return (
+          <List component="nav">
+            <ListItem  button>
+              <ListItemText primary={props.genreThree} />
+              <ListItemIcon   >
+                <DeleteOutlinedIcon onClick={handleClickDelete} className={classes.icon + " genre-three"} />
+              </ListItemIcon>
+            </ListItem>
+        </List>
+    )}
+
+    else if (props.genreOne !== undefined && props.genreTwo === undefined && props.genreThree !== undefined) {
+      return (
+          <List component="nav">
+            <ListItem  button>
+              <ListItemText primary={props.genreOne} />
+              <ListItemIcon   >
+                <DeleteOutlinedIcon onClick={handleClickDelete} className={classes.icon + " genre-one"} />
+              </ListItemIcon>
+            </ListItem>
+            <Divider/>
+            <ListItem button>
+              <ListItemText primary={props.genreThree}/>
+              <ListItemIcon>
+                <DeleteOutlinedIcon onClick={handleClickDelete} className={classes.icon + " genre-three"}
+                />
+              </ListItemIcon>
+            </ListItem>
+        </List>
+    )}
 
   }
 

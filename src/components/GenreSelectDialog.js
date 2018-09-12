@@ -109,7 +109,7 @@ class DialogSelect extends React.Component {
                 </Select>
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="age-native-simple">Genre 2</InputLabel>
+                <InputLabel htmlFor="age-native-simple">Genre 3</InputLabel>
                 <Select
                   native
                   value={this.props.genreThree}
