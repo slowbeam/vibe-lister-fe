@@ -194,7 +194,7 @@ class App extends Component {
               borderRadius: "50%"
             }}
           />
-          <p onClick={this.handleLogOut}>Logout</p>
+        <p onClick={this.handleLogOut}>logout</p>
         </div>
     )
 
@@ -207,7 +207,7 @@ class App extends Component {
     const jwt = localStorage.getItem('jwt')
     if (this.props.currentUser !== null & jwt !== null) {
       return (
-          <p onClick={this.handleLogOut}>Logout</p>
+          <p onClick={this.handleLogOut}>logout</p>
     )
 
     } else {
@@ -294,9 +294,9 @@ class App extends Component {
       <div className="page">
         <div className="topnav" id="top-nav-bar">
           <div className="box-1">
-            <a href="http://localhost:3001/" onClick={this.handleMenuClick} >Home</a>
-            <a href="http://localhost:3001/my-vibelists" >My VibeLists</a>
-            <a href="http://localhost:3001/create" >New VibeList</a>
+            <a href="http://localhost:3001/" onClick={this.handleMenuClick} >home</a>
+            <a href="http://localhost:3001/my-vibelists" >my vibelists</a>
+            <a href="http://localhost:3001/create" >new vibelist</a>
           </div>
 
           <div className="box-2" >
@@ -309,9 +309,9 @@ class App extends Component {
           </div>
         </div>
         <div  id="mobile-nav-bar" className="mobile-nav-menu">
-          <a href="http://localhost:3001/" onClick={this.handleMenuClick} className="mobile-home-button">Home</a>
-          <a href="http://localhost:3001/my-vibelists" >My VibeLists</a>
-          <a href="http://localhost:3001/create" >New VibeList</a>
+          <a href="http://localhost:3001/" onClick={this.handleMenuClick} className="mobile-home-button">home</a>
+          <a href="http://localhost:3001/my-vibelists" >my vibelists</a>
+          <a href="http://localhost:3001/create" >new vibelist</a>
           {this.renderLogInLogOutMobile()}
         </div>
 

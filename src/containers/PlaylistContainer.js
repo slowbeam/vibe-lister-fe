@@ -30,7 +30,7 @@ class PlaylistContainer extends Component {
         const query = window.location.search.substring(1);
         const pair = query.split('=');
         const playlistUri = pair[1];
-      return <StyledButton onClick={() => this.loadCurrentPlaylist(playlistUri)}>load full playlist</StyledButton>
+      return <StyledButton onClick={() => this.loadCurrentPlaylist(playlistUri)}>play all</StyledButton>
     } else {
       return <SavePlaylistButton />
     }

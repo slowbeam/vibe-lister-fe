@@ -14,9 +14,9 @@ class WelcomePage extends Component {
 
   renderWelcomeMessage = () => {
     if (this.props.displayName) {
-      return <h3>Welcome to VibeList, {this.props.displayName}!</h3>
+      return <h3>welcome to vibelist, {this.props.displayName}!</h3>
     } else {
-      return <h3>Welcome to VibeList!</h3>
+      return <h3>welcome to vibelist!</h3>
     }
   }
 
@@ -24,7 +24,7 @@ class WelcomePage extends Component {
     return (
       <div className="section welcome">
         {this.renderWelcomeMessage()}
-        <h4> VibeList is an app for creating Spotify playlists based on the mood of your choice.</h4>
+        <h4> vibelist is an app for creating Spotify playlists based on the mood of your choice.</h4>
         <CreatePlaylist />
       </div>
     )
