@@ -191,14 +191,11 @@ convertMsToHMS = (ms) => {
                     <h3 className="artist-name">{this.props.artistName}</h3>
                   </div>
                   <div className="controls">
-                    <div className="option"><i className="fas fa-bars"></i></div>
-                    <div className="volume"><i className="fas fa-volume-up"></i></div>
+
                     <div onClick={() => this.onPrevClick()} className="previous"><i className="fas fa-backward"></i></div>
                     <div id="play-pause-button" onClick={() => this.onPlayClick()} className="play">
                       {this.props.playing ? <i className="fas fa-pause"></i> : <i className="fas fa-play"></i>}</div>
                     <div onClick={() => this.onNextClick()} className="next"><i className="fas fa-forward"></i></div>
-                    <div className="shuffle"><i className="fas fa-random"></i></div>
-                    <div className="add"><i className="fas fa-plus"></i></div>
                   </div>
                 </div>
               </div>

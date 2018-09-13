@@ -5,9 +5,56 @@ import SavePlaylistButton from '../components/SavePlaylistButton'
 import withAuth from '../hocs/withAuth';
 import { setCurrentMood } from '../actions/currentMood'
 import uuid from 'uuid';
+import StyledButton from '../components/StyledButton';
 
 
 class PlaylistContainer extends Component {
+
+  state = {
+    uri: null
+  }
+
+  saveUriFromUrl = () => {
+    if (window.location.search) {
+      const query = window.location.search.substring(1);
+      const pair = query.split('=');
+      const playlistUri = pair[1];
+      this.setState({
+        uri: playlistUri
+      })
+    }
+  }
+
+  renderButton = () => {
+    if (this.state.uri){
+        const query = window.location.search.substring(1);
+        const pair = query.split('=');
+        const playlistUri = pair[1];
+      return <StyledButton onClick={() => this.loadCurrentPlaylist(playlistUri)}>load full playlist</StyledButton>
+    } else {
+      return <SavePlaylistButton />
+    }
+  }
+
+  loadCurrentPlaylist = (playlistUri) => {
+
+    const currentUser = this.props.currentUser
+    const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + this.props.deviceId
+
+
+    fetch( playUrl, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${currentUser.access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "context_uri": playlistUri
+      })
+    })
+
+  }
+
 
   pullMoodFromUrl = (url) => {
     const moodWords = url.split("/")[3].split("-")
@@ -17,6 +64,7 @@ class PlaylistContainer extends Component {
 
   componentDidMount(){
     this.pullMoodFromUrl(window.location.href)
+    this.saveUriFromUrl()
   }
 
   renderEmoji = () => {
@@ -63,7 +111,7 @@ class PlaylistContainer extends Component {
       case 'ecstatic':
         const lastEcstaticList = this.props.ecstaticLists[this.props.ecstaticLists.length - 1]
         if (lastEcstaticList){
-          return lastEcstaticList.songs.map(song => <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} onClick={this.playSong(song.uri)} />)
+          return lastEcstaticList.songs.map(song => <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} onClick={() => this.playSong(song.uri)} />)
         }
         break;
       default:
@@ -75,7 +123,7 @@ class PlaylistContainer extends Component {
     return (
         <div className="section playlist-container">
           {this.renderEmoji()}
-          <SavePlaylistButton />
+          {this.renderButton()}
           <div className="song-card-container">
           {this.renderAllSongs()}
           </div>

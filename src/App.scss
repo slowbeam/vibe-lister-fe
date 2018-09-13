@@ -446,6 +446,7 @@ h4 {
   border-radius: 6px;
   margin: 10px;
   overflow: auto;
+  min-width: 500px;
 }
 
 
@@ -521,7 +522,7 @@ h4 {
 
 .my-vibelists-wrapper {
   display: flex;
-
+  justify-content: space-evenly;
 }
 
 .my-vibelist-container {
@@ -547,6 +548,7 @@ h4 {
   flex-direction: column;
   justify-content: space-around;
   flex-shrink: 0;
+  margin-bottom: 30px;
 }
 
 
@@ -663,6 +665,7 @@ h4 {
 
   .song-card-container {
     height: 300px;
+    min-width: 250px;
   }
 
   .mood-emoji-container {
@@ -786,6 +789,7 @@ h4 {
 
   .song-card-container {
     height: 500px;
+    min-width: 300px;
     }
   }
 

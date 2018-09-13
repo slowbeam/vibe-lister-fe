@@ -374,7 +374,8 @@ h4 {
   justify-content: right;
   border-radius: 6px;
   margin: 10px;
-  overflow: auto; }
+  overflow: auto;
+  min-width: 500px; }
 
 .song-card {
   display: flex;
@@ -431,7 +432,8 @@ h4 {
   margin-top: 135px; }
 
 .my-vibelists-wrapper {
-  display: flex; }
+  display: flex;
+  justify-content: space-evenly; }
 
 .my-vibelist-container {
   margin-top: 30px;
@@ -451,7 +453,8 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  flex-shrink: 0; }
+  flex-shrink: 0;
+  margin-bottom: 30px; }
 
 .create-page-container {
   display: flex;
@@ -541,7 +544,8 @@ h4 {
   .playlist-container {
     height: 500px; }
   .song-card-container {
-    height: 300px; }
+    height: 300px;
+    min-width: 250px; }
   .mood-emoji-container {
     display: flex;
     flex-direction: column; }
@@ -618,7 +622,8 @@ h4 {
   .playlist-container {
     height: 700px; }
   .song-card-container {
-    height: 500px; } }
+    height: 500px;
+    min-width: 300px; } }
 
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
