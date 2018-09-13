@@ -96,12 +96,6 @@ h4 {
   #player:hover {
     transform: scale(1.05); }
 
-.loading-spinner {
-  background-image: url("/images/orbit-balls.gif");
-  height: 400px;
-  width: 400px;
-  background-repeat: no-repeat; }
-
 .album {
   background: linear-gradient(rgba(43, 46, 85, 0.25), rgba(179, 151, 204, 0.55)), url("http://4.bp.blogspot.com/-pcPjBBdE_K8/U7v4oEX3M8I/AAAAAAAAD2I/6dWyzgiPzkQ/s1600/Clean+BAndit+Album+.jpg");
   background-repeat: no-repeat;
