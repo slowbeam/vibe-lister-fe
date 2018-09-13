@@ -60,6 +60,7 @@ renderAllSadLists = (listArray) => {
         return (
           <div key={uuid()} className="vibelist-multi">
             <img className="emoji-image" alt="" src="/images/emojis/sad-2.png"/>
+            <br />
             <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>load playlist</StyledButton>
             <div className="song-card-container">
             <br />
@@ -80,6 +81,7 @@ renderAllContentLists = (listArray) => {
         return (
           <div key={uuid()} className="vibelist-multi">
             <img className="emoji-image" alt="" src="/images/emojis/content-2.png"/>
+            <br />
             <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>load playlist</StyledButton>
             <div className="song-card-container">
             <br />
@@ -100,6 +102,7 @@ renderAllEcstaticLists = (listArray) => {
         return (
           <div key={uuid()} className="vibelist-multi">
             <img className="emoji-image" alt="" src="/images/emojis/ecstatic-2.png"/>
+            <br />
             <StyledButton onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}>load playlist</StyledButton>
             <div className="song-card-container">
             <br />
