@@ -191,7 +191,7 @@ class App extends Component {
               height: 60,
               width: 60,
               border: "3px solid #d09ed4",
-              borderRadius: "50%"
+              borderRadius: "50%",
             }}
           />
         <p onClick={this.handleLogOut}>logout</p>
