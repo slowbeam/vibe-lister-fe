@@ -119,7 +119,7 @@ class PlaylistContainer extends Component {
   }
 
   render() {
-    console.log(this.props.playlistUri);
+    console.log(this.props.sadLists)
     return (
         <div className="section playlist-container">
           {this.renderEmoji()}
@@ -134,6 +134,7 @@ class PlaylistContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    moods: state.moods,
     sadLists: state.moodLists.sadLists,
     contentLists: state.moodLists.contentLists,
     ecstaticLists: state.moodLists.ecstaticLists,
