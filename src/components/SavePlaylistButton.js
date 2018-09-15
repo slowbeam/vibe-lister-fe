@@ -15,7 +15,11 @@ class SavePlaylistButton extends React.Component {
 
     const token = localStorage.getItem('jwt');
 
-    window.location='http://localhost:3000/api/v1/create-playlist?jwt=' + token;
+    const playlistUrisString = this.props.playlistUrisString;
+    const mood = this.props.currentMood;
+
+    window.location='http://localhost:3000/api/v1/create-playlist?jwt=' + token + "&mood=" + mood + "&playlist_uris_string=" + playlistUrisString
+
   }
     render() {
       return(
@@ -30,7 +34,9 @@ class SavePlaylistButton extends React.Component {
 const mapStateToProps = state => {
   return {
     deviceId: state.deviceId,
-    currentUser: state.currentUser.user
+    currentUser: state.currentUser.user,
+    playlistUrisString: state.playlist.playlistUrisString,
+    currentMood: state.currentMood
   }
 }
 

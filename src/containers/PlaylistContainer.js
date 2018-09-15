@@ -10,26 +10,10 @@ import * as actions from '../actions'
 
 class PlaylistContainer extends Component {
 
-  state = {
-    uri: null
-  }
-
-  saveUriFromUrl = () => {
-    if (window.location.search) {
-      const query = window.location.search.substring(1);
-      const pair = query.split('=');
-      const playlistUri = pair[1];
-      this.setState({
-        uri: playlistUri
-      })
-    }
-  }
 
   renderButton = () => {
-    if (this.state.uri){
-        const query = window.location.search.substring(1);
-        const pair = query.split('=');
-        const playlistUri = pair[1];
+    if (this.props.playlistUri){
+        const playlistUri = this.props.playlistUri
       return <StyledButton onClick={() => this.loadCurrentPlaylist(playlistUri)}>play all</StyledButton>
     } else {
       return <SavePlaylistButton />
@@ -58,19 +42,27 @@ class PlaylistContainer extends Component {
   getQueryParamsFromUrl = () => {
     if (window.location.search) {
       const query = window.location.search.substring(1);
-      const keyValuePairs = query.split('&');
-      const moodPair = keyValuePairs[0];
+      const queryKeyValuePairs = query.split('&');
+      const moodPair = queryKeyValuePairs[0];
       const mood = moodPair.split("=")[1];
+
       this.props.setCurrentMood(mood)
-      const playlistUrisStringPair = keyValuePairs[1];
-      const playlistUrisString = playlistUrisStringPair.split("=")[1];
-      this.props.setPlaylistUrisString(playlistUrisString);
+      if(queryKeyValuePairs[1].split("=")[0] === "playlist_uris_string") {
+        const playlistUrisStringPair = queryKeyValuePairs[1];
+        const playlistUrisString = playlistUrisStringPair.split("=")[1];
+        this.props.setPlaylistUrisString(playlistUrisString);
+      }
+      else if (queryKeyValuePairs[1].split("=")[0] === "uri"){
+        const playlistUriPair = queryKeyValuePairs[1];
+        const playlistUri = playlistUriPair.split("=")[1];
+        this.props.setPlaylistUri(playlistUri);
+      }
+
     }
   }
 
   componentDidMount(){
     this.getQueryParamsFromUrl()
-    this.saveUriFromUrl()
 
   }
 
@@ -127,6 +119,7 @@ class PlaylistContainer extends Component {
   }
 
   render() {
+    console.log(this.props.playlistUri);
     return (
         <div className="section playlist-container">
           {this.renderEmoji()}
@@ -147,7 +140,8 @@ const mapStateToProps = state => {
     currentMood: state.currentMood,
     currentUser: state.currentUser.user,
     deviceId: state.deviceId,
-    playlistUrisString: state.playlist.playlistUrisString
+    playlistUrisString: state.playlist.playlistUrisString,
+    playlistUri: state.playlist.playlistUri
   }
 }
 

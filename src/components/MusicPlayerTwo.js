@@ -115,9 +115,9 @@ class MusicPlayerTwo extends React.Component {
   loadPlaylistFromUrl = () => {
     if (window.location.search && this.props.deviceId !== null) {
       const query = window.location.search.substring(1);
-      const pair = query.split('=');
-      const playlistUri = pair[1];
-      this.loadCurrentPlaylist(playlistUri)
+      const queryKeyValuePairs = query.split("&");
+      const uri = queryKeyValuePairs[1].split("=")[1]
+      this.loadCurrentPlaylist(uri)
     }
   }
 
