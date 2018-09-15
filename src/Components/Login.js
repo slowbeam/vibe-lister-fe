@@ -7,7 +7,7 @@ const Login = (props) => {
   }
 
   return (
-      <p onClick={visitSpotifyLogin}>Login</p>
+      <p onClick={visitSpotifyLogin}>login</p>
   )
 };
 

@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import SongCard from '../components/SongCard'
 import SavePlaylistButton from '../components/SavePlaylistButton'
 import withAuth from '../hocs/withAuth';
-import { setCurrentMood } from '../actions/currentMood'
 import uuid from 'uuid';
 import StyledButton from '../components/StyledButton';
+import * as actions from '../actions'
 
 
 class PlaylistContainer extends Component {
@@ -55,29 +55,36 @@ class PlaylistContainer extends Component {
 
   }
 
-
-  pullMoodFromUrl = (url) => {
-    const moodWords = url.split("/")[3].split("-")
-    const mood = moodWords[1]
-    this.props.setCurrentMood(mood)
+  getQueryParamsFromUrl = () => {
+    if (window.location.search) {
+      const query = window.location.search.substring(1);
+      const keyValuePairs = query.split('&');
+      const moodPair = keyValuePairs[0];
+      const mood = moodPair.split("=")[1];
+      this.props.setCurrentMood(mood)
+      const playlistUrisStringPair = keyValuePairs[1];
+      const playlistUrisString = playlistUrisStringPair.split("=")[1];
+      this.props.setPlaylistUrisString(playlistUrisString);
+    }
   }
 
   componentDidMount(){
-    this.pullMoodFromUrl(window.location.href)
+    this.getQueryParamsFromUrl()
     this.saveUriFromUrl()
+
   }
 
   renderEmoji = () => {
-    switch(this.props.currentMood) {
-      case 'sad':
-        return <img alt="" src="/images/emojis/sad-2.png"/>
-      case 'content':
-        return <img alt="" src="/images/emojis/content-2.png"/>
-      case 'ecstatic':
-        return <img alt="" src="/images/emojis/ecstatic-2.png"/>
-      default:
-        return
-    }
+      switch(this.props.currentMood) {
+        case 'sad':
+          return <img alt="" src="/images/emojis/sad-2.png"/>
+        case 'content':
+          return <img alt="" src="/images/emojis/content-2.png"/>
+        case 'ecstatic':
+          return <img alt="" src="/images/emojis/ecstatic-2.png"/>
+        default:
+          return
+      }
   }
 
   playSong = (uri) => {
@@ -139,14 +146,9 @@ const mapStateToProps = state => {
     ecstaticLists: state.moodLists.ecstaticLists,
     currentMood: state.currentMood,
     currentUser: state.currentUser.user,
-    deviceId: state.deviceId
+    deviceId: state.deviceId,
+    playlistUrisString: state.playlist.playlistUrisString
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCurrentMood: (mood) => dispatch(setCurrentMood(mood))
-  }
-}
-
-export default withAuth(connect(mapStateToProps, mapDispatchToProps)(PlaylistContainer))
+export default withAuth(connect(mapStateToProps, actions)(PlaylistContainer))
