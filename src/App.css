@@ -538,7 +538,8 @@ h4 {
     min-width: 250px; }
   .mood-emoji-container {
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    width: 150px; }
   .mood-selector-container {
     height: 500px; }
   .m-ui-list {
