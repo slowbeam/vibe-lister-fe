@@ -539,7 +539,7 @@ h4 {
   .mood-emoji-container {
     display: flex;
     flex-direction: column;
-    width: 150px; }
+    width: 120px; }
   .mood-selector-container {
     height: 500px; }
   .m-ui-list {
