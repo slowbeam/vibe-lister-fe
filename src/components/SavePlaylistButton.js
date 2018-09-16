@@ -18,7 +18,7 @@ class SavePlaylistButton extends React.Component {
     const playlistUrisString = this.props.playlistUrisString;
     const mood = this.props.currentMood;
 
-    window.location='http://localhost:3000/api/v1/create-playlist?jwt=' + token + "&mood=" + mood + "&playlist_uris_string=" + playlistUrisString
+    window.location='https://vibelist-server.herokuapp.com/api/v1/create-playlist?jwt=' + token + "&mood=" + mood + "&playlist_uris_string=" + playlistUrisString
 
   }
     render() {

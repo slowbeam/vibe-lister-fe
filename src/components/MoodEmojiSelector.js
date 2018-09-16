@@ -13,30 +13,30 @@ class MoodEmojiSelector extends React.Component {
     const token = localStorage.getItem('jwt');
 
     if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined ){
-      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
+      window.location='https://vibelist-server.herokuapp.com/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
     }
     else if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree === undefined) {
-      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo
+      window.location='https://vibelist-server.herokuapp.com/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo
     }
 
     else if (this.props.genreOne !== undefined && this.props.genreTwo === undefined && this.props.genreThree === undefined ) {
-      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne
+      window.location='https://vibelist-server.herokuapp.com/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne
     }
     else if (this.props.genreOne !== undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
-        window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genrethree=" + this.props.genreThree
+        window.location='https://vibelist-server.herokuapp.com/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genrethree=" + this.props.genreThree
     }
     else if (this.props.genreOne === undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined) {
-        window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
+        window.location='https://vibelist-server.herokuapp.com/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
     }
     else if (this.props.genreOne === undefined && this.props.genreTwo !== undefined && this.props.genreThree === undefined) {
-        window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo
+        window.location='https://vibelist-server.herokuapp.com/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo
     }
     else if (this.props.genreOne === undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
 
-        window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genrethree=" + this.props.genreThree
+        window.location='https://vibelist-server.herokuapp.com/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genrethree=" + this.props.genreThree
     }
     else {
-      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token
+      window.location='https://vibelist-server.herokuapp.com/api/v1/?mood=' + mood + '&jwt=' + token
     }
 
 
