@@ -163,7 +163,7 @@ class App extends Component {
     this.props.setCurrentUser(null);
     localStorage.removeItem('jwt');
     window.location = 'https://www.spotify.com/logout/';
-    window.location = "https://vibelist-client.herokuapp.com//";
+    window.location = "https://vibelist.herokuapp.com/";
   }
 
   renderProfileImage = () => {
@@ -294,9 +294,9 @@ class App extends Component {
       <div className="page">
         <div className="topnav" id="top-nav-bar">
           <div className="box-1">
-            <a href="https://vibelist-client.herokuapp.com//" onClick={this.handleMenuClick} >home</a>
-            <a href="https://vibelist-client.herokuapp.com//my-vibelists" >my vibelists</a>
-            <a href="https://vibelist-client.herokuapp.com//create" >new vibelist</a>
+            <a href="https://vibelist.herokuapp.com/" onClick={this.handleMenuClick} >home</a>
+            <a href="https://vibelist.herokuapp.com/my-vibelists" >my vibelists</a>
+            <a href="https://vibelist.herokuapp.com/create" >new vibelist</a>
           </div>
 
           <div className="box-2" >
@@ -309,9 +309,9 @@ class App extends Component {
           </div>
         </div>
         <div  id="mobile-nav-bar" className="mobile-nav-menu">
-          <a href="https://vibelist-client.herokuapp.com//" onClick={this.handleMenuClick} className="mobile-home-button">home</a>
-          <a href="https://vibelist-client.herokuapp.com//my-vibelists" >my vibelists</a>
-          <a href="https://vibelist-client.herokuapp.com//create" >new vibelist</a>
+          <a href="https://vibelist.herokuapp.com/" onClick={this.handleMenuClick} className="mobile-home-button">home</a>
+          <a href="https://vibelist.herokuapp.com/my-vibelists" >my vibelists</a>
+          <a href="https://vibelist.herokuapp.com/create" >new vibelist</a>
           {this.renderLogInLogOutMobile()}
         </div>
 
