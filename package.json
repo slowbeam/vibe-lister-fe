@@ -22,6 +22,9 @@
     "redux-thunk": "^2.3.0",
     "uuid": "^3.3.2"
   },
+  "keywords": [
+   "heroku"
+ ],
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",

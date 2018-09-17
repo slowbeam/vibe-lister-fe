@@ -119,7 +119,6 @@ class PlaylistContainer extends Component {
   }
 
   render() {
-    console.log(this.props.sadLists)
     return (
         <div className="section playlist-container">
           {this.renderEmoji()}

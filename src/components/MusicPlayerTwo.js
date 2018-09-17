@@ -42,9 +42,7 @@ class MusicPlayerTwo extends React.Component {
 
   createEventHandlers(){
     this.player.on('initialization_error', e => { console.error(e); });
-    this.player.on('authentication_error', e => {
-      console.error(e)
-    });
+    this.player.on('authentication_error', e => { console.error(e); });
     this.player.on('account_error', e => {console.error(e); });
     this.player.on('playback_error', e => {console.error(e); });
     this.player.on('player_state_changed', state => this.onStateChanged(state));
