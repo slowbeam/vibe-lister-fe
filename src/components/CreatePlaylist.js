@@ -4,7 +4,7 @@ import StyledButton from './StyledButton';
 const CreatePlaylist = (props) => {
 
   const visitCreatePlaylist = () => {
-    window.location='https://vibelist.co/create';
+    window.location='http://vibelist.co/create';
   }
 
     return(
