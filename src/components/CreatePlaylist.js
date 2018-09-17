@@ -4,7 +4,7 @@ import StyledButton from './StyledButton';
 const CreatePlaylist = (props) => {
 
   const visitCreatePlaylist = () => {
-    window.location='https://vibelist-client.herokuapp.com/create';
+    window.location='https://vibelist.herokuapp.com/create';
   }
 
     return(
