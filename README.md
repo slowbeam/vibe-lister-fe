@@ -8,7 +8,7 @@ Back end Ruby on Rails API repo available here: https://github.com/slowbeam/vibe
 
 ## Demo
 
-![](https://media.giphy.com/media/dJdKn6mlbnlmPaJLOM/giphy.gif)
+![demo](https://media.giphy.com/media/dJdKn6mlbnlmPaJLOM/giphy.gif)
 
 ## Installation
 
