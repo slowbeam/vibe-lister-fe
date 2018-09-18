@@ -5,9 +5,6 @@ Vibelist is powered by the Spotify web API and the Spotify Web Player SDK to pro
 
 Back end Ruby on Rails API repo available here: https://github.com/slowbeam/vibe-list-server
 
-
-## Demo
-
 ![vibelist demo 1](https://media.giphy.com/media/41ey7D0UVpOibdPVEt/giphy.gif)
 
 ## Installation
