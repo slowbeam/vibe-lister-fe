@@ -30,6 +30,15 @@ Vibelist can save playlists to your Spotify account:
 
 ![vibelist demo 4](https://media.giphy.com/media/1yLmZ4mGhpFxkm9SG9/giphy.gif)
 
+## Development setup
+
+vibelist uses the npm node-sass-chokidar package to compile SCSS into CSS for React. This package is saved to the project but the npm listing can be found here: https://www.npmjs.com/package/node-sass-chokidar
+
+```sh
+npm start
+npm run watch-css
+```
+
 
 ## Release History
 
