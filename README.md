@@ -22,11 +22,13 @@ npm install
 
 Vibelist can play individual songs, or full playlists created with the app in the browser:
 
-![vibelist demo 2](https://media.giphy.com/media/3mJKFmjuVh2dJ2IIr5/giphy.gif)
+![vibelist demo 2](https://media.giphy.com/media/WvvtNtiefZGD1I74aP/giphy.gif)
+
+![vibelist demo 3](https://media.giphy.com/media/2uInVFNC4m77q6Lrge/giphy.gif)
 
 Vibelist can save playlists to your Spotify account:
 
-![vibelist demo 3](https://media.giphy.com/media/etKT0LqsnLRoJgWcOT/giphy.gif)
+![vibelist demo 4](https://media.giphy.com/media/1yLmZ4mGhpFxkm9SG9/giphy.gif)
 
 
 ## Release History
