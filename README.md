@@ -1,11 +1,9 @@
 # vibelist
 > Javascript & react front end to vibelist, an application for creating Spotify playlists in the genre & mood of the user's choice. Back end Ruby on Rails API repo available here: https://github.com/slowbeam/vibe-list-server
 
-## Summary
-
 Vibelist is powered by the Spotify web API and the Spotify Web Player SDK to provide the user with an elegant, fun and useful tool for creating Spotify playlists in a certain mood and genre. Users can log in through Spotify's 3rd party authorization and create multiple playlists, listen to them in the browser and save them to their Spotify account for later use.
 
-![vibelist demo 1](https://gph.is/2xu5Jor)
+![vibelist demo 1](https://media.giphy.com/media/5b1KAiIq1nBsk2deos/giphy.gif)
 
 ## Installation
 
@@ -19,11 +17,11 @@ npm install
 
 Vibelist can play individual songs, or full playlists created with the app in the browser:
 
-![vibelist demo 2](https://gph.is/2QGkgGj)
+![vibelist demo 2](https://media.giphy.com/media/3mJKFmjuVh2dJ2IIr5/giphy.gif)
 
 Vibelist can save playlists to your Spotify account:
 
-![vibelist demo 3](https://gph.is/2xrZCkE)
+![vibelist demo 3](https://media.giphy.com/media/etKT0LqsnLRoJgWcOT/giphy.gif)
 
 
 ## Release History
