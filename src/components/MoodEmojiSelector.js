@@ -39,8 +39,10 @@ class MoodEmojiSelector extends React.Component {
       window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token
     }
 
+  }
 
-
+  handleSubmitNoRefresh = () => {
+    
   }
 
   render(){
