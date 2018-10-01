@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import withAuth from '../hocs/withAuth';
 import GenreSelectDialog from './GenreSelectDialog';
-import SelectedGenresList from './SelectedGenresList'
+import SelectedGenresList from './SelectedGenresList';
+import * as actions from '../actions'
+
 
 class MoodEmojiSelector extends React.Component {
 
@@ -41,8 +43,8 @@ class MoodEmojiSelector extends React.Component {
 
   }
 
-  handleSubmitNoRefresh = () => {
-    
+  handleSubmitNoRefresh = (mood) => {
+    this.props.fetchMoodSearch(mood)
   }
 
   render(){
@@ -70,4 +72,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withAuth(connect(mapStateToProps)(MoodEmojiSelector));
+export default withAuth(connect(mapStateToProps, actions)(MoodEmojiSelector));
