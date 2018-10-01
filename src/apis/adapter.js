@@ -3,6 +3,7 @@ const USER_URL = 'http://localhost:3000/api/v1/users'
 const SONG_USER_URL = 'http://localhost:3000/api/v1/song_users'
 const MOOD_URL = 'http://localhost:3000/api/v1/moods'
 const LOGGED_IN_USER_URL = 'http://localhost:3000/api/v1/logged-in-user'
+const MOOD_SEARCH_URL = 'http://localhost:3000/api/v1/search-two'
 
 const token = localStorage.getItem('jwt')
 
@@ -18,7 +19,24 @@ const currentUserFetchObj = {
   }
 }
 
+const moodSearchFetchObj = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'Application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: {
+    'mood': ''
+  }
+}
+
 export default class APIAdapter {
+
+  static searchMood(mood) {
+    moodSearchFetchObj.body.mood = mood;
+    return fetch(MOOD_SEARCH_URL, moodSearchFetchObj)
+    .then(resp=> resp.json())
+  }
 
   static getSongs() {
     return fetch(SONG_URL, fetchObj)
