@@ -55,7 +55,7 @@ class MoodEmojiSelector extends React.Component {
         <SelectedGenresList />
         <h4>Choose a Mood:</h4>
         <div className="mood-emoji-container">
-        <img onClick={() => this.handleSubmit('sad')} alt="" src="/images/emojis/sad-2.png"/>
+        <img onClick={() => this.handleSubmitNoRefresh('sad')} alt="" src="/images/emojis/sad-2.png"/>
         <img onClick={() => this.handleSubmit('content')} alt="" src="/images/emojis/content-2.png"/>
         <img onClick={() => this.handleSubmit('ecstatic')} alt="" src="/images/emojis/ecstatic-2.png"/>
         </div>

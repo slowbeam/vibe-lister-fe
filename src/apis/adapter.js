@@ -24,17 +24,13 @@ const moodSearchFetchObj = {
   headers: {
     'Content-Type': 'Application/json',
     'Authorization': `Bearer ${token}`
-  },
-  body: {
-    'mood': ''
   }
 }
 
 export default class APIAdapter {
 
   static searchMood(mood) {
-    moodSearchFetchObj.body.mood = mood;
-    return fetch(MOOD_SEARCH_URL, moodSearchFetchObj)
+    return fetch(MOOD_SEARCH_URL + "?mood=" + mood, moodSearchFetchObj)
     .then(resp=> resp.json())
   }
 
