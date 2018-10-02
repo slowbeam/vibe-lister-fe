@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-const SONG_URL = 'https://vibelist-server.herokuapp.com/api/v1/songs'
-const USER_URL = 'https://vibelist-server.herokuapp.com/api/v1/users'
-const SONG_USER_URL = 'https://vibelist-server.herokuapp.com/api/v1/song_users'
-const MOOD_URL = 'https://vibelist-server.herokuapp.com/api/v1/moods'
-const LOGGED_IN_USER_URL = 'https://vibelist-server.herokuapp.com/api/v1/logged-in-user'
-=======
 const SONG_URL = 'http://localhost:3000/api/v1/songs'
 const USER_URL = 'http://localhost:3000/api/v1/users'
 const SONG_USER_URL = 'http://localhost:3000/api/v1/song_users'
 const MOOD_URL = 'http://localhost:3000/api/v1/moods'
 const LOGGED_IN_USER_URL = 'http://localhost:3000/api/v1/logged-in-user'
 const MOOD_SEARCH_URL = 'http://localhost:3000/api/v1/search-two'
->>>>>>> no_refresh
 
 const token = localStorage.getItem('jwt')
 
