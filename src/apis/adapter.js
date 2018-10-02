@@ -29,8 +29,8 @@ const moodSearchFetchObj = {
 
 export default class APIAdapter {
 
-  static searchMood(mood) {
-    return fetch(MOOD_SEARCH_URL + "?mood=" + mood, moodSearchFetchObj)
+  static searchMood(url) {
+    return fetch(url, moodSearchFetchObj)
     .then(resp=> resp.json())
   }
 
