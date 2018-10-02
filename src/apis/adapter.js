@@ -19,19 +19,12 @@ const currentUserFetchObj = {
   }
 }
 
-const moodSearchFetchObj = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'Application/json',
-    'Authorization': `Bearer ${token}`
-  }
-}
-
 export default class APIAdapter {
 
   static searchMood(url) {
-    return fetch(url, moodSearchFetchObj)
+    return fetch(url, fetchObj)
     .then(resp=> resp.json())
+    .then(console.log)
   }
 
   static getSongs() {

@@ -44,7 +44,46 @@ class MoodEmojiSelector extends React.Component {
   }
 
   handleSubmitNoRefresh = (mood) => {
-    this.props.fetchMoodSearch(mood)
+
+    const token = localStorage.getItem('jwt');
+
+    if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined ){
+
+      const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
+
+      this.props.fetchMoodSearch(fetchUrl);
+    }
+    else if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree === undefined) {
+      const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo;
+      this.props.fetchMoodSearch(fetchUrl);
+    }
+
+    else if (this.props.genreOne !== undefined && this.props.genreTwo === undefined && this.props.genreThree === undefined ) {
+      const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne;
+      this.props.fetchMoodSearch(fetchUrl);
+    }
+    else if (this.props.genreOne !== undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
+        const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genrethree=" + this.props.genreThree;
+        this.props.fetchMoodSearch(fetchUrl);
+    }
+    else if (this.props.genreOne === undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined) {
+        const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree;
+        this.props.fetchMoodSearch(fetchUrl);
+    }
+    else if (this.props.genreOne === undefined && this.props.genreTwo !== undefined && this.props.genreThree === undefined) {
+        const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo;
+        this.props.fetchMoodSearch(fetchUrl);
+    }
+    else if (this.props.genreOne === undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
+        const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genrethree=" + this.props.genreThree;
+        this.props.fetchMoodSearch(fetchUrl);
+    }
+    else {
+
+      const fetchUrl = `http://localhost:3000/api/v1/search-two/?mood=${mood}&jwt=${token}`;
+      debugger;
+      this.props.fetchMoodSearch(fetchUrl);
+    }
   }
 
   render(){
