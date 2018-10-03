@@ -12,46 +12,52 @@ import { compose } from 'redux';
 class MoodEmojiSelector extends React.Component {
 
 
-  handleSubmitNoRefresh = (mood) => {
+  handleSubmit = (mood) => {
 
     const token = localStorage.getItem('jwt');
 
     if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined ){
 
       const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
-
       this.props.fetchMoodSearch(fetchUrl);
+      this.props.history.push('/current-vibelist')
     }
     else if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree === undefined) {
       const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo;
       this.props.fetchMoodSearch(fetchUrl);
+      this.props.history.push('/current-vibelist')
     }
 
     else if (this.props.genreOne !== undefined && this.props.genreTwo === undefined && this.props.genreThree === undefined ) {
       const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne;
       this.props.fetchMoodSearch(fetchUrl);
+      this.props.history.push('/current-vibelist')
     }
     else if (this.props.genreOne !== undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
         const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genrethree=" + this.props.genreThree;
         this.props.fetchMoodSearch(fetchUrl);
+        this.props.history.push('/current-vibelist')
     }
     else if (this.props.genreOne === undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined) {
         const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree;
         this.props.fetchMoodSearch(fetchUrl);
+        this.props.history.push('/current-vibelist')
     }
     else if (this.props.genreOne === undefined && this.props.genreTwo !== undefined && this.props.genreThree === undefined) {
         const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo;
         this.props.fetchMoodSearch(fetchUrl);
+        this.props.history.push('/current-vibelist')
     }
     else if (this.props.genreOne === undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
         const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genrethree=" + this.props.genreThree;
         this.props.fetchMoodSearch(fetchUrl);
+        this.props.history.push('/current-vibelist')
     }
     else {
 
       const fetchUrl = `http://localhost:3000/api/v1/search-two/?mood=${mood}&jwt=${token}`;
       this.props.fetchMoodSearch(fetchUrl);
-      this.props.history.push('/create-sad-vibelist')
+      this.props.history.push('/current-vibelist')
     }
   }
 
@@ -64,7 +70,7 @@ class MoodEmojiSelector extends React.Component {
         <SelectedGenresList />
         <h4>Choose a Mood:</h4>
         <div className="mood-emoji-container">
-        <img onClick={() => this.handleSubmitNoRefresh('sad')} alt="" src="/images/emojis/sad-2.png"/>
+        <img onClick={() => this.handleSubmit('sad')} alt="" src="/images/emojis/sad-2.png"/>
         <img onClick={() => this.handleSubmit('content')} alt="" src="/images/emojis/content-2.png"/>
         <img onClick={() => this.handleSubmit('ecstatic')} alt="" src="/images/emojis/ecstatic-2.png"/>
         </div>

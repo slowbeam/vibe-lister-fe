@@ -274,6 +274,17 @@ class App extends Component {
     )
   }
 
+  CurrentVibelist = () => {
+    return (
+      <div className="create-page-container">
+        <div className="create-page-content">
+          <PlaylistContainer />
+          <MusicPlayerTwo />
+        </div>
+      </div>
+    )
+  }
+
 
 
   MyVibeLists = () => {
@@ -321,6 +332,7 @@ class App extends Component {
             <Route exact path="/" render={this.Login} />
             <Route exact path="/welcome" render={this.Welcome} />
             <Route exact path="/create" render={this.CreateNewVibeList} />
+            <Route exact path='/current-vibelist' render={this.CurrentVibelist} />
             <Route exact path="/create-sad-vibelist" render={this.CurrentPlaylistSad} />
             <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
             <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />

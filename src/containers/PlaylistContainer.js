@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import SongCard from '../components/SongCard'
 import SavePlaylistButton from '../components/SavePlaylistButton'
 import withAuth from '../hocs/withAuth';
-import { setCurrentMood } from '../actions/currentMood'
 import uuid from 'uuid';
 import StyledButton from '../components/StyledButton';
 
@@ -55,20 +54,12 @@ class PlaylistContainer extends Component {
 
   }
 
-
-  pullMoodFromUrl = (url) => {
-    const moodWords = url.split("/")[3].split("-")
-    const mood = moodWords[1]
-    this.props.setCurrentMood(mood)
-  }
-
   componentDidMount(){
-    this.pullMoodFromUrl(window.location.href)
     this.saveUriFromUrl()
   }
 
   renderEmoji = () => {
-    switch(this.props.currentMood) {
+    switch(this.props.currentVibelist.mood) {
       case 'sad':
         return <img alt="" src="/images/emojis/sad-2.png"/>
       case 'content':
@@ -95,7 +86,7 @@ class PlaylistContainer extends Component {
   }
 
   renderAllSongs = () => {
-    switch(this.props.currentMood) {
+    switch(this.props.currentVibelist.mood) {
       case 'sad':
         const lastSadList = this.props.sadLists[this.props.sadLists.length - 1]
         if (lastSadList) {
@@ -120,6 +111,7 @@ class PlaylistContainer extends Component {
   }
 
   render() {
+    console.log(this.props.currentVibelist)
     return (
         <div className="section playlist-container">
           {this.renderEmoji()}
@@ -139,14 +131,10 @@ const mapStateToProps = state => {
     ecstaticLists: state.moodLists.ecstaticLists,
     currentMood: state.currentMood,
     currentUser: state.currentUser.user,
-    deviceId: state.deviceId
+    deviceId: state.deviceId,
+    currentVibelist: state.currentVibelist
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCurrentMood: (mood) => dispatch(setCurrentMood(mood))
-  }
-}
 
-export default withAuth(connect(mapStateToProps, mapDispatchToProps)(PlaylistContainer))
+export default withAuth(connect(mapStateToProps)(PlaylistContainer))
