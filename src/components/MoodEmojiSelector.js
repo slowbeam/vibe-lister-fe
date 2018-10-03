@@ -3,45 +3,14 @@ import { connect } from 'react-redux';
 import withAuth from '../hocs/withAuth';
 import GenreSelectDialog from './GenreSelectDialog';
 import SelectedGenresList from './SelectedGenresList';
-import * as actions from '../actions'
+import * as actions from '../actions';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
+
 
 
 class MoodEmojiSelector extends React.Component {
 
-
-
-
-  handleSubmit = (mood) => {
-    const token = localStorage.getItem('jwt');
-
-    if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined ){
-      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
-    }
-    else if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree === undefined) {
-      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo
-    }
-
-    else if (this.props.genreOne !== undefined && this.props.genreTwo === undefined && this.props.genreThree === undefined ) {
-      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne
-    }
-    else if (this.props.genreOne !== undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
-        window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genrethree=" + this.props.genreThree
-    }
-    else if (this.props.genreOne === undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined) {
-        window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
-    }
-    else if (this.props.genreOne === undefined && this.props.genreTwo !== undefined && this.props.genreThree === undefined) {
-        window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo
-    }
-    else if (this.props.genreOne === undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
-
-        window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token + "&genrethree=" + this.props.genreThree
-    }
-    else {
-      window.location='http://localhost:3000/api/v1/search/?mood=' + mood + '&jwt=' + token
-    }
-
-  }
 
   handleSubmitNoRefresh = (mood) => {
 
@@ -82,10 +51,12 @@ class MoodEmojiSelector extends React.Component {
 
       const fetchUrl = `http://localhost:3000/api/v1/search-two/?mood=${mood}&jwt=${token}`;
       this.props.fetchMoodSearch(fetchUrl);
+      this.props.history.push('/create-sad-vibelist')
     }
   }
 
   render(){
+    console.log(this.props.history)
     return (
       <div className="mood-selector-container">
 
@@ -102,13 +73,19 @@ class MoodEmojiSelector extends React.Component {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+
   return {
     genreOne: state.currentGenres.genreOne,
     genreTwo: state.currentGenres.genreTwo,
     genreThree: state.currentGenres.genreThree,
-    currentVibelist: state.currentVibelist
+    currentVibelist: state.currentVibelist,
+    history: ownProps.history
   }
 }
 
-export default withAuth(connect(mapStateToProps, actions)(MoodEmojiSelector));
+export default compose(
+  withAuth,
+  withRouter,
+  connect(mapStateToProps, actions),
+)(MoodEmojiSelector);
