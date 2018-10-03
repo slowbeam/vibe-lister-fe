@@ -12,6 +12,7 @@ import audioPlayer from './audioPlayer';
 import currentPlaylist from './currentPlaylist'
 import currentGenres from './currentGenres'
 import moodLists from './moodLists'
+import currentVibelist from './currentVibelist'
 
 
 export default combineReducers({
@@ -27,5 +28,6 @@ export default combineReducers({
   audioPlayer,
   currentPlaylist,
   currentGenres,
-  moodLists
+  moodLists,
+  currentVibelist
 });

@@ -81,7 +81,6 @@ class MoodEmojiSelector extends React.Component {
     else {
 
       const fetchUrl = `http://localhost:3000/api/v1/search-two/?mood=${mood}&jwt=${token}`;
-      debugger;
       this.props.fetchMoodSearch(fetchUrl);
     }
   }
@@ -107,7 +106,8 @@ const mapStateToProps = state => {
   return {
     genreOne: state.currentGenres.genreOne,
     genreTwo: state.currentGenres.genreTwo,
-    genreThree: state.currentGenres.genreThree
+    genreThree: state.currentGenres.genreThree,
+    currentVibelist: state.currentVibelist
   }
 }
 

@@ -3,7 +3,6 @@ const USER_URL = 'http://localhost:3000/api/v1/users'
 const SONG_USER_URL = 'http://localhost:3000/api/v1/song_users'
 const MOOD_URL = 'http://localhost:3000/api/v1/moods'
 const LOGGED_IN_USER_URL = 'http://localhost:3000/api/v1/logged-in-user'
-const MOOD_SEARCH_URL = 'http://localhost:3000/api/v1/search-two'
 
 const token = localStorage.getItem('jwt')
 
@@ -24,7 +23,6 @@ export default class APIAdapter {
   static searchMood(url) {
     return fetch(url, fetchObj)
     .then(resp=> resp.json())
-    .then(console.log)
   }
 
   static getSongs() {
