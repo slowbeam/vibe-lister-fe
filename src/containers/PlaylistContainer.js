@@ -39,6 +39,7 @@ class PlaylistContainer extends Component {
 
   }
 
+<<<<<<< HEAD
   getQueryParamsFromUrl = () => {
     if (window.location.search) {
       const query = window.location.search.substring(1);
@@ -77,6 +78,23 @@ class PlaylistContainer extends Component {
         default:
           return
       }
+=======
+  componentDidMount(){
+    this.saveUriFromUrl()
+  }
+
+  renderEmoji = () => {
+    switch(this.props.currentVibelist.mood) {
+      case 'sad':
+        return <img alt="" src="/images/emojis/sad-2.png"/>
+      case 'content':
+        return <img alt="" src="/images/emojis/content-2.png"/>
+      case 'ecstatic':
+        return <img alt="" src="/images/emojis/ecstatic-2.png"/>
+      default:
+        return
+    }
+>>>>>>> no_refresh
   }
 
   playSong = (uri) => {
@@ -94,7 +112,7 @@ class PlaylistContainer extends Component {
   }
 
   renderAllSongs = () => {
-    switch(this.props.currentMood) {
+    switch(this.props.currentVibelist.mood) {
       case 'sad':
         const lastSadList = this.props.sadLists[this.props.sadLists.length - 1]
         if (lastSadList) {
@@ -119,6 +137,7 @@ class PlaylistContainer extends Component {
   }
 
   render() {
+    console.log(this.props.currentVibelist)
     return (
         <div className="section playlist-container">
           {this.renderEmoji()}
@@ -140,9 +159,10 @@ const mapStateToProps = state => {
     currentMood: state.currentMood,
     currentUser: state.currentUser.user,
     deviceId: state.deviceId,
-    playlistUrisString: state.playlist.playlistUrisString,
-    playlistUri: state.playlist.playlistUri
+    playlistUri: state.playlist.playlistUri,
+    currentVibelist: state.currentVibelist
   }
 }
 
-export default withAuth(connect(mapStateToProps, actions)(PlaylistContainer))
+
+export default withAuth(connect(mapStateToProps)(PlaylistContainer))
