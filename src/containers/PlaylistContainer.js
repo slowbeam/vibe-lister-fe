@@ -39,7 +39,6 @@ class PlaylistContainer extends Component {
 
   }
 
-<<<<<<< HEAD
   getQueryParamsFromUrl = () => {
     if (window.location.search) {
       const query = window.location.search.substring(1);
@@ -78,9 +77,10 @@ class PlaylistContainer extends Component {
         default:
           return
       }
-=======
+    }
+
   componentDidMount(){
-    this.saveUriFromUrl()
+    
   }
 
   renderEmoji = () => {
@@ -94,7 +94,7 @@ class PlaylistContainer extends Component {
       default:
         return
     }
->>>>>>> no_refresh
+
   }
 
   playSong = (uri) => {
