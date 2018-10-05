@@ -20,8 +20,25 @@ const currentUserFetchObj = {
 
 export default class APIAdapter {
 
-  static saveVibelist(url) {
-    return fetch(url, fetchObj)
+  static saveVibelist(mood, playlistUris) {
+
+    const SAVE_VIBELIST_URL = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + mood
+
+    const data = { playlist_uris: playlistUris }
+
+    const saveFetchObj = {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json',
+        'Content-Type': 'Application/json'
+      },
+      body: JSON.stringify(data)
+    }
+
+    debugger;
+
+    return fetch(SAVE_VIBELIST_URL, saveFetchObj)
     .then(resp=> resp.json())
   }
 

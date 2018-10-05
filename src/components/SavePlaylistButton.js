@@ -6,21 +6,19 @@ import * as actions from '../actions';
 
 class SavePlaylistButton extends React.Component {
 
-  componentDidMount(){
 
-  }
-
-
-    visitCreatePlaylist = () => {
-
+  handleSaveVibelist = () =>  {
     const token = localStorage.getItem('jwt');
 
-    window.location='http://localhost:3000/api/v1/create-playlist?jwt=' + token;
+    const url = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + this.props.currentVibelist.mood + '&jwt=' + token
+
+    this.props.fetchSaveVibelist(url)
   }
+
     render() {
       return(
       <div>
-          <StyledButton className="create-new-playlist-button" onClick={this.visitCreatePlaylist}>Add Vibelist To Spotify</StyledButton>
+          <StyledButton className="create-new-playlist-button" onClick={this.handleSaveVibelist}>Add Vibelist To Spotify</StyledButton>
       </div>
       )
     }
@@ -30,7 +28,8 @@ class SavePlaylistButton extends React.Component {
 const mapStateToProps = state => {
   return {
     deviceId: state.deviceId,
-    currentUser: state.currentUser.user
+    currentUser: state.currentUser.user,
+    currentVibelist: state.currentVibelist
   }
 }
 

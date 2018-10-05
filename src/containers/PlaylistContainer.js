@@ -29,7 +29,7 @@ class PlaylistContainer extends Component {
 
     const url = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + this.props.currentVibelist.mood + '&jwt=' + token
 
-    this.props.fetchSaveVibelist(url)
+    this.props.fetchSaveVibelist(this.props.currentVibelistMood, this.props.playlistUris)
   }
 
   renderButton = () => {
@@ -37,7 +37,7 @@ class PlaylistContainer extends Component {
         const query = window.location.search.substring(1);
         const pair = query.split('=');
         const playlistUri = pair[1];
-      return <StyledButton onClick={() => this.handleSaveVibelist()}>play all</StyledButton>
+      return <StyledButton onClick={() => this.loadCurrentPlaylist(playlistUri)}>play all</StyledButton>
     } else {
       return <SavePlaylistButton />
     }
@@ -67,7 +67,7 @@ class PlaylistContainer extends Component {
   }
 
   renderEmoji = () => {
-    switch(this.props.currentVibelist.mood) {
+    switch(this.props.currentVibelistMood) {
       case 'sad':
         return <img alt="" src="/images/emojis/sad-2.png"/>
       case 'content':
@@ -94,7 +94,7 @@ class PlaylistContainer extends Component {
   }
 
   renderAllSongs = () => {
-    switch(this.props.currentVibelist.mood) {
+    switch(this.props.currentVibelistMood) {
       case 'sad':
         const lastSadList = this.props.sadLists[this.props.sadLists.length - 1]
         if (lastSadList) {
@@ -119,7 +119,7 @@ class PlaylistContainer extends Component {
   }
 
   render() {
-    console.log(this.props.currentVibelist)
+    console.log(this.props.currentVibelist.playlist_uris)
     return (
         <div className="section playlist-container">
           {this.renderEmoji()}
@@ -141,6 +141,8 @@ const mapStateToProps = state => {
     currentUser: state.currentUser.user,
     deviceId: state.deviceId,
     currentVibelist: state.currentVibelist,
+    currentVibelistMood: state.currentVibelist.mood,
+    playlistUris: state.currentVibelist.playlist_uris,
     playlistUri: state.currentPlaylistUri
   }
 }
