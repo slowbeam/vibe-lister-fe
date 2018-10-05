@@ -20,6 +20,11 @@ const currentUserFetchObj = {
 
 export default class APIAdapter {
 
+  static saveVibelist(url) {
+    return fetch(url, fetchObj)
+    .then(resp=> resp.json())
+  }
+
   static searchMood(url) {
     return fetch(url, fetchObj)
     .then(resp=> resp.json())

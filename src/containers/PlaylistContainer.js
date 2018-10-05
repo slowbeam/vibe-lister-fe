@@ -5,7 +5,7 @@ import SavePlaylistButton from '../components/SavePlaylistButton'
 import withAuth from '../hocs/withAuth';
 import uuid from 'uuid';
 import StyledButton from '../components/StyledButton';
-
+import * as actions from '../actions'
 
 class PlaylistContainer extends Component {
 
@@ -24,12 +24,20 @@ class PlaylistContainer extends Component {
     }
   }
 
+  handleSaveVibelist = () =>  {
+    const token = localStorage.getItem('jwt');
+
+    const url = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + this.props.currentVibelist.mood + '&jwt=' + token
+
+    this.props.fetchSaveVibelist(url)
+  }
+
   renderButton = () => {
     if (this.state.uri){
         const query = window.location.search.substring(1);
         const pair = query.split('=');
         const playlistUri = pair[1];
-      return <StyledButton onClick={() => this.loadCurrentPlaylist(playlistUri)}>play all</StyledButton>
+      return <StyledButton onClick={() => this.handleSaveVibelist()}>play all</StyledButton>
     } else {
       return <SavePlaylistButton />
     }
@@ -138,4 +146,4 @@ const mapStateToProps = state => {
 }
 
 
-export default withAuth(connect(mapStateToProps)(PlaylistContainer))
+export default withAuth(connect(mapStateToProps, actions)(PlaylistContainer))

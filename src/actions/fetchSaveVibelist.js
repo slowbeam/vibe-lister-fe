@@ -1,10 +1,10 @@
 import APIAdapter from '../apis/adapter'
 import { setCurrentPlaylistUri } from './currentPlaylistUri'
 
-export const fetchMoodSearch = (mood) => {
+export const fetchSaveVibelist = (url) => {
 
   return (dispatch) => {
-    return APIAdapter.searchMood(mood)
+    return APIAdapter.saveVibelist(url)
         .then(data => {
           dispatch(setCurrentPlaylistUri(data))
         })
