@@ -132,7 +132,8 @@ const mapStateToProps = state => {
     currentMood: state.currentMood,
     currentUser: state.currentUser.user,
     deviceId: state.deviceId,
-    currentVibelist: state.currentVibelist
+    currentVibelist: state.currentVibelist,
+    playlistUri: state.currentPlaylistUri
   }
 }
 

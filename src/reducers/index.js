@@ -9,7 +9,7 @@ import sadSongs from './sadSongs';
 import currentMood from './currentMood';
 import deviceId from './deviceId';
 import audioPlayer from './audioPlayer';
-import currentPlaylist from './currentPlaylist'
+import currentPlaylistUri from './currentPlaylistUri'
 import currentGenres from './currentGenres'
 import moodLists from './moodLists'
 import currentVibelist from './currentVibelist'
@@ -26,7 +26,7 @@ export default combineReducers({
   currentMood,
   deviceId,
   audioPlayer,
-  currentPlaylist,
+  currentPlaylistUri,
   currentGenres,
   moodLists,
   currentVibelist
