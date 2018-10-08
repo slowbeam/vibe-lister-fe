@@ -5,7 +5,7 @@ export const fetchSaveVibelist = (mood, playlistUris) => {
   return (dispatch) => {
     return APIAdapter.saveVibelist(mood, playlistUris)
         .then(data => {
-          console.log(data)
+          dispatch(setCurrentPlaylistUri(data))
         })
   }
 }

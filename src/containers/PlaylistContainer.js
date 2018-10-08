@@ -9,31 +9,18 @@ import * as actions from '../actions'
 
 class PlaylistContainer extends Component {
 
-  state = {
-    uri: null
-  }
-
-  saveUriFromUrl = () => {
-    if (window.location.search) {
-      const query = window.location.search.substring(1);
-      const pair = query.split('=');
-      const playlistUri = pair[1];
-      this.setState({
-        uri: playlistUri
-      })
-    }
-  }
-
   handleSaveVibelist = () =>  {
     const token = localStorage.getItem('jwt');
 
     const url = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + this.props.currentVibelist.mood + '&jwt=' + token
 
+    debugger;
+
     this.props.fetchSaveVibelist(this.props.currentVibelistMood, this.props.playlistUris)
   }
 
   renderButton = () => {
-    if (this.state.uri){
+    if (this.props.playlistUri){
         const query = window.location.search.substring(1);
         const pair = query.split('=');
         const playlistUri = pair[1];
@@ -60,10 +47,6 @@ class PlaylistContainer extends Component {
       })
     })
 
-  }
-
-  componentDidMount(){
-    this.saveUriFromUrl()
   }
 
   renderEmoji = () => {

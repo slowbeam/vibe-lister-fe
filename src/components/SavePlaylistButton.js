@@ -8,9 +8,7 @@ class SavePlaylistButton extends React.Component {
 
 
   handleSaveVibelist = () =>  {
-    const token = localStorage.getItem('jwt');
-
-    const url = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + this.props.currentVibelist.mood + '&jwt=' + token
+    const url = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + this.props.currentVibelistMood
 
     this.props.fetchSaveVibelist(this.props.currentVibelistMood, this.props.playlistUris)
   }
@@ -29,7 +27,6 @@ const mapStateToProps = state => {
   return {
     deviceId: state.deviceId,
     currentUser: state.currentUser.user,
-    currentVibelist: state.currentVibelist,
     currentVibelistMood: state.currentVibelist.mood,
     playlistUris: state.currentVibelist.playlist_uris
   }
