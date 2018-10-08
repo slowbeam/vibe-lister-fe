@@ -36,8 +36,6 @@ export default class APIAdapter {
       body: JSON.stringify(data)
     }
 
-    debugger;
-
     return fetch(SAVE_VIBELIST_URL, saveFetchObj)
     .then(resp=> resp.json())
   }

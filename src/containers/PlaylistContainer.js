@@ -119,7 +119,6 @@ class PlaylistContainer extends Component {
   }
 
   render() {
-    console.log(this.props.currentVibelist.playlist_uris)
     return (
         <div className="section playlist-container">
           {this.renderEmoji()}
