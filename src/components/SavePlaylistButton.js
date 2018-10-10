@@ -6,25 +6,17 @@ import * as actions from '../actions';
 
 class SavePlaylistButton extends React.Component {
 
-  componentDidMount(){
 
+  handleSaveVibelist = () =>  {
+    const url = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + this.props.currentVibelistMood
+
+    this.props.fetchSaveVibelist(this.props.currentVibelistMood, this.props.playlistUris)
   }
 
-
-    visitCreatePlaylist = () => {
-
-    const token = localStorage.getItem('jwt');
-
-    const playlistUrisString = this.props.playlistUrisString;
-    const mood = this.props.currentMood;
-
-    window.location='https://vibelist-server.herokuapp.com/api/v1/create-playlist?jwt=' + token + "&mood=" + mood + "&playlist_uris_string=" + playlistUrisString
-
-  }
     render() {
       return(
       <div>
-          <StyledButton className="create-new-playlist-button" onClick={this.visitCreatePlaylist}>Add Vibelist To Spotify</StyledButton>
+          <StyledButton className="create-new-playlist-button" onClick={this.handleSaveVibelist}>Add Vibelist To Spotify</StyledButton>
       </div>
       )
     }
@@ -35,8 +27,8 @@ const mapStateToProps = state => {
   return {
     deviceId: state.deviceId,
     currentUser: state.currentUser.user,
-    playlistUrisString: state.playlist.playlistUrisString,
-    currentMood: state.currentMood
+    currentVibelistMood: state.currentVibelist.mood,
+    playlistUris: state.currentVibelist.playlist_uris
   }
 }
 

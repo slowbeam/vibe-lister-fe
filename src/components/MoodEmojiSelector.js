@@ -18,44 +18,44 @@ class MoodEmojiSelector extends React.Component {
 
     if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined ){
 
-      const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
+      const fetchUrl = 'http://localhost:3000/api/v1/search/?mood=' + mood + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
       this.props.fetchMoodSearch(fetchUrl);
       this.props.history.push('/current-vibelist')
     }
     else if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree === undefined) {
-      const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo;
+      const fetchUrl = 'http://localhost:3000/api/v1/search/?mood=' + mood + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo;
       this.props.fetchMoodSearch(fetchUrl);
       this.props.history.push('/current-vibelist')
     }
 
     else if (this.props.genreOne !== undefined && this.props.genreTwo === undefined && this.props.genreThree === undefined ) {
-      const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne;
+      const fetchUrl = 'http://localhost:3000/api/v1/search/?mood=' + mood + "&genreone=" + this.props.genreOne;
       this.props.fetchMoodSearch(fetchUrl);
       this.props.history.push('/current-vibelist')
     }
     else if (this.props.genreOne !== undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
-        const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genreone=" + this.props.genreOne + "&genrethree=" + this.props.genreThree;
+        const fetchUrl = 'http://localhost:3000/api/v1/search/?mood=' + mood + "&genreone=" + this.props.genreOne + "&genrethree=" + this.props.genreThree;
         this.props.fetchMoodSearch(fetchUrl);
         this.props.history.push('/current-vibelist')
     }
     else if (this.props.genreOne === undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined) {
-        const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree;
+        const fetchUrl = 'http://localhost:3000/api/v1/search/?mood=' + mood + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree;
         this.props.fetchMoodSearch(fetchUrl);
         this.props.history.push('/current-vibelist')
     }
     else if (this.props.genreOne === undefined && this.props.genreTwo !== undefined && this.props.genreThree === undefined) {
-        const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genretwo=" + this.props.genreTwo;
+        const fetchUrl = 'http://localhost:3000/api/v1/search/?mood=' + mood + "&genretwo=" + this.props.genreTwo;
         this.props.fetchMoodSearch(fetchUrl);
         this.props.history.push('/current-vibelist')
     }
     else if (this.props.genreOne === undefined && this.props.genreTwo === undefined && this.props.genreThree !== undefined) {
-        const fetchUrl = 'http://localhost:3000/api/v1/search-two/?mood=' + mood + '&jwt=' + token + "&genrethree=" + this.props.genreThree;
+        const fetchUrl = 'http://localhost:3000/api/v1/search/?mood=' + mood + "&genrethree=" + this.props.genreThree;
         this.props.fetchMoodSearch(fetchUrl);
         this.props.history.push('/current-vibelist')
     }
     else {
 
-      const fetchUrl = `http://localhost:3000/api/v1/search-two/?mood=${mood}&jwt=${token}`;
+      const fetchUrl = `http://localhost:3000/api/v1/search/?mood=${mood}`;
       this.props.fetchMoodSearch(fetchUrl);
       this.props.history.push('/current-vibelist')
     }
