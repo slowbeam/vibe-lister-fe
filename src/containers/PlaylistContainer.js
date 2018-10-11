@@ -76,6 +76,16 @@ class PlaylistContainer extends Component {
     })
   }
 
+  renderSongsTwo = () => {
+    if(this.props.moods.length !== 0 && this.props.moodListId){
+      const currentMoodList = this.props.moods.filter(mood => mood.mood_list_id === this.props.moodListId);
+      console.log("current mood list id", this.props.moodListId)
+      console.log("current mood list", currentMoodList);
+      debugger; 
+    }
+
+  }
+
   renderAllSongs = () => {
     switch(this.props.currentVibelistMood) {
       case 'sad':
@@ -107,7 +117,7 @@ class PlaylistContainer extends Component {
           {this.renderEmoji()}
           {this.renderButton()}
           <div className="song-card-container">
-          {this.renderAllSongs()}
+          {this.renderSongsTwo()}
           </div>
         </div>
     )
@@ -125,7 +135,9 @@ const mapStateToProps = state => {
     currentVibelist: state.currentVibelist,
     currentVibelistMood: state.currentVibelist.mood,
     playlistUris: state.currentVibelist.playlist_uris,
-    playlistUri: state.currentPlaylistUri
+    playlistUri: state.currentPlaylistUri,
+    moods: state.moods,
+    moodListId: state.currentVibelist.mood_list_id
   }
 }
 

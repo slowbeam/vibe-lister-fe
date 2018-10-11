@@ -29,6 +29,7 @@ class App extends Component {
     .then(() => {return this.storeEcstaticMoodLists()})
     .then(() => {return this.storeContentMoodLists()})
     .then(() => {return this.storeSadMoodLists()})
+    .then(() => {return this.storeCurrentSongs()})
   }
 
   setDisplayName = (user) => {
@@ -36,6 +37,21 @@ class App extends Component {
       this.props.setDisplayName(user)
     }
   }
+
+  storeCurrentSongs = () => {
+    if(this.props.moodListId) {
+      const matchedMoods = this.props.moods.filter(mood => mood.mood_list_id === this.props.moodListId);
+
+      let currentSongsArr = [];
+
+      for (let mood of matchedMoods) {
+        currentSongsArr.push(this.props.songs.find(mood.song_id))
+      }
+
+      debugger;
+    };
+
+  };
 
   storeEcstaticMoodLists = () => {
       if (this.props.currentUser !== null){
@@ -357,6 +373,7 @@ const mapStateToProps = state => {
     sadLists: state.moodLists.sadLists,
     contentLists: state.moodLists.contentLists,
     ecstaticLists: state.moodLists.ecstaticLists,
+    moodListId: state.currentVibelist.mood_list_id
   }
 }
 
