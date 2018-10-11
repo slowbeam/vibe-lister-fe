@@ -9,12 +9,19 @@ import * as actions from '../actions'
 
 class PlaylistContainer extends Component {
 
+  state = {
+    songs: []
+  }
+
+  componentDidMount() {
+
+  }
+
+
   handleSaveVibelist = () =>  {
     const token = localStorage.getItem('jwt');
 
     const url = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + this.props.currentVibelist.mood + '&jwt=' + token
-
-    debugger;
 
     this.props.fetchSaveVibelist(this.props.currentVibelistMood, this.props.playlistUris)
   }
@@ -76,12 +83,30 @@ class PlaylistContainer extends Component {
     })
   }
 
+  renderSongsFromFetchMoods = (moods) => {
+
+    if(this.props.songs) {
+      const matchedMoods = moods.filter(mood => mood.mood_list_id === this.props.moodListId);
+
+      let currentSongsArr = [];
+
+      for (let mood of matchedMoods) {
+        currentSongsArr.push(this.props.songs.find(mood.song_id))
+      }
+
+      debugger;
+
+      return currentSongsArr.map(song =>  <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} onClick={() => this.playSong(song.uri)} />)
+    }
+
+  }
+
   renderSongsTwo = () => {
     if(this.props.moods.length !== 0 && this.props.moodListId){
-      const currentMoodList = this.props.moods.filter(mood => mood.mood_list_id === this.props.moodListId);
-      console.log("current mood list id", this.props.moodListId)
-      console.log("current mood list", currentMoodList);
-      debugger; 
+      this.props.fetchMoods()
+      .then(() => {return this.renderSongsFromFetchMoods(this.props.moods)})
+
+
     }
 
   }

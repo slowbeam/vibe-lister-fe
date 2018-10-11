@@ -6,7 +6,7 @@ export const fetchMoods = () => {
   return (dispatch) => {
     return APIAdapter.getMoods()
         .then(moods => {
-          dispatch(setMoods(moods))
+          return dispatch(setMoods(moods))
         })
   }
 }
