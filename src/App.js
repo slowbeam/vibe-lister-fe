@@ -18,6 +18,7 @@ class App extends Component {
 
 
   componentDidMount(){
+    console.log('app.js mounted!')
     this.storeAllData()
   }
 
@@ -316,7 +317,7 @@ class App extends Component {
 
 
   render() {
-
+    console.log('MOODS BEFORE', this.props.moods)
     return (
       <div className="page">
         <div className="topnav" id="top-nav-bar">

@@ -5,13 +5,10 @@ import SavePlaylistButton from '../components/SavePlaylistButton'
 import withAuth from '../hocs/withAuth';
 import uuid from 'uuid';
 import StyledButton from '../components/StyledButton';
-import * as actions from '../actions'
+import * as actions from '../actions';
+import APIAdapter from '../apis/adapter';
 
 class PlaylistContainer extends Component {
-
-  state = {
-    songs: []
-  }
 
   componentDidMount() {
 
@@ -101,11 +98,12 @@ class PlaylistContainer extends Component {
 
   }
 
+  returnSongs = (songs ) => {
+    return songs.map(song =>  <SongCard key={uuid()} title={song.title} artist={song.artist} albumCover={song.album_cover} uri={song.uri} onClick={() => this.playSong(song.uri)} />)
+  }
+
   renderSongsTwo = () => {
     if(this.props.moods.length !== 0 && this.props.moodListId){
-      this.props.fetchMoods()
-      .then(() => {return this.renderSongsFromFetchMoods(this.props.moods)})
-
 
     }
 
@@ -137,6 +135,7 @@ class PlaylistContainer extends Component {
   }
 
   render() {
+    console.log('MOODS AFTER', this.props.moods)
     return (
         <div className="section playlist-container">
           {this.renderEmoji()}
