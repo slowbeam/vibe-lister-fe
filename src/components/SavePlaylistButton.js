@@ -8,8 +8,6 @@ class SavePlaylistButton extends React.Component {
 
 
   handleSaveVibelist = () =>  {
-    const url = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + this.props.currentVibelistMood
-
     this.props.fetchSaveVibelist(this.props.currentVibelistMood, this.props.playlistUris)
   }
 

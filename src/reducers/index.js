@@ -9,10 +9,11 @@ import sadSongs from './sadSongs';
 import currentMood from './currentMood';
 import deviceId from './deviceId';
 import audioPlayer from './audioPlayer';
-import currentPlaylistUri from './currentPlaylistUri'
-import currentGenres from './currentGenres'
-import moodLists from './moodLists'
-import currentVibelist from './currentVibelist'
+import currentPlaylistUri from './currentPlaylistUri';
+import currentGenres from './currentGenres';
+import moodLists from './moodLists';
+import currentVibelist from './currentVibelist';
+import currentMoods from './currentMoods';
 
 
 export default combineReducers({
@@ -29,5 +30,6 @@ export default combineReducers({
   currentPlaylistUri,
   currentGenres,
   moodLists,
-  currentVibelist
+  currentVibelist,
+  currentMoods
 });

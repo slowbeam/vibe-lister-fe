@@ -18,7 +18,6 @@ class App extends Component {
 
 
   componentDidMount(){
-    console.log('app.js mounted!')
     this.storeAllData()
   }
 
@@ -30,7 +29,6 @@ class App extends Component {
     .then(() => {return this.storeEcstaticMoodLists()})
     .then(() => {return this.storeContentMoodLists()})
     .then(() => {return this.storeSadMoodLists()})
-    .then(() => {return this.storeCurrentSongs()})
   }
 
   setDisplayName = (user) => {
@@ -38,21 +36,6 @@ class App extends Component {
       this.props.setDisplayName(user)
     }
   }
-
-  storeCurrentSongs = () => {
-    if(this.props.moodListId) {
-      const matchedMoods = this.props.moods.filter(mood => mood.mood_list_id === this.props.moodListId);
-
-      let currentSongsArr = [];
-
-      for (let mood of matchedMoods) {
-        currentSongsArr.push(this.props.songs.find(mood.song_id))
-      }
-
-      debugger;
-    };
-
-  };
 
   storeEcstaticMoodLists = () => {
       if (this.props.currentUser !== null){
@@ -317,7 +300,6 @@ class App extends Component {
 
 
   render() {
-    console.log('MOODS BEFORE', this.props.moods)
     return (
       <div className="page">
         <div className="topnav" id="top-nav-bar">
