@@ -37,8 +37,8 @@ export default class APIAdapter {
       })
     };
 
+    return fetch(playUrl, loadCurrentVibelistFetchObj)
     
-
   }
 
   static saveVibelist(mood, playlistUris) {

@@ -9,20 +9,16 @@ import * as actions from '../actions';
 
 class PlaylistContainer extends Component {
 
-  state = {
-    playlistSaved: false
-  }
 
-  componentDidMount() {
-    if (this.state.playlistSaved) {
-      this.loadCurrentPlaylist(this.props.playlistUri)
-    }
-  }
+
 
   handleSaveVibelist = () =>  {
-    const token = localStorage.getItem('jwt');
-    const spotifyAccessToken = this.props.currentUser.access_token;
-    this.props.fetchSaveVibelist(this.props.currentMood, this.props.playlistUris, this.props.deviceId, spotifyAccessToken)
+    debugger;
+    if(this.props.deviceId){
+      const spotifyAccessToken = this.props.currentUser.access_token;
+      this.props.fetchSaveVibelist(this.props.currentMood, this.props.playlistUris, this.props.deviceId, spotifyAccessToken)
+    }
+
   }
 
   renderButton = () => {
@@ -90,7 +86,7 @@ class PlaylistContainer extends Component {
   }
 
   render() {
-    console.log(this.props.currentUser)
+    console.log(this.props.deviceId)
     return (
         <div className="section playlist-container">
           {this.renderEmoji()}
