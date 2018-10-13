@@ -9,18 +9,6 @@ import * as actions from '../actions';
 
 class PlaylistContainer extends Component {
 
-
-
-
-  handleSaveVibelist = () =>  {
-    debugger;
-    if(this.props.deviceId){
-      const spotifyAccessToken = this.props.currentUser.access_token;
-      this.props.fetchSaveVibelist(this.props.currentMood, this.props.playlistUris, this.props.deviceId, spotifyAccessToken)
-    }
-
-  }
-
   renderButton = () => {
     if (this.props.playlistUri){
         const query = window.location.search.substring(1);
@@ -30,25 +18,6 @@ class PlaylistContainer extends Component {
     } else {
       return <SavePlaylistButton />
     }
-  }
-
-  loadCurrentPlaylist = (playlistUri) => {
-
-    const currentUser = this.props.currentUser
-    const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + this.props.deviceId
-
-
-    fetch( playUrl, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${currentUser.access_token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "context_uri": playlistUri
-      })
-    })
-
   }
 
   renderEmoji = () => {
