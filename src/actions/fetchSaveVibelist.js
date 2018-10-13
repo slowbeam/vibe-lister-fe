@@ -4,9 +4,9 @@ import { loadCurrentVibelist } from './loadCurrentVibelist'
 
 export const fetchSaveVibelist = (mood, playlistUris, deviceId, accessToken) => {
   return (dispatch) => {
-    return APIAdapter.saveVibelist(mood, playlistUris)
-        .then(data => {
-          return dispatch(loadCurrentVibelist(data, deviceId, accessToken))
-        })
+    const request = APIAdapter.saveVibelist(mood, playlistUris)
+
+    return request.then(response => dispatch(loadCurrentVibelist(response, deviceId, accessToken)))
+
   }
 }

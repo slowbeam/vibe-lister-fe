@@ -18,7 +18,28 @@ const currentUserFetchObj = {
   }
 }
 
+
+
 export default class APIAdapter {
+
+  static loadCurrentVibelist(playlistUri, deviceId, spotifyAccessToken) {
+
+    const playUrl = "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId;
+
+    const loadCurrentVibelistFetchObj = {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${spotifyAccessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "context_uri": playlistUri
+      })
+    };
+
+    
+
+  }
 
   static saveVibelist(mood, playlistUris) {
 
