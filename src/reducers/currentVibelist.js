@@ -2,6 +2,7 @@ const defaultState = {
   mood: null,
   mood_list_id: null,
   playlist_uris: null,
+  current_songs: null
 
 }
 

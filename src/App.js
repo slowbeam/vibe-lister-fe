@@ -300,7 +300,6 @@ class App extends Component {
 
 
   render() {
-
     return (
       <div className="page">
         <div className="topnav" id="top-nav-bar">
@@ -357,6 +356,7 @@ const mapStateToProps = state => {
     sadLists: state.moodLists.sadLists,
     contentLists: state.moodLists.contentLists,
     ecstaticLists: state.moodLists.ecstaticLists,
+    moodListId: state.currentVibelist.mood_list_id
   }
 }
 

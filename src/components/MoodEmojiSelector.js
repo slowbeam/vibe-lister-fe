@@ -13,9 +13,7 @@ class MoodEmojiSelector extends React.Component {
 
 
   handleSubmit = (mood) => {
-
-    const token = localStorage.getItem('jwt');
-
+    
     if (this.props.genreOne !== undefined && this.props.genreTwo !== undefined && this.props.genreThree !== undefined ){
 
       const fetchUrl = 'http://localhost:3000/api/v1/search/?mood=' + mood + "&genreone=" + this.props.genreOne + "&genretwo=" + this.props.genreTwo + "&genrethree=" + this.props.genreThree
@@ -62,7 +60,6 @@ class MoodEmojiSelector extends React.Component {
   }
 
   render(){
-    console.log(this.props.history)
     return (
       <div className="mood-selector-container">
 
