@@ -10,7 +10,8 @@ class SavePlaylistButton extends React.Component {
   handleSaveVibelist = () =>  {
     if(this.props.deviceId){
       const spotifyAccessToken = this.props.currentUser.access_token;
-      this.props.fetchSaveVibelist(this.props.currentMood, this.props.playlistUris, this.props.deviceId, spotifyAccessToken)
+      this.props.fetchSaveVibelist(this.props.currentMood, this.props.playlistUris, this.props.deviceId, spotifyAccessToken);
+      this.props.setPlaylistSaved(true);
     }
   }
 

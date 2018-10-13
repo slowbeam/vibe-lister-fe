@@ -10,7 +10,7 @@ import * as actions from '../actions';
 class PlaylistContainer extends Component {
 
   renderButton = () => {
-    if (this.props.playlistUri){
+    if (this.props.playlistSaved){
         const query = window.location.search.substring(1);
         const pair = query.split('=');
         const playlistUri = pair[1];
@@ -76,7 +76,8 @@ const mapStateToProps = state => {
     currentMood: state.currentVibelist.mood,
     playlistUris: state.currentVibelist.playlist_uris,
     playlistUri: state.currentPlaylistUri,
-    currentSongs: state.currentVibelist.current_songs
+    currentSongs: state.currentVibelist.current_songs,
+    playlistSaved: state.playlistSaved
   }
 }
 
