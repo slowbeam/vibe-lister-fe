@@ -18,8 +18,6 @@ const currentUserFetchObj = {
   }
 }
 
-
-
 export default class APIAdapter {
 
   static loadCurrentVibelist(playlistUri, deviceId, spotifyAccessToken) {
@@ -38,12 +36,12 @@ export default class APIAdapter {
     };
 
     return fetch(playUrl, loadCurrentVibelistFetchObj)
-    
+
   }
 
   static saveVibelist(mood, playlistUris) {
 
-    const SAVE_VIBELIST_URL = 'http://localhost:3000/api/v1/create-playlist-two/?mood=' + mood
+    const SAVE_VIBELIST_URL = 'http://localhost:3000/api/v1/create-playlist/?mood=' + mood
 
     const data = { playlist_uris: playlistUris }
 
