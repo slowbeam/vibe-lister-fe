@@ -30,7 +30,10 @@ class PlaylistContainer extends Component {
 
         const ecstaticMoodsArray = [];
 
-        userEcstaticMoods.forEach((e,i) => (i = e.mood_list_id, ecstaticMoodsArray[i] ? ecstaticMoodsArray[i].push(e) : (ecstaticMoodsArray[i] = [e])));
+        userEcstaticMoods.forEach((e,i) => {
+          i = e.mood_list_id;
+          return ecstaticMoodsArray[i] ? ecstaticMoodsArray[i].push(e) : (ecstaticMoodsArray[i] = [e])
+        });
 
         const ecstaticMoodsNoEmpties = []
         for (let el of ecstaticMoodsArray){
@@ -65,7 +68,10 @@ class PlaylistContainer extends Component {
 
       const contentMoodsArray = [];
 
-      userContentMoods.forEach((e,i) => (i = e.mood_list_id, contentMoodsArray[i] ? contentMoodsArray[i].push(e) : (contentMoodsArray[i] = [e])));
+      userContentMoods.forEach((e,i) => {
+        i = e.mood_list_id;
+        return contentMoodsArray[i] ? contentMoodsArray[i].push(e) : (contentMoodsArray[i] = [e])
+      });
 
       const contentMoodsNoEmpties = []
       for (let el of contentMoodsArray){
@@ -99,7 +105,10 @@ class PlaylistContainer extends Component {
 
       const sadMoodsArray = [];
 
-      userSadMoods.forEach((e,i) => (i = e.mood_list_id, sadMoodsArray[i] ? sadMoodsArray[i].push(e) : (sadMoodsArray[i] = [e])));
+      userSadMoods.forEach((e,i) => {
+        i = e.mood_list_id;
+        return sadMoodsArray[i] ? sadMoodsArray[i].push(e) : (sadMoodsArray[i] = [e])
+      });
 
       const sadMoodsNoEmpties = []
       for (let el of sadMoodsArray){
@@ -169,7 +178,7 @@ class PlaylistContainer extends Component {
 
 
 renderAllSadLists = (listArray) => {
-  if(listArray) {
+  if (listArray) {
     return listArray.map(list => {
         if(list.saved === true){
         return (
