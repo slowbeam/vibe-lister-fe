@@ -18,15 +18,7 @@ class App extends Component {
 
 
   componentDidMount(){
-    this.storeAllData()
-  }
-
-  storeAllData = () => {
-    this.props.fetchSongs()
-    .then(() => {return this.props.fetchCurrentUser()})
-    .then(() => {return this.props.fetchMoods()})
-    .then(() => {return this.props.fetchUsers()})
-  
+    this.props.fetchCurrentUser()
   }
 
   setDisplayName = (user) => {
@@ -135,41 +127,6 @@ class App extends Component {
     )
   }
 
-  CurrentPlaylistSad = () => {
-    return (
-      <div className="create-page-container">
-        <div className="create-page-content">
-          <PlaylistContainer />
-          <MusicPlayerTwo />
-        </div>
-      </div>
-    )
-  }
-
-  CurrentPlaylistContent = () => {
-    return (
-      <div className="create-page-container">
-        <div className="create-page-content">
-          <PlaylistContainer />
-          <MusicPlayerTwo />
-        </div>
-      </div>
-    )
-  }
-
-  CurrentPlaylistEcstatic = () => {
-    return (
-      <div className="create-page-container">
-        <div className="create-page-content">
-          <PlaylistContainer />
-          <MusicPlayerTwo />
-        </div>
-      </div>
-
-
-    )
-  }
-
   CurrentVibelist = () => {
     return (
       <div className="create-page-container">
@@ -180,8 +137,6 @@ class App extends Component {
       </div>
     )
   }
-
-
 
   MyVibeLists = () => {
     return (
@@ -228,9 +183,6 @@ class App extends Component {
             <Route exact path="/welcome" render={this.Welcome} />
             <Route exact path="/create" render={this.CreateNewVibeList} />
             <Route exact path='/current-vibelist' render={this.CurrentVibelist} />
-            <Route exact path="/create-sad-vibelist" render={this.CurrentPlaylistSad} />
-            <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
-            <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
             <Route exact path="/my-vibelists" render={this.MyVibeLists} />
           </div>
         </Router>
@@ -244,15 +196,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    songs: state.songs,
-    users: state.users,
     currentUser: state.currentUser.user,
-    profileImage: state.currentUser.profileImage,
-    moods: state.moods,
-    sadLists: state.moodLists.sadLists,
-    contentLists: state.moodLists.contentLists,
-    ecstaticLists: state.moodLists.ecstaticLists,
-    moodListId: state.currentVibelist.mood_list_id
+    profileImage: state.currentUser.profileImage
   }
 }
 
