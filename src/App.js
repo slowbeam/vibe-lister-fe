@@ -18,14 +18,14 @@ class App extends Component {
 
 
   componentDidMount(){
-    this.props.fetchCurrentUser()
-  }
+    this.props.fetchCurrentUser();
+  };
 
   setDisplayName = (user) => {
     if (localStorage.getItem('jwt') && this.props.currentUser) {
-      this.props.setDisplayName(user)
-    }
-  }
+      this.props.setDisplayName(user);
+    };
+  };
 
   handleIconClick = (event) => {
     event.preventDefault()
@@ -40,32 +40,32 @@ class App extends Component {
       x.className += " show tablet";
     } else {
       x.className = "mobile-nav-menu";
-    }
-  }
+    };
+  };
 
   handleMenuClick = (event) => {
-    event.target.className="active"
-  }
+    event.target.className = "active";
+  };
 
   handleLogOut = () => {
     this.props.setCurrentUser(null);
     localStorage.removeItem('jwt');
     window.location = 'https://www.spotify.com/logout/';
     window.location = "http://localhost:3001/";
-  }
+  };
 
   renderProfileImage = () => {
 
     if (this.props.profileImage){
       return this.props.profileImage
-    }
+    };
     else if (this.props.currentUser.profile_image){
       return this.props.currentUser.profile_image
-    }
+    };
     else {
       return "./images/avatar-icon.png"
-    }
-  }
+    };
+  };
 
   renderLogInLogOut = () => {
     const jwt = localStorage.getItem('jwt')
@@ -88,8 +88,8 @@ class App extends Component {
 
     } else {
       return <Login />
-    }
-  }
+    };
+  };
 
   renderLogInLogOutMobile = () => {
     const jwt = localStorage.getItem('jwt')
@@ -100,8 +100,8 @@ class App extends Component {
 
     } else {
       return <Login />
-    }
-  }
+    };
+  };
 
   Login = () => {
     const token = localStorage.getItem('jwt');
@@ -111,21 +111,20 @@ class App extends Component {
     }
     else {
       return <LoginPage />
-    }
-
-  }
+    };
+  };
 
   Welcome = () => {
     return (
       <WelcomePage />
     )
-  }
+  };
 
   CreateNewVibeList = () => {
     return (
       <MoodEmojiSelector />
     )
-  }
+  };
 
   CurrentVibelist = () => {
     return (
@@ -136,7 +135,7 @@ class App extends Component {
         </div>
       </div>
     )
-  }
+  };
 
   MyVibeLists = () => {
     return (
@@ -146,9 +145,7 @@ class App extends Component {
       </div>
 
     )
-  }
-
-
+  };
 
   render() {
     return (
@@ -192,13 +189,13 @@ class App extends Component {
       </div>
     );
   }
-}
+};
 
 const mapStateToProps = state => {
   return {
     currentUser: state.currentUser.user,
     profileImage: state.currentUser.profileImage
   }
-}
+};
 
 export default connect(mapStateToProps, actions)(App);

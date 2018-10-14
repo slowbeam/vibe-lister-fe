@@ -17,7 +17,6 @@ class PlaylistContainer extends Component {
     this.props.fetchSongs()
     .then(() => {return this.props.fetchCurrentUser()})
     .then(() => {return this.props.fetchMoods()})
-    .then(() => {return this.props.fetchUsers()})
     .then(() => {return this.storeEcstaticMoodLists()})
     .then(() => {return this.storeContentMoodLists()})
     .then(() => {return this.storeSadMoodLists()})

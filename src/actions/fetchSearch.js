@@ -1,7 +1,7 @@
 import APIAdapter from '../apis/adapter'
 import { setCurrentVibelist } from './currentVibelist'
 
-export const fetchMoodSearch = (url) => {
+export const fetchSearch = (url) => {
 
   return (dispatch) => {
     return APIAdapter.searchMood(url)

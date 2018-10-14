@@ -1,11 +1,7 @@
 import { combineReducers } from 'redux';
 import songs from './songs';
 import currentUser from './currentUser';
-import users from './users';
 import moods from './moods';
-import ecstaticSongs from './ecstaticSongs';
-import contentSongs from './contentSongs';
-import sadSongs from './sadSongs';
 import currentMood from './currentMood';
 import deviceId from './deviceId';
 import audioPlayer from './audioPlayer';
@@ -14,7 +10,7 @@ import currentGenres from './currentGenres';
 import moodLists from './moodLists';
 import currentVibelist from './currentVibelist';
 import currentMoods from './currentMoods';
-import playlistSaved from './playlistSaved'
+import playlistSaved from './playlistSaved';
 
 
 export default combineReducers({
