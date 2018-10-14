@@ -128,7 +128,6 @@ class PlaylistContainer extends Component {
   playSong = (uri) => {
     const deviceId = this.props.deviceId;
     const token = this.props.currentUser.access_token
-    // console.log(uri)
 
     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
       method: 'PUT',

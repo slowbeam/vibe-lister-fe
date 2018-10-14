@@ -4,7 +4,7 @@ import './App.css';
 import Login from './components/Login';
 import MoodEmojiSelector from './components/MoodEmojiSelector';
 import PlaylistContainer from './containers/PlaylistContainer';
-import MusicPlayerTwo from './components/MusicPlayerTwo';
+import MusicPlayer from './components/MusicPlayer';
 import LoginPage from './components/LoginPage';
 import WelcomePage from './components/WelcomePage';
 import MyVibeListsContainer from './containers/MyVibeListsContainer';
@@ -58,13 +58,13 @@ class App extends Component {
 
     if (this.props.profileImage){
       return this.props.profileImage
-    };
+    }
     else if (this.props.currentUser.profile_image){
       return this.props.currentUser.profile_image
-    };
+    }
     else {
       return "./images/avatar-icon.png"
-    };
+    }
   };
 
   renderLogInLogOut = () => {
@@ -88,7 +88,7 @@ class App extends Component {
 
     } else {
       return <Login />
-    };
+    }
   };
 
   renderLogInLogOutMobile = () => {
@@ -100,7 +100,7 @@ class App extends Component {
 
     } else {
       return <Login />
-    };
+    }
   };
 
   Login = () => {
@@ -111,7 +111,7 @@ class App extends Component {
     }
     else {
       return <LoginPage />
-    };
+    }
   };
 
   Welcome = () => {
@@ -131,7 +131,7 @@ class App extends Component {
       <div className="create-page-container">
         <div className="create-page-content">
           <PlaylistContainer />
-          <MusicPlayerTwo />
+          <MusicPlayer />
         </div>
       </div>
     )
@@ -141,7 +141,7 @@ class App extends Component {
     return (
       <div className="my-vibelists-wrapper">
         <MyVibeListsContainer />
-        <MusicPlayerTwo />
+        <MusicPlayer />
       </div>
 
     )

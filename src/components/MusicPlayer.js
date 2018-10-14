@@ -3,7 +3,7 @@ import withAuth from '../hocs/withAuth';
 import { connect } from 'react-redux';
 import * as actions from '../actions'
 
-class MusicPlayerTwo extends React.Component {
+class MusicPlayer extends React.Component {
 
   constructor(props){
     super(props);
@@ -272,4 +272,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withAuth(connect(mapStateToProps, actions)(MusicPlayerTwo));
+export default withAuth(connect(mapStateToProps, actions)(MusicPlayer));

@@ -15,12 +15,8 @@ import playlistSaved from './playlistSaved';
 
 export default combineReducers({
   songs,
-  users,
   currentUser,
   moods,
-  ecstaticSongs,
-  contentSongs,
-  sadSongs,
   currentMood,
   deviceId,
   audioPlayer,

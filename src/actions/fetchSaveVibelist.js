@@ -1,5 +1,4 @@
-import APIAdapter from '../apis/adapter'
-import { loadCurrentVibelist } from './loadCurrentVibelist'
+import APIAdapter from '../apis/adapter';
 
 export const fetchSaveVibelist = (mood, playlistUris, deviceId, accessToken) => {
   return (dispatch) => {
