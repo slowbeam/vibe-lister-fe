@@ -7,7 +7,42 @@ import * as actions from '../actions';
 
 
 class NavBar extends Component {
+  
+  renderLogInLogOut = () => {
+    const jwt = localStorage.getItem('jwt')
+    if (this.props.currentUser !== null & jwt !== null) {
+      return (
+        <div className="avatar-logout">
+          <div className="avatar"
+            style={{
+              backgroundImage: `url(${this.renderProfileImage()})`,
+              backgroundSize: "cover",
+              height: 60,
+              width: 60,
+              border: "3px solid #d09ed4",
+              borderRadius: "50%",
+            }}
+          />
+        <p onClick={this.handleLogOut}>logout</p>
+        </div>
+    )
 
+    } else {
+      return <Login />
+    }
+  }
+
+  renderLogInLogOutMobile = () => {
+    const jwt = localStorage.getItem('jwt')
+    if (this.props.currentUser !== null & jwt !== null) {
+      return (
+          <p onClick={this.handleLogOut}>logout</p>
+    )
+
+    } else {
+      return <Login />
+    }
+  }
 
   render(){
     return (
