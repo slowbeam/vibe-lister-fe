@@ -57,6 +57,22 @@ class NavBar extends Component {
     }
   }
 
+  handleIconClick = (event) => {
+    event.preventDefault()
+    let hamburger = document.getElementById('hamburger');
+    if (hamburger.className === "fa fa-bars"){
+      hamburger.className = "fa fa-close"
+    } else {
+      hamburger.className = "fa fa-bars"
+    }
+    let x = document.getElementById("mobile-nav-bar");
+    if (x.className === "mobile-nav-menu") {
+      x.className += " show tablet";
+    } else {
+      x.className = "mobile-nav-menu";
+    }
+  }
+
   render(){
     return (
       <React.Fragment>

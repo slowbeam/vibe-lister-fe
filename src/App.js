@@ -139,22 +139,6 @@ class App extends Component {
     }
   }
 
-  handleIconClick = (event) => {
-    event.preventDefault()
-    let hamburger = document.getElementById('hamburger');
-    if (hamburger.className === "fa fa-bars"){
-      hamburger.className = "fa fa-close"
-    } else {
-      hamburger.className = "fa fa-bars"
-    }
-    let x = document.getElementById("mobile-nav-bar");
-    if (x.className === "mobile-nav-menu") {
-      x.className += " show tablet";
-    } else {
-      x.className = "mobile-nav-menu";
-    }
-  }
-
   handleMenuClick = (event) => {
     event.target.className="active"
   }
@@ -164,19 +148,6 @@ class App extends Component {
     localStorage.removeItem('jwt');
     window.location = 'https://www.spotify.com/logout/';
     window.location = "https://vibelist.herokuapp.com/";
-  }
-
-  renderProfileImage = () => {
-
-    if (this.props.profileImage){
-      return this.props.profileImage
-    }
-    else if (this.props.currentUser.profile_image){
-      return this.props.currentUser.profile_image
-    }
-    else {
-      return "./images/avatar-icon.png"
-    }
   }
 
   Login = () => {
