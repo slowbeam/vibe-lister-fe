@@ -1,10 +1,10 @@
 const SONG_URL = "https://vibelist-server.herokuapp.com/api/v1/songs";
-const USER_URL = "https://vibelist-server.herokuapp.com/api/v1/songs/users";
+const USER_URL = "https://vibelist-server.herokuapp.com/api/v1/users";
 const SONG_USER_URL =
-  "https://vibelist-server.herokuapp.com/api/v1/songs/song_users";
-const MOOD_URL = "https://vibelist-server.herokuapp.com/api/v1/songs/moods";
+  "https://vibelist-server.herokuapp.com/api/v1/song_users";
+const MOOD_URL = "https://vibelist-server.herokuapp.com/api/v1/moods";
 const LOGGED_IN_USER_URL =
-  "https://vibelist-server.herokuapp.com/api/v1/songs/logged-in-user";
+  "https://vibelist-server.herokuapp.com/api/v1/logged-in-user";
 
 const token = localStorage.getItem("jwt");
 
@@ -41,7 +41,7 @@ export default class APIAdapter {
 
   static saveVibelist(mood, playlistUris) {
     const SAVE_VIBELIST_URL =
-      "https://vibelist-server.herokuapp.com/api/v1/songs/create-playlist-two/?mood=" +
+      "https://vibelist-server.herokuapp.com/api/v1/create-playlist-two/?mood=" +
       mood;
 
     const data = { playlist_uris: playlistUris };
