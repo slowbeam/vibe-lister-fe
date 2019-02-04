@@ -60,28 +60,28 @@ export default class APIAdapter {
   }
 
   static searchMood(url) {
-    return fetch(url, fetchObj).then(resp => resp.json());
+    return fetch(url, fetchObj).then(resp => resp.json())
   }
 
   static getSongs() {
-    return fetch(SONG_URL, fetchObj).then(resp => resp.json());
+    return fetch(SONG_URL, fetchObj).then(resp => resp.json())
   }
 
   static getUsers() {
-    return fetch(USER_URL, fetchObj).then(resp => resp.json());
+    return fetch(USER_URL, fetchObj).then(resp => resp.json())
   }
 
   static getSongUsers() {
-    return fetch(SONG_USER_URL, fetchObj).then(resp => resp.json());
+    return fetch(SONG_USER_URL, fetchObj).then(resp => resp.json())
   }
 
   static getMoods() {
-    return fetch(MOOD_URL, fetchObj).then(resp => resp.json());
+    return fetch(MOOD_URL, fetchObj).then(resp => resp.json())
   }
 
   static getCurrentUser() {
     return fetch(LOGGED_IN_USER_URL, currentUserFetchObj).then(resp =>
       resp.json()
-    );
+    )
   }
 }
