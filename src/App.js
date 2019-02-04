@@ -304,9 +304,9 @@ class App extends Component {
       <div className="page">
         <div className="topnav" id="top-nav-bar">
           <div className="box-1">
-            <a href="https://vibelist.herokuapp.com/" onClick={this.handleMenuClick} >home</a>
-            <a href="https://vibelist.herokuapp.com/my-vibelists" >my vibelists</a>
-            <a href="https://vibelist.herokuapp.com/create" >new vibelist</a>
+            <Link to="/">home</Link>
+            <Link to="/my-vibelists" >my vibelists</Link>
+            <Link to="/create" >new vibelist</Link>
           </div>
 
           <div className="box-2" >
@@ -319,9 +319,9 @@ class App extends Component {
           </div>
         </div>
         <div  id="mobile-nav-bar" className="mobile-nav-menu">
-          <a href="https://vibelist.herokuapp.com/" onClick={this.handleMenuClick} className="mobile-home-button">home</a>
-          <a href="https://vibelist.herokuapp.com/my-vibelists" >my vibelists</a>
-          <a href="https://vibelist.herokuapp.com/create" >new vibelist</a>
+          <Link to="/" className="mobile-home-button">home</Link>
+          <Link to="/my-vibelists" >my vibelists</Link>
+          <Link to="/create" >new vibelist</Link>
           {this.renderLogInLogOutMobile()}
         </div>
 
