@@ -302,7 +302,7 @@ class App extends Component {
 
   render() {
     return (
-        <BrowserRouter>
+        <Router>
           <div className="page">
             <NavBar />
             <div className="content">
@@ -319,7 +319,7 @@ class App extends Component {
               <p className="footer-text">created by Sandy Edwards</p>
             </div>
           </div>
-        </BrowserRouter>
+        </Router>
 
     );
   }
