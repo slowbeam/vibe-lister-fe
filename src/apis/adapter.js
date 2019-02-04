@@ -1,4 +1,4 @@
-const SONG_URL = "https://vibelist-server.herokuapp.com/api/v1/songs/";
+const SONG_URL = "https://vibelist-server.herokuapp.com/api/v1/songs";
 const USER_URL = "https://vibelist-server.herokuapp.com/api/v1/songs/users";
 const SONG_USER_URL =
   "https://vibelist-server.herokuapp.com/api/v1/songs/song_users";
