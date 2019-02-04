@@ -8,6 +8,7 @@ import MusicPlayerTwo from './components/MusicPlayerTwo';
 import LoginPage from './components/LoginPage';
 import WelcomePage from './components/WelcomePage';
 import MyVibeListsContainer from './containers/MyVibeListsContainer';
+import NavBar from './components/Navbar';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 
@@ -302,29 +303,9 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        <Router>
-          <div className="topnav" id="top-nav-bar">
-            <div className="box-1">
-              <Link to="/">home</Link>
-              <Link to="/my-vibelists" >my vibelists</Link>
-              <Link to="/create" >new vibelist</Link>
-            </div>
 
-            <div className="box-2" >
-            </div>
-            <div className="box-3" >
-              {this.renderLogInLogOut()}
-              <a href="" className="icon" onClick={this.handleIconClick}>
-                <i id="hamburger" className="fa fa-bars"></i>
-              </a>
-            </div>
-          </div>
-          <div  id="mobile-nav-bar" className="mobile-nav-menu">
-            <Link to="/" className="mobile-home-button">home</Link>
-            <Link to="/my-vibelists" >my vibelists</Link>
-            <Link to="/create" >new vibelist</Link>
-            {this.renderLogInLogOutMobile()}
-          </div>
+        <NavBar />
+        <BrowserRouter>
           <div className="content">
             <Route exact path="/" render={this.Login} />
             <Route exact path="/welcome" render={this.Welcome} />
@@ -335,7 +316,7 @@ class App extends Component {
             <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
             <Route exact path="/my-vibelists" render={this.MyVibeLists} />
           </div>
-        </Router>
+        </BrowserRouter>
         <div className="footer">
           <p className="footer-text">created by Sandy Edwards</p>
         </div>
