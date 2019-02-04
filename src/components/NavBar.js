@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CreatePlaylist from './CreatePlaylist';
+import Login from './Login';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import * as actions from '../actions';
@@ -7,7 +7,7 @@ import * as actions from '../actions';
 
 
 class NavBar extends Component {
-  
+
   renderLogInLogOut = () => {
     const jwt = localStorage.getItem('jwt')
     if (this.props.currentUser !== null & jwt !== null) {

@@ -11,8 +11,7 @@ class PlaylistContainer extends Component {
 
   playSong = (uri) => {
     const deviceId = this.props.deviceId;
-    const token = this.props.currentUser.access_token
-    // console.log(uri)
+    const token = this.props.currentUser.access_token;
 
     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
       method: 'PUT',
@@ -68,6 +67,8 @@ renderAllSadLists = (listArray) => {
             </div>
           </div>
         )
+      } else {
+        return <React.Fragment></React.Fragment>;
       }
     })
   }
@@ -89,8 +90,9 @@ renderAllContentLists = (listArray) => {
             </div>
           </div>
         )
+      } else {
+        return <React.Fragment></React.Fragment>;
       }
-
     })
   }
 }
@@ -110,6 +112,8 @@ renderAllEcstaticLists = (listArray) => {
             </div>
           </div>
         )
+      } else {
+        return <React.Fragment></React.Fragment>;
       }
     })
   }
