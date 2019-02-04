@@ -44,6 +44,19 @@ class NavBar extends Component {
     }
   }
 
+  renderProfileImage = () => {
+
+    if (this.props.profileImage){
+      return this.props.profileImage
+    }
+    else if (this.props.currentUser.profile_image){
+      return this.props.currentUser.profile_image
+    }
+    else {
+      return "./images/avatar-icon.png"
+    }
+  }
+
   render(){
     return (
       <React.Fragment>
@@ -77,8 +90,15 @@ class NavBar extends Component {
 
 const mapStateToProps = state => {
   return {
+    songs: state.songs,
+    users: state.users,
     currentUser: state.currentUser.user,
-    displayName: state.currentUser.displayName
+    profileImage: state.currentUser.profileImage,
+    moods: state.moods,
+    sadLists: state.moodLists.sadLists,
+    contentLists: state.moodLists.contentLists,
+    ecstaticLists: state.moodLists.ecstaticLists,
+    moodListId: state.currentVibelist.mood_list_id
   }
 }
 
