@@ -73,14 +73,25 @@ class NavBar extends Component {
     }
   }
 
+  handleLogOut = () => {
+    this.props.setCurrentUser(null);
+    localStorage.removeItem('jwt');
+    window.location = 'https://www.spotify.com/logout/';
+    window.location = "https://vibelist.herokuapp.com/";
+  }
+
+  handleMenuClick = (event) => {
+    event.target.className="active"
+  }
+
   render(){
     return (
       <React.Fragment>
         <div className="topnav" id="top-nav-bar">
           <div className="box-1">
-            <Link to="/">home</Link>
-            <Link to="/my-vibelists" >my vibelists</Link>
-            <Link to="/create" >new vibelist</Link>
+            <Link to="/" onClick={this.handleMenuClick}>home</Link>
+            <Link to="/my-vibelists" onClick={this.handleMenuClick}>my vibelists</Link>
+            <Link to="/create" onClick={this.handleMenuClick}>new vibelist</Link>
           </div>
 
           <div className="box-2" >

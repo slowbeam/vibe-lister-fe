@@ -139,17 +139,6 @@ class App extends Component {
     }
   }
 
-  handleMenuClick = (event) => {
-    event.target.className="active"
-  }
-
-  handleLogOut = () => {
-    this.props.setCurrentUser(null);
-    localStorage.removeItem('jwt');
-    window.location = 'https://www.spotify.com/logout/';
-    window.location = "https://vibelist.herokuapp.com/";
-  }
-
   Login = () => {
     const token = localStorage.getItem('jwt');
 
