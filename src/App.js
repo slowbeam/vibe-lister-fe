@@ -302,25 +302,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="page">
-
-        <NavBar />
         <BrowserRouter>
-          <div className="content">
-            <Route exact path="/" render={this.Login} />
-            <Route exact path="/welcome" render={this.Welcome} />
-            <Route exact path="/create" render={this.CreateNewVibeList} />
-            <Route exact path='/current-vibelist' render={this.CurrentVibelist} />
-            <Route exact path="/create-sad-vibelist" render={this.CurrentPlaylistSad} />
-            <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
-            <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
-            <Route exact path="/my-vibelists" render={this.MyVibeLists} />
+          <div className="page">
+            <NavBar />
+            <div className="content">
+              <Route exact path="/" render={this.Login} />
+              <Route exact path="/welcome" render={this.Welcome} />
+              <Route exact path="/create" render={this.CreateNewVibeList} />
+              <Route exact path='/current-vibelist' render={this.CurrentVibelist} />
+              <Route exact path="/create-sad-vibelist" render={this.CurrentPlaylistSad} />
+              <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
+              <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
+              <Route exact path="/my-vibelists" render={this.MyVibeLists} />
+            </div>
+            <div className="footer">
+              <p className="footer-text">created by Sandy Edwards</p>
+            </div>
           </div>
         </BrowserRouter>
-        <div className="footer">
-          <p className="footer-text">created by Sandy Edwards</p>
-        </div>
-      </div>
+
     );
   }
 }
