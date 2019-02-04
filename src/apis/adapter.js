@@ -41,7 +41,7 @@ export default class APIAdapter {
 
   static saveVibelist(mood, playlistUris) {
     const SAVE_VIBELIST_URL =
-      "https://vibelist-server.herokuapp.com/api/v1/create-playlist-two/?mood=" +
+      "https://vibelist-server.herokuapp.com/api/v1/create-playlist/?mood=" +
       mood;
 
     const data = { playlist_uris: playlistUris };
