@@ -8,6 +8,13 @@ import { withRouter } from "react-router";
 import { compose } from "redux";
 
 class MoodEmojiSelector extends React.Component {
+
+  componentWillMount() {
+    if (this.props.isPlayer) {
+      this.props.setIsPlayer(false);
+    }
+  }
+
   handleSubmit = mood => {
     if (
       this.props.genreOne !== undefined &&
@@ -144,7 +151,8 @@ const mapStateToProps = (state, ownProps) => {
     genreTwo: state.currentGenres.genreTwo,
     genreThree: state.currentGenres.genreThree,
     currentVibelist: state.currentVibelist,
-    history: ownProps.history
+    history: ownProps.history,
+    isPlayer: state.audioPlayer.isPlayer
   };
 };
 

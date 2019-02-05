@@ -7,6 +7,11 @@ import * as actions from '../actions';
 
 class WelcomePage extends Component {
 
+  componentWillMount() {
+    if (this.props.isPlayer) {
+      this.props.setIsPlayer(false);
+    }
+  }
 
   componentDidMount() {
     this.props.LogInUser(window.location)
@@ -35,7 +40,8 @@ class WelcomePage extends Component {
 const mapStateToProps = state => {
   return {
     currentUser: state.currentUser.user,
-    displayName: state.currentUser.displayName
+    displayName: state.currentUser.displayName,
+    isPlayer: state.audioPlayer.isPlayer
   }
 }
 

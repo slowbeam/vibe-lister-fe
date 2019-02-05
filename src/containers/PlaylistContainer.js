@@ -9,8 +9,11 @@ import * as actions from '../actions';
 
 class PlaylistContainer extends Component {
 
-
-
+  componentWillMount() {
+    if (!this.props.isPlayer) {
+      this.props.setIsPlayer(true);
+    }
+  }
 
   handleSaveVibelist = () =>  {
     debugger;
@@ -107,7 +110,8 @@ const mapStateToProps = state => {
     currentMood: state.currentVibelist.mood,
     playlistUris: state.currentVibelist.playlist_uris,
     playlistUri: state.currentPlaylistUri,
-    currentSongs: state.currentVibelist.current_songs
+    currentSongs: state.currentVibelist.current_songs,
+    isPlayer: state.audioPlayer.isPlayer
   }
 }
 

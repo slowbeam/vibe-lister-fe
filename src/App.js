@@ -16,6 +16,10 @@ import * as actions from './actions';
 
 class App extends Component {
 
+  state = {
+    isPlayer: false
+  }
+
 
   componentDidMount(){
     this.storeAllData()
@@ -206,7 +210,6 @@ class App extends Component {
   }
 
 
-
   MyVibeLists = () => {
     return (
       <div className="my-vibelists-wrapper">
@@ -216,6 +219,13 @@ class App extends Component {
     )
   }
 
+  renderMusicPlayer = () => {
+    if (this.props.isPlayer) {
+      return <MusicPlayer />
+    } else {
+      return;
+    }
+  }
 
 
   render() {
@@ -233,7 +243,7 @@ class App extends Component {
               <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
               <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
               <Route exact path="/my-vibelists" render={this.MyVibeLists} />
-              <MusicPlayer />
+              {this.renderMusicPlayer()}
             </div>
             <div className="footer">
               <p className="footer-text">created by Sandy Edwards</p>
@@ -255,7 +265,8 @@ const mapStateToProps = state => {
     sadLists: state.moodLists.sadLists,
     contentLists: state.moodLists.contentLists,
     ecstaticLists: state.moodLists.ecstaticLists,
-    moodListId: state.currentVibelist.mood_list_id
+    moodListId: state.currentVibelist.mood_list_id,
+    isPlayer: state.audioPlayer.isPlayer
   }
 }
 

@@ -16,6 +16,10 @@ class MusicPlayer extends React.Component {
     this.setTrackPosition = setInterval(() => this.getAndSaveTrackPosition(), 1000)
   }
 
+  componentWillUnmount() {
+    this.player.pause();
+  }
+
   onPrevClick = () => {
     this.player.previousTrack();
   }

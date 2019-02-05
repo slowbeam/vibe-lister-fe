@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import SongCard from '../components/SongCard'
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import SongCard from '../components/SongCard';
 import withAuth from '../hocs/withAuth';
-import StyledButton from '../components/StyledButton'
+import StyledButton from '../components/StyledButton';
 import uuid from 'uuid';
 
 
 class PlaylistContainer extends Component {
 
+  componentWillMount() {
+    if (!this.props.isPlayer) {
+      this.props.setIsPlayer(true);
+    }
+  }
 
   playSong = (uri) => {
     const deviceId = this.props.deviceId;
@@ -149,9 +155,10 @@ const mapStateToProps = state => {
     contentLists: state.moodLists.contentLists,
     ecstaticLists: state.moodLists.ecstaticLists,
     deviceId: state.deviceId,
-    playing: state.audioPlayer.playing
+    playing: state.audioPlayer.playing,
+    isPlayer: state.audioPlayer.isPlayer
 
   }
 }
 
-export default withAuth(connect(mapStateToProps)(PlaylistContainer));
+export default withAuth(connect(mapStateToProps, actions)(PlaylistContainer));
