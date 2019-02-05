@@ -68,7 +68,7 @@ renderAllSadLists = (listArray) => {
           </div>
         )
       } else {
-        return <React.Fragment></React.Fragment>;
+        return <React.Fragment key={uuid()}></React.Fragment>;
       }
     })
   }
@@ -91,7 +91,7 @@ renderAllContentLists = (listArray) => {
           </div>
         )
       } else {
-        return <React.Fragment></React.Fragment>;
+        return <React.Fragment key={uuid()}></React.Fragment>;
       }
     })
   }
@@ -113,7 +113,7 @@ renderAllEcstaticLists = (listArray) => {
           </div>
         )
       } else {
-        return <React.Fragment></React.Fragment>;
+        return <React.Fragment key={uuid()}></React.Fragment>;
       }
     })
   }

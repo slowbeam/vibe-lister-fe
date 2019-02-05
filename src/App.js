@@ -168,7 +168,6 @@ class App extends Component {
       <div className="create-page-container">
         <div className="create-page-content">
           <PlaylistContainer />
-          <MusicPlayer />
         </div>
       </div>
     )
@@ -179,7 +178,6 @@ class App extends Component {
       <div className="create-page-container">
         <div className="create-page-content">
           <PlaylistContainer />
-          <MusicPlayer />
         </div>
       </div>
     )
@@ -190,7 +188,6 @@ class App extends Component {
       <div className="create-page-container">
         <div className="create-page-content">
           <PlaylistContainer />
-          <MusicPlayer />
         </div>
       </div>
 
@@ -203,7 +200,6 @@ class App extends Component {
       <div className="create-page-container">
         <div className="create-page-content">
           <PlaylistContainer />
-          <MusicPlayer />
         </div>
       </div>
     )
@@ -215,7 +211,6 @@ class App extends Component {
     return (
       <div className="my-vibelists-wrapper">
         <MyVibeListsContainer />
-        <MusicPlayer />
       </div>
 
     )
@@ -229,6 +224,7 @@ class App extends Component {
           <div className="page">
             <NavBar />
             <div className="content">
+
               <Route exact path="/" render={this.Login} />
               <Route exact path="/welcome" render={this.Welcome} />
               <Route exact path="/create" render={this.CreateNewVibeList} />
@@ -237,6 +233,7 @@ class App extends Component {
               <Route exact path="/create-content-vibelist" render={this.CurrentPlaylistContent} />
               <Route exact path="/create-ecstatic-vibelist" render={this.CurrentPlaylistEcstatic} />
               <Route exact path="/my-vibelists" render={this.MyVibeLists} />
+              <MusicPlayer />
             </div>
             <div className="footer">
               <p className="footer-text">created by Sandy Edwards</p>
