@@ -2,7 +2,9 @@ import React from 'react';
 import StyledButton from './StyledButton';
 import withAuth from '../hocs/withAuth';
 import { connect } from 'react-redux';
-import * as actions from '../actions'
+import * as actions from '../actions';
+import { withRouter } from "react-router-dom";
+import { compose } from 'redux';
 
 class CreatePlaylist extends React.Component {
 
@@ -13,7 +15,7 @@ class CreatePlaylist extends React.Component {
   }
 
   visitCreatePlaylist = () => {
-    window.location='http://localhost:3001/create';
+    this.props.history.push('/create');
   }
 
   render() {
@@ -43,4 +45,8 @@ const mapStateToProps = state => {
   }
 }
 
-export default withAuth(connect(mapStateToProps, actions)(CreatePlaylist));
+export default compose(
+  connect(mapStateToProps, actions),
+  withAuth,
+  withRouter
+)(CreatePlaylist);
