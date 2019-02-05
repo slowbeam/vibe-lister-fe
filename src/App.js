@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import MoodEmojiSelector from './components/MoodEmojiSelector';
 import PlaylistContainer from './containers/PlaylistContainer';
-import MusicPlayerTwo from './components/MusicPlayerTwo';
+import MusicPlayer from './components/MusicPlayer';
 import LoginPage from './components/LoginPage';
 import WelcomePage from './components/WelcomePage';
 import MyVibeListsContainer from './containers/MyVibeListsContainer';
@@ -168,7 +168,7 @@ class App extends Component {
       <div className="create-page-container">
         <div className="create-page-content">
           <PlaylistContainer />
-          <MusicPlayerTwo />
+          <MusicPlayer />
         </div>
       </div>
     )
@@ -179,7 +179,7 @@ class App extends Component {
       <div className="create-page-container">
         <div className="create-page-content">
           <PlaylistContainer />
-          <MusicPlayerTwo />
+          <MusicPlayer />
         </div>
       </div>
     )
@@ -190,7 +190,7 @@ class App extends Component {
       <div className="create-page-container">
         <div className="create-page-content">
           <PlaylistContainer />
-          <MusicPlayerTwo />
+          <MusicPlayer />
         </div>
       </div>
 
@@ -203,7 +203,7 @@ class App extends Component {
       <div className="create-page-container">
         <div className="create-page-content">
           <PlaylistContainer />
-          <MusicPlayerTwo />
+          <MusicPlayer />
         </div>
       </div>
     )
@@ -215,7 +215,7 @@ class App extends Component {
     return (
       <div className="my-vibelists-wrapper">
         <MyVibeListsContainer />
-        <MusicPlayerTwo />
+        <MusicPlayer />
       </div>
 
     )
