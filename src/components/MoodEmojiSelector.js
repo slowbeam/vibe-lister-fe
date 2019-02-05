@@ -21,7 +21,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree !== undefined
     ) {
       const fetchUrl =
-        "http://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
         mood +
         "&genreone=" +
         this.props.genreOne +
@@ -37,7 +37,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree === undefined
     ) {
       const fetchUrl =
-        "http://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
         mood +
         "&genreone=" +
         this.props.genreOne +
@@ -51,7 +51,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree === undefined
     ) {
       const fetchUrl =
-        "http://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
         mood +
         "&genreone=" +
         this.props.genreOne;
@@ -63,7 +63,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree !== undefined
     ) {
       const fetchUrl =
-        "http://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
         mood +
         "&genreone=" +
         this.props.genreOne +
@@ -77,7 +77,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree !== undefined
     ) {
       const fetchUrl =
-        "http://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
         mood +
         "&genretwo=" +
         this.props.genreTwo +
@@ -91,7 +91,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree === undefined
     ) {
       const fetchUrl =
-        "http://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
         mood +
         "&genretwo=" +
         this.props.genreTwo;
@@ -103,14 +103,14 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree !== undefined
     ) {
       const fetchUrl =
-        "http://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
         mood +
         "&genrethree=" +
         this.props.genreThree;
       this.props.fetchMoodSearch(fetchUrl);
       this.props.history.push("/current-vibelist");
     } else {
-      const fetchUrl = `http://vibelist-server.herokuapp.com/api/v1/search/?mood=${mood}`;
+      const fetchUrl = `https://vibelist-server.herokuapp.com/api/v1/search/?mood=${mood}`;
       this.props.fetchMoodSearch(fetchUrl);
       this.props.history.push("/current-vibelist");
     }
