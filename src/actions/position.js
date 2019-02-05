@@ -1,6 +1,6 @@
-export const setPosition = (integer) => {
+export const setPosition = integer => {
   return {
-    type: 'SET_POSITION',
+    type: "SET_POSITION",
     payload: integer
   };
 };

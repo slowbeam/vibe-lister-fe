@@ -1,6 +1,6 @@
-export const setGenreOne = (genre) => {
+export const setGenreOne = genre => {
   return {
-    type: 'SET_GENRE_ONE',
+    type: "SET_GENRE_ONE",
     payload: genre
   };
 };

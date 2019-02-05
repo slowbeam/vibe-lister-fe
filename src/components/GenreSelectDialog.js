@@ -1,53 +1,53 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import StyledButton from './StyledButton'
-import { withStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Genres from '../Genres';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import * as actions from '../actions';
-import uuid from 'uuid';
+import React from "react";
+import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
+import StyledButton from "./StyledButton";
+import { withStyles } from "@material-ui/core/styles";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import Genres from "../Genres";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import * as actions from "../actions";
+import uuid from "uuid";
 
 const styles = theme => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    backgroundColor: '#FFFFFF99'
+    display: "flex",
+    flexWrap: "wrap",
+    backgroundColor: "#FFFFFF99"
   },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120,
-    backgroundColor: '#FFFFFF99'
-  },
+    backgroundColor: "#FFFFFF99"
+  }
 });
 
 class DialogSelect extends React.Component {
   state = {
-    open: false,
+    open: false
   };
 
   handleChange = name => event => {
     switch (name) {
-      case 'genreOne':
+      case "genreOne":
         this.props.setGenreOne(event.target.value);
         break;
-      case 'genreTwo':
+      case "genreTwo":
         this.props.setGenreTwo(event.target.value);
         break;
-      case 'genreThree':
+      case "genreThree":
         this.props.setGenreThree(event.target.value);
         break;
       default:
-        return null
+        return null;
     }
   };
 
@@ -61,20 +61,25 @@ class DialogSelect extends React.Component {
   };
 
   handleSubmit = () => {
-    this.setState({ open: false })
-  }
+    this.setState({ open: false });
+  };
 
   renderGenreOptions = () => {
-
-    return Genres.map(genre => <option key={uuid()} value={genre}>{genre}</option>)
-  }
+    return Genres.map(genre => (
+      <option key={uuid()} value={genre}>
+        {genre}
+      </option>
+    ));
+  };
 
   render() {
     const { classes } = this.props;
 
     return (
       <div>
-        <StyledButton onClick={this.handleClickOpen}>Choose Genres (optional)</StyledButton>
+        <StyledButton onClick={this.handleClickOpen}>
+          Choose Genres (optional)
+        </StyledButton>
         <Dialog
           disableBackdropClick
           disableEscapeKeyDown
@@ -89,7 +94,7 @@ class DialogSelect extends React.Component {
                 <Select
                   native
                   value={this.props.genreOne}
-                  onChange={this.handleChange('genreOne')}
+                  onChange={this.handleChange("genreOne")}
                   input={<Input id="age-native-simple" />}
                 >
                   <option value="" />
@@ -101,7 +106,7 @@ class DialogSelect extends React.Component {
                 <Select
                   native
                   value={this.props.genreTwo}
-                  onChange={this.handleChange('genreTwo')}
+                  onChange={this.handleChange("genreTwo")}
                   input={<Input id="age-native-simple" />}
                 >
                   <option value="" />
@@ -113,7 +118,7 @@ class DialogSelect extends React.Component {
                 <Select
                   native
                   value={this.props.genreThree}
-                  onChange={this.handleChange('genreThree')}
+                  onChange={this.handleChange("genreThree")}
                   input={<Input id="age-native-simple" />}
                 >
                   <option value="" />
@@ -137,7 +142,7 @@ class DialogSelect extends React.Component {
 }
 
 DialogSelect.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
@@ -145,12 +150,13 @@ const mapStateToProps = state => {
     genreOne: state.currentGenres.genreOne,
     genreTwo: state.currentGenres.genreTwo,
     genreThree: state.currentGenres.genreThree
-  }
-}
-
-
+  };
+};
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, actions),
+  connect(
+    mapStateToProps,
+    actions
+  )
 )(DialogSelect);

@@ -1,6 +1,6 @@
-export const setEcstaticSongs = (songs) => {
+export const setEcstaticSongs = songs => {
   return {
-    type: 'SET_ECSTATIC_SONGS',
+    type: "SET_ECSTATIC_SONGS",
     songs: songs
   };
 };

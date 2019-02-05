@@ -1,6 +1,6 @@
-export const setCurrentMoods = (moods) => {
+export const setCurrentMoods = moods => {
   return {
-    type: 'SET_CURRENT_MOODS',
+    type: "SET_CURRENT_MOODS",
     moods: moods
   };
 };

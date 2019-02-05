@@ -125,6 +125,6 @@ const genres = [
   "turkish",
   "work-out",
   "world-music"
-]
+];
 
 export default genres;

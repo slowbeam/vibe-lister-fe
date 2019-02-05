@@ -1,36 +1,37 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { fetchCurrentUser } from '../actions/fetchCurrentUser';
+import React from "react";
+import { connect } from "react-redux";
+import { fetchCurrentUser } from "../actions/fetchCurrentUser";
 
 const withAuth = WrappedComponent => {
   class AuthorizedComponent extends React.Component {
     componentDidMount() {
-      if (localStorage.getItem('jwt') && !this.props.loggedIn)
-      this.props.fetchCurrentUser()
+      if (localStorage.getItem("jwt") && !this.props.loggedIn)
+        this.props.fetchCurrentUser();
     }
-    render(){
-      if (localStorage.getItem('jwt') && this.props.loggedIn) {
-        return <WrappedComponent />
+    render() {
+      if (localStorage.getItem("jwt") && this.props.loggedIn) {
+        return <WrappedComponent />;
       } else {
-        return <React.Fragment></React.Fragment>
+        return <React.Fragment />;
       }
     }
   }
   return connect(
     mapStateToProps,
-    mapDispatchToProps)(AuthorizedComponent)
-}
+    mapDispatchToProps
+  )(AuthorizedComponent);
+};
 
 const mapStateToProps = state => {
   return {
     loggedIn: state.currentUser.loggedIn
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchCurrentUser: () => dispatch(fetchCurrentUser())
-  }
-}
+  };
+};
 
-export default withAuth
+export default withAuth;

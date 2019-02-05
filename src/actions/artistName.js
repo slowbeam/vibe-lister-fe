@@ -1,6 +1,6 @@
-export const setArtistName = (name) => {
+export const setArtistName = name => {
   return {
-    type: 'SET_ARTIST_NAME',
+    type: "SET_ARTIST_NAME",
     payload: name
   };
 };

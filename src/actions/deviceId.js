@@ -1,6 +1,6 @@
-export const setDeviceId = (id) => {
+export const setDeviceId = id => {
   return {
-    type: 'SET_DEVICE_ID',
+    type: "SET_DEVICE_ID",
     id: id
   };
 };

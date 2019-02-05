@@ -1,6 +1,6 @@
-export const setPlaylistUri = (uri) => {
+export const setPlaylistUri = uri => {
   return {
-    type: 'SET_PLAYLIST_URI',
+    type: "SET_PLAYLIST_URI",
     payload: uri
   };
 };

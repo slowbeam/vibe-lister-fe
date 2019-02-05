@@ -1,6 +1,6 @@
-export const setCurrentDuration = (integer) => {
+export const setCurrentDuration = integer => {
   return {
-    type: 'SET_CURRENT_DURATION',
+    type: "SET_CURRENT_DURATION",
     payload: integer
   };
 };

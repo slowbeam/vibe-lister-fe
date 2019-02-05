@@ -1,6 +1,6 @@
-export const setMoods = (moods) => {
+export const setMoods = moods => {
   return {
-    type: 'SET_MOODS',
+    type: "SET_MOODS",
     moods: moods
   };
 };

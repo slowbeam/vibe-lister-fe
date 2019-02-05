@@ -1,6 +1,6 @@
-export const setSadSongs = (songs) => {
+export const setSadSongs = songs => {
   return {
-    type: 'SET_SAD_SONGS',
+    type: "SET_SAD_SONGS",
     songs: songs
   };
 };

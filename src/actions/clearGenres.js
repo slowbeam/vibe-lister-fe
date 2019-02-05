@@ -1,5 +1,5 @@
 export const clearGenres = () => {
   return {
-    type: 'CLEAR_GENRES'
+    type: "CLEAR_GENRES"
   };
 };

@@ -1,6 +1,6 @@
-export const setContentSongs = (songs) => {
+export const setContentSongs = songs => {
   return {
-    type: 'SET_CONTENT_SONGS',
+    type: "SET_CONTENT_SONGS",
     songs: songs
   };
 };

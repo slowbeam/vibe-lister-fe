@@ -1,6 +1,6 @@
-export const setUsers = (users) => {
+export const setUsers = users => {
   return {
-    type: 'SET_USERS',
+    type: "SET_USERS",
     users: users
   };
 };

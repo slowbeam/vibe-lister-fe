@@ -1,13 +1,12 @@
-import React from 'react';
-import StyledButton from './StyledButton';
-import withAuth from '../hocs/withAuth';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
+import React from "react";
+import StyledButton from "./StyledButton";
+import withAuth from "../hocs/withAuth";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import { withRouter } from "react-router-dom";
-import { compose } from 'redux';
+import { compose } from "redux";
 
 class CreatePlaylist extends React.Component {
-
   componentWillMount() {
     if (this.props.isPlayer) {
       this.props.setIsPlayer(false);
@@ -15,15 +14,20 @@ class CreatePlaylist extends React.Component {
   }
 
   visitCreatePlaylist = () => {
-    this.props.history.push('/create');
-  }
+    this.props.history.push("/create");
+  };
 
   render() {
-    return(
-    <div>
-        <StyledButton className="create-new-playlist-button" onClick={this.visitCreatePlaylist}>Create a New VibeList</StyledButton>
-    </div>
-    )
+    return (
+      <div>
+        <StyledButton
+          className="create-new-playlist-button"
+          onClick={this.visitCreatePlaylist}
+        >
+          Create a New VibeList
+        </StyledButton>
+      </div>
+    );
   }
 }
 
@@ -41,12 +45,14 @@ const mapStateToProps = state => {
     currentDuration: state.audioPlayer.currentDuration,
     playlistLoaded: state.audioPlayer.playlistLoaded,
     isPlayer: state.audioPlayer.isPlayer
-
-  }
-}
+  };
+};
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(
+    mapStateToProps,
+    actions
+  ),
   withAuth,
   withRouter
 )(CreatePlaylist);

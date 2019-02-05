@@ -1,6 +1,6 @@
-export const setPlaying = (boolean) => {
+export const setPlaying = boolean => {
   return {
-    type: 'SET_PLAYING',
+    type: "SET_PLAYING",
     payload: boolean
   };
 };

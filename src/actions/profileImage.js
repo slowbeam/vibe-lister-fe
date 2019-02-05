@@ -1,11 +1,11 @@
-export const setProfileImage = (currentUser) => {
+export const setProfileImage = currentUser => {
   if (currentUser.message) {
-    return {type: "NA"}
+    return { type: "NA" };
   } else {
-    const profileImage = currentUser.profile_image
+    const profileImage = currentUser.profile_image;
 
     return {
-      type: 'SET_PROFILE_IMAGE',
+      type: "SET_PROFILE_IMAGE",
       payload: profileImage
     };
   }

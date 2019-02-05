@@ -8,7 +8,6 @@ import { withRouter } from "react-router";
 import { compose } from "redux";
 
 class MoodEmojiSelector extends React.Component {
-
   componentWillMount() {
     if (this.props.isPlayer) {
       this.props.setIsPlayer(false);

@@ -1,10 +1,8 @@
 const SONG_URL = "http://localhost:3000/api/v1/songs";
 const USER_URL = "http://localhost:3000/api/v1/users";
-const SONG_USER_URL =
-  "http://localhost:3000/api/v1/song_users";
+const SONG_USER_URL = "http://localhost:3000/api/v1/song_users";
 const MOOD_URL = "http://localhost:3000/api/v1/moods";
-const LOGGED_IN_USER_URL =
-  "http://localhost:3000/api/v1/logged-in-user";
+const LOGGED_IN_USER_URL = "http://localhost:3000/api/v1/logged-in-user";
 
 const token = localStorage.getItem("jwt");
 
@@ -41,8 +39,7 @@ export default class APIAdapter {
 
   static saveVibelist(mood, playlistUris) {
     const SAVE_VIBELIST_URL =
-      "http://localhost:3000/api/v1/create-playlist/?mood=" +
-      mood;
+      "http://localhost:3000/api/v1/create-playlist/?mood=" + mood;
 
     const data = { playlist_uris: playlistUris };
 
@@ -60,28 +57,28 @@ export default class APIAdapter {
   }
 
   static searchMood(url) {
-    return fetch(url, fetchObj).then(resp => resp.json())
+    return fetch(url, fetchObj).then(resp => resp.json());
   }
 
   static getSongs() {
-    return fetch(SONG_URL, fetchObj).then(resp => resp.json())
+    return fetch(SONG_URL, fetchObj).then(resp => resp.json());
   }
 
   static getUsers() {
-    return fetch(USER_URL, fetchObj).then(resp => resp.json())
+    return fetch(USER_URL, fetchObj).then(resp => resp.json());
   }
 
   static getSongUsers() {
-    return fetch(SONG_USER_URL, fetchObj).then(resp => resp.json())
+    return fetch(SONG_USER_URL, fetchObj).then(resp => resp.json());
   }
 
   static getMoods() {
-    return fetch(MOOD_URL, fetchObj).then(resp => resp.json())
+    return fetch(MOOD_URL, fetchObj).then(resp => resp.json());
   }
 
   static getCurrentUser() {
     return fetch(LOGGED_IN_USER_URL, currentUserFetchObj).then(resp =>
       resp.json()
-    )
+    );
   }
 }

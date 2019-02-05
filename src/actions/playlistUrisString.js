@@ -1,6 +1,6 @@
-export const setPlaylistUrisString = (string) => {
+export const setPlaylistUrisString = string => {
   return {
-    type: 'SET_PLAYLIST_URIS_STRING',
+    type: "SET_PLAYLIST_URIS_STRING",
     payload: string
   };
 };
