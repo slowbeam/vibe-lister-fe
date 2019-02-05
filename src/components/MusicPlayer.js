@@ -11,6 +11,11 @@ class MusicPlayer extends React.Component {
     this.playerCheckInterval = null;
   }
 
+  componentDidMount() {
+    this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
+    this.setTrackPosition = setInterval(() => this.getAndSaveTrackPosition(), 1000)
+  }
+
   onPrevClick = () => {
     this.player.previousTrack();
   }
@@ -158,11 +163,6 @@ convertMsToHMS = (ms) => {
     if(seconds < 10 ) {seconds = "0" + seconds}
     return minutes + ":" + seconds;
 }
-
-  componentDidMount() {
-    this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
-    this.setTrackPosition = setInterval(() => this.getAndSaveTrackPosition(), 1000)
-  }
 
 
 
