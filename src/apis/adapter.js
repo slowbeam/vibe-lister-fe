@@ -1,6 +1,7 @@
 const SONG_URL = "https://vibelist-server.herokuapp.com/api/v1/songs";
 const USER_URL = "https://vibelist-server.herokuapp.com/api/v1/users";
-const SONG_USER_URL = "https://vibelist-server.herokuapp.com/api/v1/song_users";
+const SONG_USER_URL =
+  "https://vibelist-server.herokuapp.com/api/v1/song_users";
 const MOOD_URL = "https://vibelist-server.herokuapp.com/api/v1/moods";
 const LOGGED_IN_USER_URL =
   "https://vibelist-server.herokuapp.com/api/v1/logged-in-user";
@@ -55,7 +56,7 @@ export default class APIAdapter {
       body: JSON.stringify(data)
     };
 
-    return fetch(SAVE_VIBELIST_URL, saveFetchObj).then(resp => resp.json())
+    return fetch(SAVE_VIBELIST_URL, saveFetchObj).then(resp => resp.json());
   }
 
   static searchMood(url) {
