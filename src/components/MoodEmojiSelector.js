@@ -14,7 +14,7 @@ class MoodEmojiSelector extends React.Component {
     }
   }
 
-  handleSubmit = mood => {
+  handleSubmit = (mood) => {
     if (
       this.props.genreOne !== undefined &&
       this.props.genreTwo !== undefined &&

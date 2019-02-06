@@ -68,7 +68,7 @@ class NavBar extends Component {
     this.props.setCurrentUser(null);
     localStorage.removeItem("jwt");
     window.location = "https://www.spotify.com/logout/";
-    window.location = "http://localhost:3001/";
+    window.location = "https://vibelist.herokuapp.com/";
   };
 
   handleMenuClick = event => {
