@@ -13,6 +13,10 @@ class CreatePlaylist extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.fetchCurrentUser();
+  }
+
   visitCreatePlaylist = () => {
     this.props.history.push("/create");
   };
@@ -48,11 +52,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default compose(
-  connect(
-    mapStateToProps,
-    actions
-  ),
+const enhance = compose(
   withAuth,
-  withRouter
-)(CreatePlaylist);
+  withRouter,
+  connect(mapStateToProps, actions)
+);
+
+export default enhance(CreatePlaylist);

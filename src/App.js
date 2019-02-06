@@ -21,8 +21,7 @@ class App extends Component {
   }
 
   storeAllData = () => {
-    this.props
-      .fetchSongs()
+    this.props.fetchSongs()
       .then(() => {
         return this.props.fetchCurrentUser();
       })
