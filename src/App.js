@@ -161,9 +161,9 @@ class App extends Component {
           </div>
           <div className="box-3" >
             {this.renderLogInLogOut()}
-            <a href="" className="icon" onClick={this.handleIconClick}>
+            <div className="icon" onClick={this.handleIconClick}>
               <i id="hamburger" className="fa fa-bars"></i>
-            </a>
+            </div>
           </div>
         </div>
         <div  id="mobile-nav-bar" className="mobile-nav-menu">

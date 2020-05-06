@@ -63,11 +63,7 @@ svg {
 
 body {
   font-family: 'Quicksand', sans-serif;
-  color: #000;
-  background-image: url("./images/bkg-gradient-record-3.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; }
+  color: #000; }
 
 h1 {
   font-family: 'Quicksand', sans-serif; }
@@ -214,12 +210,15 @@ h4 {
   justify-content: space-between; }
 
 .footer {
-  display: flex;
-  justify-content: center;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  bottom: 0;
+  display: flex;
   height: 70px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.6); }
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  width: 100%; }
 
 .footer-text {
   font-size: 12px; }
@@ -232,13 +231,10 @@ h4 {
   align-items: center; }
 
 .content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: top;
+  background-color: lavender;
   width: 100%;
   overflow: auto;
-  height: 100vh; }
+  height: 900px; }
 
 .menu {
   background-color: #fff;
