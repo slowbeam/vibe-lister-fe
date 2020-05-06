@@ -51,7 +51,7 @@ class App extends Component {
     this.props.setCurrentUser(null);
     localStorage.removeItem('jwt');
     window.location = 'https://www.spotify.com/logout/';
-    window.location = "http://localhost:3001/";
+    window.location = process.env.REACT_APP_BASE_URL;
   };
 
   renderProfileImage = () => {
@@ -152,9 +152,9 @@ class App extends Component {
       <div className="page">
         <div className="topnav" id="top-nav-bar">
           <div className="box-1">
-            <a href="http://localhost:3001/" onClick={this.handleMenuClick} >home</a>
-            <a href="http://localhost:3001/my-vibelists" >my vibelists</a>
-            <a href="http://localhost:3001/create" >new vibelist</a>
+            <a href={process.env.REACT_APP_BASE_URL} onClick={this.handleMenuClick} >home</a>
+            <a href={process.env.REACT_APP_BASE_URL + "/my-vibelists"}>my vibelists</a>
+            <a href={process.env.REACT_APP_BASE_URL + "/create"} >new vibelist</a>
           </div>
 
           <div className="box-2" >
@@ -167,9 +167,9 @@ class App extends Component {
           </div>
         </div>
         <div  id="mobile-nav-bar" className="mobile-nav-menu">
-          <a href="http://localhost:3001/" onClick={this.handleMenuClick} className="mobile-home-button">home</a>
-          <a href="http://localhost:3001/my-vibelists" >my vibelists</a>
-          <a href="http://localhost:3001/create" >new vibelist</a>
+          <a href={process.env.REACT_APP_BASE_URL} onClick={this.handleMenuClick} className="mobile-home-button">home</a>
+          <a href={process.env.REACT_APP_BASE_URL + "/my-vibelists"} >my vibelists</a>
+          <a href={process.env.REACT_APP_BASE_URL + "/create"} >new vibelist</a>
           {this.renderLogInLogOutMobile()}
         </div>
 

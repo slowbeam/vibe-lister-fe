@@ -77,7 +77,7 @@ class NavBar extends Component {
     this.props.setCurrentUser(null);
     localStorage.removeItem('jwt');
     window.location = 'https://www.spotify.com/logout/';
-    window.location = "https://vibelist.herokuapp.com/";
+    window.location = process.env.REACT_APP_BASE_URL;
   }
 
   handleMenuClick = (event) => {

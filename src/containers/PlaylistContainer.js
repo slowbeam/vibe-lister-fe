@@ -8,10 +8,6 @@ import StyledButton from '../components/StyledButton';
 import * as actions from '../actions';
 
 class PlaylistContainer extends Component {
-
-
-
-
   handleSaveVibelist = () =>  {
     debugger;
     if(this.props.deviceId){

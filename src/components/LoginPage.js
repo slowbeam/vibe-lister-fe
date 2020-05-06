@@ -2,9 +2,8 @@ import React from 'react';
 import StyledButton from './StyledButton';
 
 const LoginPage = (props) => {
-
   const visitSpotifyLogin = () => {
-    window.location='https://vibelist-server.herokuapp.com/api/v1/login';
+    window.location=`${process.env.REACT_APP_API_BASE_URL}/api/v1/login`;
   }
 
   return (
