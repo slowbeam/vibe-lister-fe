@@ -4,12 +4,10 @@
   box-sizing: border-box;
 }
 
-
 svg {
 	display: block;
 	margin: 0; padding: 0;
 }
-
 
 .spinner {
 	width: 150px; height: 150px;
@@ -90,7 +88,6 @@ h4 {
   margin-right: 20px;
   margin-left: 20px;
 }
-
 
 #player {
   flex-shrink: 0;
@@ -240,7 +237,6 @@ h4 {
   }
 }
 
-
 .app-logo {
   width: 150px;
 }
@@ -282,7 +278,6 @@ h4 {
   overflow: auto;
   height: 900px;
 }
-
 
 .menu {
   background-color: #fff;
@@ -353,8 +348,6 @@ h4 {
 .topnav a:hover {
   color: #6a6ac8;
 }
-
-
 
 .topnav .icon {
     display: none;
@@ -444,8 +437,6 @@ h4 {
   background-color: rgba(255, 255, 255, 0.6);
   align-items: center;
   border-radius: 6px;
-
-
 }
 
 .album-cover-image {
@@ -480,7 +471,6 @@ h4 {
   padding: 20px;
   width: 700px;
   margin: 0px 10px;
-
 }
 
 .player-text-buttons {
@@ -496,7 +486,6 @@ h4 {
   justify-content: space-around;
   align-items: center;
   margin-top: 30px;
-
 }
 
 .music-player-container {
@@ -518,9 +507,7 @@ h4 {
   margin-right: 30px;
   display: flex;
   flex-direction: column;
-
 }
-
 
 .vibelist-multi {
   display: flex;
@@ -538,6 +525,9 @@ h4 {
   margin-bottom: 30px;
 }
 
+.text-link {
+  text-decoration: none;
+}
 
 .create-page-container {
   display: flex;
@@ -601,7 +591,6 @@ h4 {
   margin-top: 60px;
 }
 
-
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
 
@@ -646,8 +635,6 @@ h4 {
   .playlist-container {
     height: 500px;
   }
-
-
 
   .song-card-container {
     height: 300px;
@@ -706,14 +693,13 @@ h4 {
   #player {
     margin-top: -20px;
   }
-
-
 }
 
 /*Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
-
-  .topnav a:not(:first-child){display: none;}
+  .topnav a:not(:first-child) {
+    display: none;
+  }
 
   .topnav a:first-child {
     width: 200px;
@@ -784,6 +770,7 @@ h4 {
   .page {
     margin: 0 auto;
   }
+  
   .song-card {
     padding-left: 15px;
     padding-right: 15px;
