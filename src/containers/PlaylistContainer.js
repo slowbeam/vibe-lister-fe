@@ -1,32 +1,34 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import SongCard from "../components/SongCard";
-import SavePlaylistButton from "../components/SavePlaylistButton";
-import withAuth from "../hocs/withAuth";
 import uuid from "uuid";
-import StyledButton from "../components/shared/buttons/styledButton";
+
 import * as actions from "../actions";
-import { createGenerateClassName } from "@material-ui/core";
+import withAuth from "../hocs/withAuth";
+
+import SongCard from "../components/SongCard";
+import StyledButton from "../components/shared/buttons/styledButton";
 
 class PlaylistContainer extends Component {
   handleSaveVibelist = () => {
-    if (this.props.deviceId) {
-      const spotifyAccessToken = this.props.currentUser.access_token;
-      this.props.fetchSaveVibelist(
-        this.props.currentMood,
-        this.props.playlistUris,
-        this.props.deviceId,
-        spotifyAccessToken
-      );
-    }
+    const {
+      currentMood,
+      currentUser: { access_token },
+      deviceId,
+      fetchSaveVibelist,
+      playlistUris,
+    } = this.props;
+
+    deviceId &&
+      fetchSaveVibelist(currentMood, playlistUris, deviceId, access_token);
   };
 
   renderButton = () => {
+    const { playlistUri } = this.props;
     let className;
-    let text;
     let onClick;
+    let text;
 
-    if (this.props.playlistUri) {
+    if (playlistUri) {
       onClick = this.loadCurrentPlaylist(
         window.location.search.substring(1).split("=")[1]
       );
@@ -41,15 +43,18 @@ class PlaylistContainer extends Component {
   };
 
   loadCurrentPlaylist = (playlistUri) => {
-    const currentUser = this.props.currentUser;
+    const {
+      currentUser: { access_token },
+      deviceId,
+    } = this.props;
+
     const playUrl =
-      "https://api.spotify.com/v1/me/player/play?device_id=" +
-      this.props.deviceId;
+      "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId;
 
     fetch(playUrl, {
       method: "PUT",
       headers: {
-        authorization: `Bearer ${currentUser.access_token}`,
+        authorization: `Bearer ${access_token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -59,35 +64,39 @@ class PlaylistContainer extends Component {
   };
 
   renderEmoji = () => {
-    switch (this.props.currentMood) {
-      case "sad":
-        return <img alt="" src="/images/emojis/sad-2.png" />;
-      case "content":
-        return <img alt="" src="/images/emojis/content-2.png" />;
-      case "ecstatic":
-        return <img alt="" src="/images/emojis/ecstatic-2.png" />;
-      default:
-        return;
-    }
+    const { currentMood } = this.props;
+    return (
+      currentMood && (
+        <img
+          alt={`${currentMood} emoji`}
+          src={`images/emojis/${currentMood}-2.png`}
+        />
+      )
+    );
   };
 
   playSong = (uri) => {
-    const deviceId = this.props.deviceId;
-    const token = this.props.currentUser.access_token;
+    const {
+      deviceId,
+      currentUser: { access_token },
+    } = this.props;
 
     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
       method: "PUT",
       body: JSON.stringify({ uris: [uri] }),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${access_token}`,
       },
     });
   };
 
   renderCurrentSongs = () => {
-    if (this.props.currentSongs) {
-      return this.props.currentSongs.map((song) => (
+    const { currentSongs } = this.props;
+
+    return (
+      currentSongs &&
+      this.props.currentSongs.map((song) => (
         <SongCard
           key={uuid()}
           title={song.title}
@@ -96,12 +105,11 @@ class PlaylistContainer extends Component {
           uri={song.uri}
           onClick={() => this.playSong(song.uri)}
         />
-      ));
-    }
+      ))
+    );
   };
 
   render() {
-    console.log(this.props.deviceId);
     return (
       <div className="section playlist-container">
         {this.renderEmoji()}
