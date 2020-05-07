@@ -6,7 +6,7 @@ import LoginButton from "./components/shared/navBar/loginButton";
 import CreatePage from "./components/pages/create";
 import VibelistPage from "./components/pages/vibelist";
 import MusicPlayer from "./components/player";
-import MyVibeListsContainer from "./containers/MyVibeListsContainer";
+import MyVibeListsPage from "./components/pages/myVibelists";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 
@@ -119,7 +119,7 @@ class App extends Component {
   MyVibeLists = () => {
     return (
       <div className="my-vibelists-wrapper">
-        <MyVibeListsContainer />
+        <MyVibeListsPage />
         <MusicPlayer />
       </div>
     );

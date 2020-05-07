@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import SongCard from "../components/SongCard";
-import withAuth from "../hocs/withAuth";
-import StyledButton from "../components/shared/buttons/styledButton";
+import SongCard from "../../SongCard";
+import withAuth from "../../../hocs/withAuth";
+import StyledButton from "../../shared/buttons/styledButton";
 import uuid from "uuid";
 
-class PlaylistContainer extends Component {
+class MyVibelistsPage extends Component {
   playSong = (uri) => {
     const deviceId = this.props.deviceId;
     const token = this.props.currentUser.access_token;
@@ -181,4 +181,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withAuth(connect(mapStateToProps)(PlaylistContainer));
+export default withAuth(connect(mapStateToProps)(MyVibelistsPage));
