@@ -1,12 +1,10 @@
-import APIAdapter from '../apis/adapter'
-import { setMoods } from './moods'
+import APIAdapter from "../apis/apiAdapter";
+import { setMoods } from "./moods";
 
 export const fetchMoods = () => {
-
   return (dispatch) => {
-    return APIAdapter.getMoods()
-        .then(moods => {
-          return dispatch(setMoods(moods))
-        })
-  }
-}
+    return APIAdapter.getMoods().then((moods) => {
+      return dispatch(setMoods(moods));
+    });
+  };
+};

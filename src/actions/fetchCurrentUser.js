@@ -1,4 +1,4 @@
-import APIAdapter from "../apis/adapter";
+import APIAdapter from "../apis/apiAdapter";
 import { setCurrentUser } from "./currentUser";
 
 export const fetchCurrentUser = () => {

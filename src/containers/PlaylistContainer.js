@@ -4,6 +4,7 @@ import uuid from "uuid";
 
 import * as actions from "../actions";
 import withAuth from "../hocs/withAuth";
+import spotifySDKAdapter from "../apis/spotifySDKAdapter";
 
 import SongCard from "../components/SongCard";
 import StyledButton from "../components/shared/buttons/styledButton";
@@ -48,19 +49,7 @@ class PlaylistContainer extends Component {
       deviceId,
     } = this.props;
 
-    const playUrl =
-      "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId;
-
-    fetch(playUrl, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${access_token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        context_uri: playlistUri,
-      }),
-    });
+    spotifySDKAdapter.loadCurrentPlaylist(access_token, deviceId, playlistUri);
   };
 
   renderEmoji = () => {
@@ -81,14 +70,7 @@ class PlaylistContainer extends Component {
       currentUser: { access_token },
     } = this.props;
 
-    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
-      method: "PUT",
-      body: JSON.stringify({ uris: [uri] }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
-    });
+    spotifySDKAdapter.playSong(access_token, deviceId, uri);
   };
 
   renderCurrentSongs = () => {
@@ -96,7 +78,7 @@ class PlaylistContainer extends Component {
 
     return (
       currentSongs &&
-      this.props.currentSongs.map((song) => (
+      currentSongs.map((song) => (
         <SongCard
           key={uuid()}
           title={song.title}

@@ -1,13 +1,20 @@
-import APIAdapter from '../apis/adapter';
+import APIAdapter from "../apis/apiAdapter";
 
-export const fetchSaveVibelist = (mood, playlistUris, deviceId, accessToken) => {
+export const fetchSaveVibelist = (
+  mood,
+  playlistUris,
+  deviceId,
+  accessToken
+) => {
   return (dispatch) => {
-    const request = APIAdapter.saveVibelist(mood, playlistUris)
+    const request = APIAdapter.saveVibelist(mood, playlistUris);
 
-    return request.then(response => {
-
-      APIAdapter.loadCurrentVibelist(response.playlist_uri, deviceId, accessToken)
-    })
-
-  }
-}
+    return request.then((response) => {
+      APIAdapter.loadCurrentVibelist(
+        response.playlist_uri,
+        deviceId,
+        accessToken
+      );
+    });
+  };
+};
