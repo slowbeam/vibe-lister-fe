@@ -6,10 +6,10 @@ import * as actions from "../actions";
 import withAuth from "../hocs/withAuth";
 import spotifySDKAdapter from "../apis/spotifySDKAdapter";
 
-import SongCard from "../components/SongCard";
-import StyledButton from "../components/shared/buttons/styledButton";
+import SongCard from "./SongCard";
+import StyledButton from "./shared/buttons/styledButton";
 
-class PlaylistContainer extends Component {
+class Playlist extends Component {
   handleSaveVibelist = () => {
     const {
       currentMood,
@@ -114,4 +114,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withAuth(connect(mapStateToProps, actions)(PlaylistContainer));
+export default withAuth(connect(mapStateToProps, actions)(Playlist));

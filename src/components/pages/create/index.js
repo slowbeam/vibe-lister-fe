@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import withAuth from "../hocs/withAuth";
-import GenreSelectDialog from "./GenreSelectDialog";
-import SelectedGenresList from "./SelectedGenresList";
-import * as actions from "../actions";
+import withAuth from "../../../hocs/withAuth";
+import GenreSelectDialog from "../../GenreSelectDialog";
+import SelectedGenresList from "../../SelectedGenresList";
+import * as actions from "../../../actions";
 import { withRouter } from "react-router";
 import { compose } from "redux";
 
-class MoodEmojiSelector extends React.Component {
-  handleSubmit = mood => {
+class CreatePage extends React.Component {
+  handleSubmit = (mood) => {
     if (
       this.props.genreOne !== undefined &&
       this.props.genreTwo !== undefined &&
@@ -144,15 +144,12 @@ const mapStateToProps = (state, ownProps) => {
     genreTwo: state.currentGenres.genreTwo,
     genreThree: state.currentGenres.genreThree,
     currentVibelist: state.currentVibelist,
-    history: ownProps.history
+    history: ownProps.history,
   };
 };
 
 export default compose(
   withAuth,
   withRouter,
-  connect(
-    mapStateToProps,
-    actions
-  )
-)(MoodEmojiSelector);
+  connect(mapStateToProps, actions)
+)(CreatePage);

@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 
 import LoginButton from "./components/shared/navBar/loginButton";
-import MoodEmojiSelector from "./components/MoodEmojiSelector";
-import PlaylistContainer from "./containers/PlaylistContainer";
-import MusicPlayer from "./components/MusicPlayer";
+import CreatePage from "./components/pages/create";
+import VibelistPage from "./components/pages/vibelist";
+import MusicPlayer from "./components/player";
 import MyVibeListsContainer from "./containers/MyVibeListsContainer";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 
-import Login from "./components/pages/login/login";
-import Welcome from "./components/pages/welcome/welcome";
+import Login from "./components/pages/login";
+import Welcome from "./components/pages/welcome";
 
 class App extends Component {
   componentDidMount() {
@@ -108,19 +108,12 @@ class App extends Component {
     return <Welcome />;
   };
 
-  CreateNewVibeList = () => {
-    return <MoodEmojiSelector />;
+  Create = () => {
+    return <CreatePage />;
   };
 
   CurrentVibelist = () => {
-    return (
-      <div className="create-page-container">
-        <div className="create-page-content">
-          <PlaylistContainer />
-          <MusicPlayer />
-        </div>
-      </div>
-    );
+    return <VibelistPage />;
   };
 
   MyVibeLists = () => {
@@ -178,7 +171,7 @@ class App extends Component {
           <div className="content">
             <Route exact path="/" render={this.Login} />
             <Route exact path="/welcome" render={this.Welcome} />
-            <Route exact path="/create" render={this.CreateNewVibeList} />
+            <Route exact path="/create" render={this.Create} />
             <Route
               exact
               path="/current-vibelist"
