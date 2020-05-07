@@ -6,10 +6,10 @@ import withAuth from "../hocs/withAuth";
 import uuid from "uuid";
 import StyledButton from "../components/shared/buttons/styledButton";
 import * as actions from "../actions";
+import { createGenerateClassName } from "@material-ui/core";
 
 class PlaylistContainer extends Component {
   handleSaveVibelist = () => {
-    debugger;
     if (this.props.deviceId) {
       const spotifyAccessToken = this.props.currentUser.access_token;
       this.props.fetchSaveVibelist(
@@ -22,18 +22,22 @@ class PlaylistContainer extends Component {
   };
 
   renderButton = () => {
+    let className;
+    let text;
+    let onClick;
+
     if (this.props.playlistUri) {
-      const query = window.location.search.substring(1);
-      const pair = query.split("=");
-      const playlistUri = pair[1];
-      return (
-        <StyledButton onClick={() => this.loadCurrentPlaylist(playlistUri)}>
-          play all
-        </StyledButton>
+      onClick = this.loadCurrentPlaylist(
+        window.location.search.substring(1).split("=")[1]
       );
+      text = "play all";
     } else {
-      return <SavePlaylistButton />;
+      className = "create-new-playlist-button";
+      onClick = this.handleSaveVibelist;
+      text = "Add Vibelist to Spotify";
     }
+
+    return <StyledButton className={className} onClick={onClick} text={text} />;
   };
 
   loadCurrentPlaylist = (playlistUri) => {
