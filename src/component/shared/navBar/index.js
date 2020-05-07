@@ -34,7 +34,7 @@ class NavBar extends Component {
     if ((this.props.currentUser !== null) & (jwt !== null)) {
       return <p onClick={this.handleLogOut}>logout</p>;
     } else {
-      return <Login />;
+      return <LoginButton />;
     }
   };
 
@@ -68,7 +68,7 @@ class NavBar extends Component {
     this.props.setCurrentUser(null);
     localStorage.removeItem("jwt");
     window.location = "https://www.spotify.com/logout/";
-    // window.location = process.env.REACT_APP_BASE_URL;
+    window.location = process.env.REACT_APP_BASE_URL;
   };
 
   handleMenuClick = (event) => {
@@ -77,36 +77,46 @@ class NavBar extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <div className="topnav" id="top-nav-bar">
           <div className="box-1">
-            <Link to="/" onClick={this.handleMenuClick}>
+            <a
+              href={process.env.REACT_APP_BASE_URL}
+              onClick={this.handleMenuClick}
+            >
               home
-            </Link>
-            <Link to="/my-vibelists" onClick={this.handleMenuClick}>
+            </a>
+            <a href={process.env.REACT_APP_BASE_URL + "/my-vibelists"}>
               my vibelists
-            </Link>
-            <Link to="/create" onClick={this.handleMenuClick}>
+            </a>
+            <a href={process.env.REACT_APP_BASE_URL + "/create"}>
               new vibelist
-            </Link>
+            </a>
           </div>
+
           <div className="box-2"></div>
           <div className="box-3">
             {this.renderLogInLogOut()}
-            <a href="" className="icon" onClick={this.handleIconClick}>
+            <div className="icon" onClick={this.handleIconClick}>
               <i id="hamburger" className="fa fa-bars"></i>
-            </a>
+            </div>
           </div>
         </div>
         <div id="mobile-nav-bar" className="mobile-nav-menu">
-          <Link to="/" className="mobile-home-button">
+          <a
+            href={process.env.REACT_APP_BASE_URL}
+            onClick={this.handleMenuClick}
+            className="mobile-home-button"
+          >
             home
-          </Link>
-          <Link to="/my-vibelists">my vibelists</Link>
-          <Link to="/create">new vibelist</Link>
+          </a>
+          <a href={process.env.REACT_APP_BASE_URL + "/my-vibelists"}>
+            my vibelists
+          </a>
+          <a href={process.env.REACT_APP_BASE_URL + "/create"}>new vibelist</a>
           {this.renderLogInLogOutMobile()}
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

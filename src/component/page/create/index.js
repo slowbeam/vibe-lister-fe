@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import withAuth from "../../../hocs/withAuth";
-import GenreSelectDialog from "../../GenreSelectDialog";
-import SelectedGenresList from "../../SelectedGenresList";
+import GenreSelectDialog from "./GenreSelectDialog";
+import SelectedGenresList from "./SelectedGenresList";
 import * as actions from "../../../actions";
 import { withRouter } from "react-router";
 import { compose } from "redux";
 
-class CreatePage extends React.Component {
+class Create extends React.Component {
   handleSubmit = (mood) => {
     if (
       this.props.genreOne !== undefined &&
@@ -152,4 +152,4 @@ export default compose(
   withAuth,
   withRouter,
   connect(mapStateToProps, actions)
-)(CreatePage);
+)(Create);

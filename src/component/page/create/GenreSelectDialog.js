@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
-import StyledButton from "./shared/buttons/styledButton";
+import StyledButton from "../../shared/buttons/styledButton";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -11,10 +11,10 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import Genres from "../Genres";
+import Genres from "../../../utils/genres";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import * as actions from "../actions";
+import * as actions from "../../../actions";
 import uuid from "uuid";
 
 const styles = (theme) => ({

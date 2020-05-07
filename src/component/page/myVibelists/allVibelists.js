@@ -5,7 +5,7 @@ import withAuth from "../../../hocs/withAuth";
 import StyledButton from "../../shared/buttons/styledButton";
 import uuid from "uuid";
 
-class MyVibelistsPage extends Component {
+class allVibelists extends Component {
   playSong = (uri) => {
     const deviceId = this.props.deviceId;
     const token = this.props.currentUser.access_token;
@@ -181,4 +181,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withAuth(connect(mapStateToProps)(MyVibelistsPage));
+export default withAuth(connect(mapStateToProps)(allVibelists));

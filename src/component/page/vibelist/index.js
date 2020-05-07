@@ -3,7 +3,7 @@ import React from "react";
 import Player from "../../player";
 import Playlist from "../../playlist";
 
-const VibelistPage = () => {
+const Vibelist = () => {
   return (
     <div className="create-page-container">
       <div className="create-page-content">
@@ -14,4 +14,4 @@ const VibelistPage = () => {
   );
 };
 
-export default VibelistPage;
+export default Vibelist;

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 
-import ConditionalWrapper from "../conditionalWrapper";
+import ConditionalWrapper from "../../../hocs/conditionalWrapper";
 
 const styles = {
   root: {
