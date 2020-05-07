@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Login from "./loginButton";
+import LoginButton from "./loginButton";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as actions from "../../../actions";
@@ -25,7 +25,7 @@ class NavBar extends Component {
         </div>
       );
     } else {
-      return <Login />;
+      return <LoginButton />;
     }
   };
 
@@ -68,7 +68,7 @@ class NavBar extends Component {
     this.props.setCurrentUser(null);
     localStorage.removeItem("jwt");
     window.location = "https://www.spotify.com/logout/";
-    window.location = process.env.REACT_APP_BASE_URL;
+    // window.location = process.env.REACT_APP_BASE_URL;
   };
 
   handleMenuClick = (event) => {

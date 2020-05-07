@@ -9,7 +9,7 @@ const Login = () => {
   return (
     <div className="login-page-container">
       <p>please login to use vibelist</p>
-      <StyledButton onClick={visitSpotifyLogin}>Login</StyledButton>
+      <StyledButton onClick={visitSpotifyLogin} text="Login" />
     </div>
   );
 };
