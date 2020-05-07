@@ -1,4 +1,5 @@
 import APIAdapter from "../apis/apiAdapter";
+import { setPlaylistUri } from "./playlistUri";
 
 export const fetchSaveVibelist = (
   mood,
@@ -10,6 +11,7 @@ export const fetchSaveVibelist = (
     const request = APIAdapter.saveVibelist(mood, playlistUris);
 
     return request.then((response) => {
+      dispatch(setPlaylistUri(response.playlist_uri));
       APIAdapter.loadCurrentVibelist(
         response.playlist_uri,
         deviceId,

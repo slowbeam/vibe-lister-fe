@@ -2,21 +2,20 @@ const SONG_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/songs`;
 const USER_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/users`;
 const SONG_USER_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/song_users`;
 const MOOD_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/moods`;
-const LOGGED_IN_USER_URL =
-  `${process.env.REACT_APP_API_BASE_URL}/api/v1/logged-in-user`;
+const LOGGED_IN_USER_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/logged-in-user`;
 
 const token = localStorage.getItem("jwt");
 
 const fetchObj = {
-  headers: { Authorization: `Bearer ${token}` }
+  headers: { Authorization: `Bearer ${token}` },
 };
 
 const currentUserFetchObj = {
   method: "POST",
   headers: {
     "Content-Type": "Application/json",
-    Authorization: `Bearer ${token}`
-  }
+    Authorization: `Bearer ${token}`,
+  },
 };
 
 export default class APIAdapter {
@@ -28,11 +27,11 @@ export default class APIAdapter {
       method: "PUT",
       headers: {
         authorization: `Bearer ${spotifyAccessToken}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        context_uri: playlistUri
-      })
+        context_uri: playlistUri,
+      }),
     };
 
     return fetch(playUrl, loadCurrentVibelistFetchObj);
@@ -50,37 +49,37 @@ export default class APIAdapter {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
-        "Content-Type": "Application/json"
+        "Content-Type": "Application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     };
 
-    return fetch(SAVE_VIBELIST_URL, saveFetchObj).then(resp => resp.json());
+    return fetch(SAVE_VIBELIST_URL, saveFetchObj).then((resp) => resp.json());
   }
 
   static searchMood(url) {
-    return fetch(url, fetchObj).then(resp => resp.json())
+    return fetch(url, fetchObj).then((resp) => resp.json());
   }
 
   static getSongs() {
-    return fetch(SONG_URL, fetchObj).then(resp => resp.json())
+    return fetch(SONG_URL, fetchObj).then((resp) => resp.json());
   }
 
   static getUsers() {
-    return fetch(USER_URL, fetchObj).then(resp => resp.json())
+    return fetch(USER_URL, fetchObj).then((resp) => resp.json());
   }
 
   static getSongUsers() {
-    return fetch(SONG_USER_URL, fetchObj).then(resp => resp.json())
+    return fetch(SONG_USER_URL, fetchObj).then((resp) => resp.json());
   }
 
   static getMoods() {
-    return fetch(MOOD_URL, fetchObj).then(resp => resp.json())
+    return fetch(MOOD_URL, fetchObj).then((resp) => resp.json());
   }
 
   static getCurrentUser() {
-    return fetch(LOGGED_IN_USER_URL, currentUserFetchObj).then(resp =>
+    return fetch(LOGGED_IN_USER_URL, currentUserFetchObj).then((resp) =>
       resp.json()
-    )
+    );
   }
 }

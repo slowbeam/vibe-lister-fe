@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
-import * as actions from "./actions";
+import * as actions from "../../actions";
 
-import Create from "./component/page/create";
-import Login from "./component/page/login";
-import MyVibeLists from "./component/page/myVibelists";
-import NavBar from "./component/shared/navBar";
-import Vibelist from "./component/page/vibelist";
-import Welcome from "./component/page/welcome";
+import Create from "../page/create";
+import Login from "../page/login";
+import MyVibeLists from "../page/myVibelists";
+import NavBar from "../shared/navBar";
+import Vibelist from "../page/vibelist";
+import Welcome from "../page/welcome";
 
-import "./App.css";
+import "./styles.css";
 
 class App extends Component {
   componentDidMount() {

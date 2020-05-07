@@ -109,7 +109,7 @@ const mapStateToProps = (state) => {
     currentVibelist: state.currentVibelist,
     currentMood: state.currentVibelist.mood,
     playlistUris: state.currentVibelist.playlist_uris,
-    playlistUri: state.currentPlaylistUri,
+    playlistUri: state.playlist.playlistUri,
     currentSongs: state.currentVibelist.current_songs,
   };
 };

@@ -121,6 +121,12 @@ class allVibelists extends Component {
     }
   };
 
+  renderAllVibelists = () => {
+    const listTypes = ["sad", "content", "ecstatic"];
+
+    listTypes.forEach((type) => {});
+  };
+
   renderAllEcstaticLists = (listArray) => {
     if (listArray) {
       return listArray.map((list) => {
