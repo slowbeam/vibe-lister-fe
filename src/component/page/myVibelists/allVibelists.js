@@ -61,6 +61,37 @@ class allVibelists extends Component {
     });
   };
 
+  renderVibelists = () => {
+    const { sadLists, contentLists, ecstaticLists } = this.props;
+    console.log(sadLists);
+    if (sadLists) {
+      return sadLists.map((list) => {
+        if (list.saved === true) {
+          return (
+            <div key={uuid()} className="vibelist-multi">
+              <img
+                className="emoji-image"
+                alt=""
+                src="/images/emojis/sad-2.png"
+              />
+              <br />
+              <StyledButton
+                onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}
+                text="play all"
+              />
+              <div className="song-card-container">
+                <br />
+                {this.renderAllSongs(list.songs)}
+              </div>
+            </div>
+          );
+        } else {
+          return <></>;
+        }
+      });
+    }
+  };
+
   renderAllSadLists = (listArray) => {
     if (listArray) {
       return listArray.map((list) => {
@@ -75,9 +106,8 @@ class allVibelists extends Component {
               <br />
               <StyledButton
                 onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}
-              >
-                play all
-              </StyledButton>
+                text="play all"
+              />
               <div className="song-card-container">
                 <br />
                 {this.renderAllSongs(list.songs)}
@@ -85,7 +115,7 @@ class allVibelists extends Component {
             </div>
           );
         } else {
-          return <React.Fragment></React.Fragment>;
+          return <></>;
         }
       });
     }
@@ -105,9 +135,8 @@ class allVibelists extends Component {
               <br />
               <StyledButton
                 onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}
-              >
-                play all
-              </StyledButton>
+                text="play all"
+              />
               <div className="song-card-container">
                 <br />
                 {this.renderAllSongs(list.songs)}
@@ -141,9 +170,9 @@ class allVibelists extends Component {
               <br />
               <StyledButton
                 onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}
-              >
-                play all
-              </StyledButton>
+                text="play all"
+              />
+
               <div className="song-card-container">
                 <br />
                 {this.renderAllSongs(list.songs)}
@@ -160,17 +189,7 @@ class allVibelists extends Component {
   render() {
     return (
       <div className="my-vibelist-container">
-        <div className="list-container">
-          {this.renderAllSadLists(this.props.sadLists)}
-        </div>
-
-        <div className="list-container">
-          {this.renderAllContentLists(this.props.contentLists)}
-        </div>
-
-        <div className="list-container">
-          {this.renderAllEcstaticLists(this.props.ecstaticLists)}
-        </div>
+        <div className="list-container">{this.renderVibelists()}</div>
       </div>
     );
   }

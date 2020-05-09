@@ -15,35 +15,29 @@ import "./styles.css";
 
 class App extends Component {
   componentDidMount() {
+    this.props.fetchCurrentUser();
     this.storeAllData();
   }
 
   storeAllData = () => {
-    this.props
-      .fetchSongs()
-      .then(() => {
-        return this.props.fetchCurrentUser();
-      })
-      .then(() => {
-        return this.props.fetchMoods();
-      })
-      .then(() => {
-        return this.props.fetchUsers();
-      })
-      .then(() => {
-        return this.storeEcstaticMoodLists();
-      })
-      .then(() => {
-        return this.storeContentMoodLists();
-      })
-      .then(() => {
-        return this.storeSadMoodLists();
-      });
-  };
-
-  setDisplayName = (user) => {
-    if (localStorage.getItem("jwt") && this.props.currentUser) {
-      this.props.setDisplayName(user);
+    if (this.props.currentUser) {
+      this.props
+        .fetchSongs()
+        .then(() => {
+          return this.props.fetchMoods();
+        })
+        .then(() => {
+          return this.props.fetchUsers();
+        })
+        .then(() => {
+          return this.storeEcstaticMoodLists();
+        })
+        .then(() => {
+          return this.storeContentMoodLists();
+        })
+        .then(() => {
+          return this.storeSadMoodLists();
+        });
     }
   };
 
@@ -217,8 +211,14 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    songs: state.songs,
+    users: state.users,
     currentUser: state.currentUser.user,
     profileImage: state.currentUser.profileImage,
+    moods: state.moods,
+    sadLists: state.moodLists.sadLists,
+    contentLists: state.moodLists.contentLists,
+    ecstaticLists: state.moodLists.ecstaticLists,
   };
 };
 
