@@ -5,7 +5,7 @@ import Player from "../../player";
 
 const MyVibeLists = () => {
   return (
-    <div className="my-vibelists-wrapper">
+    <div className="main-container">
       <AllVibelists />
       <Player />
     </div>

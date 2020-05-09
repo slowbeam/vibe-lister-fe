@@ -5,7 +5,7 @@ import Playlist from "../../playlist";
 
 const Vibelist = () => {
   return (
-    <div className="create-page-container">
+    <div className="main-container">
       <div className="create-page-content">
         <Playlist />
         <Player />
