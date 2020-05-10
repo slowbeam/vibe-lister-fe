@@ -1,21 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import withAuth from "../hocs/withAuth";
+import withAuth from "../../../hocs/withAuth";
 import GenreSelectDialog from "./GenreSelectDialog";
 import SelectedGenresList from "./SelectedGenresList";
-import * as actions from "../actions";
+import * as actions from "../../../actions";
 import { withRouter } from "react-router";
 import { compose } from "redux";
 
-class MoodEmojiSelector extends React.Component {
-  handleSubmit = mood => {
+class Create extends React.Component {
+  handleSubmit = (mood) => {
     if (
       this.props.genreOne !== undefined &&
       this.props.genreTwo !== undefined &&
       this.props.genreThree !== undefined
     ) {
       const fetchUrl =
-        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/search/?mood=` +
         mood +
         "&genreone=" +
         this.props.genreOne +
@@ -31,7 +31,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree === undefined
     ) {
       const fetchUrl =
-        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/search/?mood=` +
         mood +
         "&genreone=" +
         this.props.genreOne +
@@ -45,7 +45,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree === undefined
     ) {
       const fetchUrl =
-        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/search/?mood=` +
         mood +
         "&genreone=" +
         this.props.genreOne;
@@ -57,7 +57,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree !== undefined
     ) {
       const fetchUrl =
-        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/search/?mood=` +
         mood +
         "&genreone=" +
         this.props.genreOne +
@@ -71,7 +71,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree !== undefined
     ) {
       const fetchUrl =
-        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/search/?mood=` +
         mood +
         "&genretwo=" +
         this.props.genreTwo +
@@ -85,7 +85,7 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree === undefined
     ) {
       const fetchUrl =
-        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/search/?mood=` +
         mood +
         "&genretwo=" +
         this.props.genreTwo;
@@ -97,14 +97,14 @@ class MoodEmojiSelector extends React.Component {
       this.props.genreThree !== undefined
     ) {
       const fetchUrl =
-        "https://vibelist-server.herokuapp.com/api/v1/search/?mood=" +
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/search/?mood=` +
         mood +
         "&genrethree=" +
         this.props.genreThree;
       this.props.fetchMoodSearch(fetchUrl);
       this.props.history.push("/current-vibelist");
     } else {
-      const fetchUrl = `https://vibelist-server.herokuapp.com/api/v1/search/?mood=${mood}`;
+      const fetchUrl = `${process.env.REACT_APP_API_BASE_URL}/api/v1/search/?mood=${mood}`;
       this.props.fetchMoodSearch(fetchUrl);
       this.props.history.push("/current-vibelist");
     }
@@ -144,15 +144,12 @@ const mapStateToProps = (state, ownProps) => {
     genreTwo: state.currentGenres.genreTwo,
     genreThree: state.currentGenres.genreThree,
     currentVibelist: state.currentVibelist,
-    history: ownProps.history
+    history: ownProps.history,
   };
 };
 
 export default compose(
   withAuth,
   withRouter,
-  connect(
-    mapStateToProps,
-    actions
-  )
-)(MoodEmojiSelector);
+  connect(mapStateToProps, actions)
+)(Create);

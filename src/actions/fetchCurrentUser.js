@@ -1,12 +1,10 @@
-import APIAdapter from '../apis/adapter';
-import { setCurrentUser } from './currentUser';
+import APIAdapter from "../apis/apiAdapter";
+import { setCurrentUser } from "./currentUser";
 
 export const fetchCurrentUser = () => {
-
   return (dispatch) => {
-    APIAdapter.getCurrentUser()
-      .then(user => {
-        dispatch(setCurrentUser(user));
-      })
-  }
-}
+    APIAdapter.getCurrentUser().then((user) => {
+      dispatch(setCurrentUser(user));
+    });
+  };
+};
