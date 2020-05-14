@@ -10,14 +10,6 @@ const fetchObj = {
   headers: { Authorization: `Bearer ${token}` },
 };
 
-const currentUserFetchObj = {
-  method: "POST",
-  headers: {
-    "Content-Type": "Application/json",
-    Authorization: `Bearer ${token}`,
-  },
-};
-
 export default class APIAdapter {
   static loadCurrentVibelist(playlistUri, deviceId, spotifyAccessToken) {
     const playUrl =
@@ -57,7 +49,12 @@ export default class APIAdapter {
     return fetch(SAVE_VIBELIST_URL, saveFetchObj).then((resp) => resp.json());
   }
 
-  static searchMood(url) {
+  static createPlaylist(url) {
+    const token = localStorage.getItem("jwt");
+
+    const fetchObj = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
     return fetch(url, fetchObj).then((resp) => resp.json());
   }
 
@@ -78,6 +75,16 @@ export default class APIAdapter {
   }
 
   static getCurrentUser() {
+    const token = localStorage.getItem("jwt");
+
+    const currentUserFetchObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
     return fetch(LOGGED_IN_USER_URL, currentUserFetchObj).then((resp) =>
       resp.json()
     );

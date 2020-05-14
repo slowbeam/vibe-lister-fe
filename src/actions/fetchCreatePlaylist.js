@@ -1,9 +1,9 @@
 import APIAdapter from "../apis/apiAdapter";
 import { setCurrentVibelist } from "./currentVibelist";
 
-export const fetchMoodSearch = (url) => {
+export const fetchCreatePlaylist = (url) => {
   return (dispatch) => {
-    return APIAdapter.searchMood(url).then((data) => {
+    return APIAdapter.createPlaylist(url).then((data) => {
       dispatch(setCurrentVibelist(data));
     });
   };
