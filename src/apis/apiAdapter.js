@@ -57,7 +57,12 @@ export default class APIAdapter {
     return fetch(SAVE_VIBELIST_URL, saveFetchObj).then((resp) => resp.json());
   }
 
-  static searchMood(url) {
+  static createPlaylist(url) {
+    const token = localStorage.getItem("jwt");
+
+    const fetchObj = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
     return fetch(url, fetchObj).then((resp) => resp.json());
   }
 

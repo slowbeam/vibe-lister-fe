@@ -23,7 +23,7 @@ class Create extends React.Component {
         this.props.genreTwo +
         "&genrethree=" +
         this.props.genreThree;
-      this.props.fetchMoodSearch(fetchUrl);
+      this.props.fetchCreatePlaylist(fetchUrl);
       this.props.history.push("/current-vibelist");
     } else if (
       this.props.genreOne !== undefined &&
@@ -37,7 +37,7 @@ class Create extends React.Component {
         this.props.genreOne +
         "&genretwo=" +
         this.props.genreTwo;
-      this.props.fetchMoodSearch(fetchUrl);
+      this.props.fetchCreatePlaylist(fetchUrl);
       this.props.history.push("/current-vibelist");
     } else if (
       this.props.genreOne !== undefined &&
@@ -49,7 +49,7 @@ class Create extends React.Component {
         mood +
         "&genreone=" +
         this.props.genreOne;
-      this.props.fetchMoodSearch(fetchUrl);
+      this.props.fetchCreatePlaylist(fetchUrl);
       this.props.history.push("/current-vibelist");
     } else if (
       this.props.genreOne !== undefined &&
@@ -63,7 +63,7 @@ class Create extends React.Component {
         this.props.genreOne +
         "&genrethree=" +
         this.props.genreThree;
-      this.props.fetchMoodSearch(fetchUrl);
+      this.props.fetchCreatePlaylist(fetchUrl);
       this.props.history.push("/current-vibelist");
     } else if (
       this.props.genreOne === undefined &&
@@ -77,7 +77,7 @@ class Create extends React.Component {
         this.props.genreTwo +
         "&genrethree=" +
         this.props.genreThree;
-      this.props.fetchMoodSearch(fetchUrl);
+      this.props.fetchCreatePlaylist(fetchUrl);
       this.props.history.push("/current-vibelist");
     } else if (
       this.props.genreOne === undefined &&
@@ -89,7 +89,7 @@ class Create extends React.Component {
         mood +
         "&genretwo=" +
         this.props.genreTwo;
-      this.props.fetchMoodSearch(fetchUrl);
+      this.props.fetchCreatePlaylist(fetchUrl);
       this.props.history.push("/current-vibelist");
     } else if (
       this.props.genreOne === undefined &&
@@ -101,11 +101,11 @@ class Create extends React.Component {
         mood +
         "&genrethree=" +
         this.props.genreThree;
-      this.props.fetchMoodSearch(fetchUrl);
+      this.props.fetchCreatePlaylist(fetchUrl);
       this.props.history.push("/current-vibelist");
     } else {
       const fetchUrl = `${process.env.REACT_APP_API_BASE_URL}/api/v1/search/?mood=${mood}`;
-      this.props.fetchMoodSearch(fetchUrl);
+      this.props.fetchCreatePlaylist(fetchUrl);
       this.props.history.push("/current-vibelist");
     }
   };
