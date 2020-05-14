@@ -10,7 +10,6 @@ export * from "./fetchCurrentUser";
 export * from "./fetchMoods";
 export * from "./fetchSongs";
 export * from "./fetchUsers";
-export * from "./logInUser";
 export * from "./moods";
 export * from "./playing";
 export * from "./playlistLoaded";

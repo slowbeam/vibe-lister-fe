@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../actions";
-
+import { logInUser } from "../../../utils/user";
 import StyledButton from "../../shared/buttons/styledButton";
 
 class Welcome extends Component {
   componentDidMount() {
-    this.props.LogInUser(window.location);
+    logInUser(window.location);
   }
 
   renderWelcomeMessage = () => {
