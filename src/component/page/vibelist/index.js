@@ -1,7 +1,7 @@
 import React from "react";
 
-import Player from "../../player";
-import Playlist from "../../playlist";
+import Player from "../../shared/player";
+import Playlist from "../../shared/playlist";
 
 const Vibelist = () => {
   return (

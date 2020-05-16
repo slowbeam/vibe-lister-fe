@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuid from "uuid";
 
-import * as actions from "../actions";
-import withAuth from "../hocs/withAuth";
-import spotifySDKAdapter from "../apis/spotifySDKAdapter";
+import * as actions from "../../../actions";
+import withAuth from "../../../hocs/withAuth";
+import spotifySDKAdapter from "../../../apis/spotifySDKAdapter";
 
-import SongCard from "./SongCard";
-import StyledButton from "./shared/buttons/styledButton";
+import SongCard from "../songCard";
+import StyledButton from "../buttons/styledButton";
 
 class Playlist extends Component {
   handleSaveVibelist = () => {

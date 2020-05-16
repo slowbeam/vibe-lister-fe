@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import SongCard from "../../SongCard";
-import withAuth from "../../../hocs/withAuth";
-import StyledButton from "../../shared/buttons/styledButton";
 import uuid from "uuid";
 
 import * as actions from "../../../actions";
+import withAuth from "../../../hocs/withAuth";
+
+import SongCard from "../../shared/songCard";
+import StyledButton from "../../shared/buttons/styledButton";
 
 class allVibelists extends Component {
   componentDidMount() {
