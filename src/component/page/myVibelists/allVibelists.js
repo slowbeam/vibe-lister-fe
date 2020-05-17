@@ -167,7 +167,7 @@ class allVibelists extends Component {
             </div>
           );
         } else {
-          return <></>;
+          return <div key={uuid()}></div>;
         }
       });
     }
