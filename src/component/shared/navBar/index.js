@@ -39,12 +39,11 @@ class NavBar extends Component {
   };
 
   renderProfileImage = () => {
-    const { currentUser, profileImage } = this.props;
-    return profileImage
-      ? profileImage
-      : currentUser.profileImage
-      ? currentUser.profileImage
-      : "./images/avatar-icon.png";
+    const {
+      currentUser: { profile_image },
+    } = this.props;
+
+    return profile_image ? profile_image : "./images/avatar-icon.png";
   };
 
   handleIconClick = (event) => {
@@ -94,17 +93,15 @@ class NavBar extends Component {
           </div>
         </div>
         <div id="mobile-nav-bar" className="mobile-nav-menu">
-          <a
-            href={process.env.REACT_APP_BASE_URL}
+          <Link
+            to="/"
             onClick={this.handleMenuClick}
             className="mobile-home-button"
           >
             home
-          </a>
-          <a href={process.env.REACT_APP_BASE_URL + "/my-vibelists"}>
-            my vibelists
-          </a>
-          <a href={process.env.REACT_APP_BASE_URL + "/create"}>new vibelist</a>
+          </Link>
+          <Link to="/my-vibelists">my vibelists</Link>
+          <Link to="/create">new vibelist</Link>
           {this.renderLogInLogOutMobile()}
         </div>
       </>

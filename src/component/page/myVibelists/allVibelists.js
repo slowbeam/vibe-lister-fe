@@ -149,20 +149,22 @@ class allVibelists extends Component {
       return listArray.map((list) => {
         if (list.saved === true) {
           return (
-            <div key={uuid()} className="vibelist-multi">
-              <img
-                className="emoji-image"
-                alt={`${list.mood} emoji`}
-                src={`/images/emojis/${list.mood}-2.png`}
-              />
-              <br />
-              <StyledButton
-                onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}
-                text="play all"
-              />
-              <div className="song-card-container">
+            <div className="list-container" key={uuid()}>
+              <div className="vibelist-multi">
+                <img
+                  className="emoji-image"
+                  alt={`${list.mood} emoji`}
+                  src={`/images/emojis/${list.mood}-2.png`}
+                />
                 <br />
-                {this.renderAllSongs(list.songs)}
+                <StyledButton
+                  onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}
+                  text="play all"
+                />
+                <div className="song-card-container">
+                  <br />
+                  {this.renderAllSongs(list.songs)}
+                </div>
               </div>
             </div>
           );
@@ -176,15 +178,9 @@ class allVibelists extends Component {
   render() {
     return (
       <div className="my-vibelist-container">
-        <div className="list-container">
-          {this.renderVibelists(this.props.sadLists)}
-        </div>
-        <div className="list-container">
-          {this.renderVibelists(this.props.contentLists)}
-        </div>
-        <div className="list-container">
-          {this.renderVibelists(this.props.ecstaticLists)}
-        </div>
+        {this.renderVibelists(this.props.sadLists)}
+        {this.renderVibelists(this.props.contentLists)}
+        {this.renderVibelists(this.props.ecstaticLists)}
       </div>
     );
   }

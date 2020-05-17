@@ -119,7 +119,7 @@ svg {
 .content {
   background-color: lavender;
   display: flex;
-  height: 900px;
+  min-height: 900px;
   justify-content: center;
   overflow: auto;
   width: 100%;
@@ -557,6 +557,7 @@ svg {
 }
 
 .topnav .icon {
+  cursor: pointer;
   display: none;
   padding: 0 10px;
 }
@@ -630,6 +631,11 @@ svg {
     margin-bottom: 25px;
   }
 
+  .main-container {
+    flex-direction: column;
+    padding: 50px 0;
+  }
+
   .mobile-nav-menu.show {
     display: flex;
     flex-direction: column;
@@ -655,7 +661,7 @@ svg {
   }
 
   .my-vibelist-container {
-    margin-top: 100px;
+    margin-top: 0px;
   }
 
   .my-vibelists-wrapper {
@@ -722,6 +728,11 @@ svg {
     z-index: 8;
   }
 
+  .main-container {
+    flex-direction: column;
+    padding: 50px 0;
+  }
+
   .mobile-nav-menu .mobile-home-button {
     display: none;
   }
@@ -740,6 +751,14 @@ svg {
 
   .mobile-nav-menu.show.tablet p {
     width: 200px;
+  }
+
+  .music-player-container {
+    margin-top: 0;
+  }
+
+  .my-vibelist-container {
+    margin-top: 0px;
   }
 
   .playlist-container {
