@@ -176,6 +176,10 @@ class Player extends React.Component {
     );
   }
 
+  componentWillUnmount() {
+    this.player.pause();
+  }
+
   render() {
     return (
       <React.Fragment>
