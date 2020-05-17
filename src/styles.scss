@@ -236,14 +236,6 @@ svg {
   width: 100%;
 }
 
-.list-container {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  justify-content: space-around;
-  margin-bottom: 30px;
-}
-
 .login-container {
   display: flex;
   justify-content: center;
@@ -581,14 +573,6 @@ svg {
   transform: translateY(0px);
 }
 
-.vibelist-multi {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
 .welcome {
   align-items: center;
   display: flex;
@@ -627,12 +611,11 @@ svg {
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-around;
-    margin-top: -150px;
     margin-bottom: 25px;
   }
 
   .main-container {
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 50px 0;
   }
 
@@ -660,6 +643,10 @@ svg {
     margin-top: 20px;
   }
 
+  .music-player-container {
+    margin-top: 0;
+  }
+
   .my-vibelist-container {
     margin-top: 0px;
   }
@@ -667,10 +654,6 @@ svg {
   .my-vibelists-wrapper {
     display: flex;
     flex-direction: column-reverse;
-  }
-
-  #player {
-    margin-top: -20px;
   }
 
   .playlist-container {

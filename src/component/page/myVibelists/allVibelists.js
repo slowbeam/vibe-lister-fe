@@ -4,6 +4,7 @@ import uuid from "uuid";
 
 import * as actions from "../../../actions";
 import withAuth from "../../../hocs/withAuth";
+import spotifySDKAdapter from "../../../apis/spotifySDKAdapter";
 
 import SongCard from "../../shared/songCard";
 import StyledButton from "../../shared/buttons/styledButton";
@@ -89,88 +90,60 @@ class allVibelists extends Component {
     }
   };
 
-  playSong = (uri) => {
-    const deviceId = this.props.deviceId;
-    const token = this.props.currentUser.access_token;
+  loadCurrentPlaylist = (playlistUri) => {
+    const {
+      currentUser: { access_token },
+      deviceId,
+    } = this.props;
 
-    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
-      method: "PUT",
-      body: JSON.stringify({ uris: [uri] }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    spotifySDKAdapter.loadCurrentPlaylist(access_token, deviceId, playlistUri);
+  };
+
+  playSong = (uri) => {
+    const {
+      deviceId,
+      currentUser: { access_token },
+    } = this.props;
+
+    spotifySDKAdapter.playSong(access_token, deviceId, uri);
   };
 
   renderAllSongs = (songArray) => {
-    if (songArray.length === 0) {
-      return (
-        <SongCard
-          albumCover="images/vibelist-logo-9.png"
-          title="No Vibelist Created Yet"
-          artist="none"
-        />
-      );
-    } else {
-      return songArray.map((song) => (
-        <SongCard
-          key={uuid()}
-          title={song.title}
-          artist={song.artist}
-          albumCover={song.album_cover}
-          uri={song.uri}
-          onClick={this.playSong}
-        />
-      ));
-    }
-  };
-
-  loadCurrentPlaylist = (playlistUri) => {
-    const currentUser = this.props.currentUser;
-    const playUrl =
-      "https://api.spotify.com/v1/me/player/play?device_id=" +
-      this.props.deviceId;
-
-    fetch(playUrl, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${currentUser.access_token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        context_uri: playlistUri,
-      }),
-    });
+    return songArray.map((song) => (
+      <SongCard
+        key={uuid()}
+        title={song.title}
+        artist={song.artist}
+        albumCover={song.album_cover}
+        uri={song.uri}
+        onClick={this.playSong}
+      />
+    ));
   };
 
   renderVibelists = (listArray) => {
     if (listArray) {
       return listArray.map((list) => {
-        if (list.saved === true) {
-          return (
-            <div className="list-container" key={uuid()}>
-              <div className="vibelist-multi">
-                <img
-                  className="emoji-image"
-                  alt={`${list.mood} emoji`}
-                  src={`/images/emojis/${list.mood}-2.png`}
-                />
+        return (
+          list.saved === true && (
+            <div className="playlist-container" key={uuid()}>
+              <img
+                className="emoji-image"
+                alt={`${list.mood} emoji`}
+                src={`/images/emojis/${list.mood}-2.png`}
+              />
+              <br />
+              <StyledButton
+                onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}
+                text="play all"
+              />
+              <div className="song-card-container">
                 <br />
-                <StyledButton
-                  onClick={() => this.loadCurrentPlaylist(list.playlist_uri)}
-                  text="play all"
-                />
-                <div className="song-card-container">
-                  <br />
-                  {this.renderAllSongs(list.songs)}
-                </div>
+                {this.renderAllSongs(list.songs)}
               </div>
             </div>
-          );
-        } else {
-          return <div key={uuid()}></div>;
-        }
+          )
+        );
       });
     }
   };
