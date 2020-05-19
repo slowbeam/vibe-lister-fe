@@ -1,7 +1,7 @@
 import React from "react";
 
 import AllVibelists from "./allVibelists";
-import Player from "../../player";
+import Player from "../../shared/player";
 
 const MyVibeLists = () => {
   return (

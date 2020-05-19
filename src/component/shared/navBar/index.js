@@ -7,7 +7,7 @@ import * as actions from "../../../actions";
 class NavBar extends Component {
   renderLogInLogOut = () => {
     const jwt = localStorage.getItem("jwt");
-    if ((this.props.currentUser !== null) & (jwt !== null)) {
+    if (this.props.currentUser !== null && jwt !== null) {
       return (
         <div className="avatar-logout">
           <div
@@ -31,7 +31,7 @@ class NavBar extends Component {
 
   renderLogInLogOutMobile = () => {
     const jwt = localStorage.getItem("jwt");
-    if ((this.props.currentUser !== null) & (jwt !== null)) {
+    if (this.props.currentUser !== null && jwt !== null) {
       return <p onClick={this.handleLogOut}>logout</p>;
     } else {
       return <LoginButton />;
@@ -39,13 +39,11 @@ class NavBar extends Component {
   };
 
   renderProfileImage = () => {
-    if (this.props.profileImage) {
-      return this.props.profileImage;
-    } else if (this.props.currentUser.profile_image) {
-      return this.props.currentUser.profile_image;
-    } else {
-      return "./images/avatar-icon.png";
-    }
+    const {
+      currentUser: { profile_image },
+    } = this.props;
+
+    return profile_image ? profile_image : "./images/avatar-icon.png";
   };
 
   handleIconClick = (event) => {
@@ -80,20 +78,12 @@ class NavBar extends Component {
       <>
         <div className="topnav" id="top-nav-bar">
           <div className="box-1">
-            <a
-              href={process.env.REACT_APP_BASE_URL}
-              onClick={this.handleMenuClick}
-            >
+            <Link to="/" onClick={this.handleMenuClick}>
               home
-            </a>
-            <a href={process.env.REACT_APP_BASE_URL + "/my-vibelists"}>
-              my vibelists
-            </a>
-            <a href={process.env.REACT_APP_BASE_URL + "/create"}>
-              new vibelist
-            </a>
+            </Link>
+            <Link to="/my-vibelists">my vibelists</Link>
+            <Link to="/create">new vibelist</Link>
           </div>
-
           <div className="box-2"></div>
           <div className="box-3">
             {this.renderLogInLogOut()}
@@ -103,17 +93,15 @@ class NavBar extends Component {
           </div>
         </div>
         <div id="mobile-nav-bar" className="mobile-nav-menu">
-          <a
-            href={process.env.REACT_APP_BASE_URL}
+          <Link
+            to="/"
             onClick={this.handleMenuClick}
             className="mobile-home-button"
           >
             home
-          </a>
-          <a href={process.env.REACT_APP_BASE_URL + "/my-vibelists"}>
-            my vibelists
-          </a>
-          <a href={process.env.REACT_APP_BASE_URL + "/create"}>new vibelist</a>
+          </Link>
+          <Link to="/my-vibelists">my vibelists</Link>
+          <Link to="/create">new vibelist</Link>
           {this.renderLogInLogOutMobile()}
         </div>
       </>

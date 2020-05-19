@@ -35,15 +35,17 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        <NavBar />
         <Router>
-          <div className="content">
-            <Route exact path="/" render={this.Login} />
-            <Route exact path="/welcome" component={Welcome} />
-            <Route exact path="/create" component={Create} />
-            <Route exact path="/current-vibelist" component={Vibelist} />
-            <Route exact path="/my-vibelists" component={MyVibeLists} />
-          </div>
+          <>
+            <NavBar />
+            <div className="content">
+              <Route exact path="/" render={this.Login} />
+              <Route exact path="/welcome" component={Welcome} />
+              <Route exact path="/create" component={Create} />
+              <Route exact path="/current-vibelist" component={Vibelist} />
+              <Route exact path="/my-vibelists" component={MyVibeLists} />
+            </div>
+          </>
         </Router>
         <div className="footer">
           <p className="footer-text">created by Sandy Edwards</p>

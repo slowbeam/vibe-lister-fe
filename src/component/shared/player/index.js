@@ -1,7 +1,7 @@
 import React from "react";
-import withAuth from "../hocs/withAuth";
+import withAuth from "../../../hocs/withAuth";
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import * as actions from "../../../actions";
 
 class Player extends React.Component {
   constructor(props) {
@@ -174,6 +174,10 @@ class Player extends React.Component {
       () => this.getAndSaveTrackPosition(),
       1000
     );
+  }
+
+  componentWillUnmount() {
+    this.player.pause();
   }
 
   render() {

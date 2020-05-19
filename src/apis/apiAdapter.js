@@ -59,6 +59,11 @@ export default class APIAdapter {
   }
 
   static getSongs() {
+    const token = localStorage.getItem("jwt");
+
+    const fetchObj = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
     return fetch(SONG_URL, fetchObj).then((resp) => resp.json());
   }
 
